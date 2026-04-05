@@ -1,0 +1,1753 @@
+# SPDX-License-Identifier: MIT
+# Généré / synchronisé avec config/layout/standard_layout.dtsi
+
+meta:
+  format: zmk-dsl-v1
+  schema_version: 6
+  keyboard: sofle-60
+  firmware: zmk
+  zmk_source: config/layout/standard_layout.dtsi
+  locale_map_csv: support/locale-maps/osx/fr_azerty_iso.csv
+  host:
+    os: macos
+    locale: fr-ISO
+    logical_layout: azerty
+  canonical_config: true
+  note: >
+    MAIN : une entrée par touche nommée (L00, R10, I18_LHYP, LT3…) — pas de liste à indexer. Ordre des clés dans
+    le fichier = ordre SOFLE60 pour lecture linéaire. Autres couches : bindings_zmk.
+  macro_reference_only: config/sofle.keymap
+  macro_reference_note: >
+    SOFLE60 est un #define C : les noms K00…K65 ci-dessous sont uniquement les paramètres formels de la macro.
+    Ils ne sont pas des « touches » à recopier dans une couche : la macro retire certains arguments des rangées 2–3
+    visuelles en entrée et réordonne (voir commentaire dans sofle.keymap). Le YAML n’a pas besoin de dupliquer cette
+    logique dans une section wiring : un transpileur l’implémente une fois à partir de sofle.keymap.
+settings:
+  alias_resolution: strict
+  unknown_alias_policy: error
+  unused_physical_key_policy: allow
+  comments: true
+dsl_human:
+  read_me: |
+    Chaque clé sous layers.MAIN est un id physique (repère clavier). La valeur est l’action, un seul niveau.
+    kp_rN* → &kp_rN* ; FR_* → &kp + aliases_fr ; mot nu → &behavior ; none → &none ;
+    LHM4(A), P_*_QWT, AS(V) → macro telle quelle ; lt / hlr / hmr → sous-clés layer|mod + tap (FR_*).
+    LT0 opttildepipe / RC(4,11) &kp LA(LS(DOT)) — macOS FR : ⌥n→~, ⇧+⌥L→| ; ⌥⇧.→\ (voir standard_layout.dtsi).
+    U46 / U47 : arguments SOFLE60 sans effet sur la matrice (none) — voir sofle.keymap.
+  aliases_fr:
+    FR_RBKT: RBKT
+    FR_TAB: TAB
+    FR_Q: Q
+    FR_W: W
+    FR_E: E
+    FR_R: R
+    FR_T: T
+    FR_Y: Y
+    FR_U: U
+    FR_I: I
+    FR_O: O
+    FR_P: P
+    FR_MINUS_KEY: MINUS
+    FR_GRAVE: GRAVE
+    FR_G: G
+    FR_H: H
+    FR_C: C
+    FR_B: B
+    FR_N: N
+    FR_M: M
+    FR_COMMA: COMMA
+    FR_U_GRAVE: SQT
+    FR_ESC: ESC
+    FR_ENTER: ENTER
+    FR_SPACE: SPACE
+    FR_EQUAL: EQUAL
+zmk_stack:
+  entry: config/sofle.keymap
+  layout_includes:
+  - config/layout/standard_layout.dtsi
+  - config/layout/specialkeys.dtsi
+  - config/layout/homerowmods.dtsi
+  - config/layout/autoshift.dtsi
+  - config/layout/keymap_drawer.dtsi
+regeneration:
+  when: Après toute modification de standard_layout.dtsi (blocs SOFLE60).
+  how: >
+    MAIN : éditer le mapping nommé sous layers.MAIN (hors display_name). Autres couches : bindings_zmk.
+sofle60:
+  macro: SOFLE60
+  defined_in: config/sofle.keymap
+  argument_count: 66
+  argument_keys_townk:
+  - K00
+  - K01
+  - K02
+  - K03
+  - K04
+  - K05
+  - K06
+  - K07
+  - K08
+  - K09
+  - K10
+  - K11
+  - K12
+  - K13
+  - K14
+  - K15
+  - K16
+  - K17
+  - K18
+  - K19
+  - K20
+  - K21
+  - K22
+  - K23
+  - K24
+  - K25
+  - K26
+  - K27
+  - K28
+  - K29
+  - K30
+  - K31
+  - K32
+  - K33
+  - K34
+  - K35
+  - K36
+  - K37
+  - K38
+  - K39
+  - K40
+  - K41
+  - K42
+  - K43
+  - K44
+  - K45
+  - K46
+  - K47
+  - K48
+  - K49
+  - K50
+  - K51
+  - K52
+  - K53
+  - K54
+  - K55
+  - K56
+  - K57
+  - K58
+  - K59
+  - K60
+  - K61
+  - K62
+  - K63
+  - K64
+  - K65
+  output_touch_count: 60
+  transform:
+    summary: >
+      Comportement défini uniquement dans config/sofle.keymap (commentaire au-dessus de SOFLE60). En sortie 60
+      touches : ce qui en entrée « comble » le trou entre les deux moitiés des rangées 2 et 3 n’y reste pas ; les
+      HYP vont au centre du bas de la 4ᵉ rangée. Deux emplacements pouce d’entrée ne sont pas câblés en sortie.
+    thumb_input_slots_dropped_in_output: [K60, K63]
+  # Table de correspondance sortie matrice ZMK (60) → quel argument formel de la macro a fourni le binding.
+  # Donnée pour outils ; les humains éditent surtout layers.*.bindings_zmk (ordre entrée 66).
+  output_sequence_60:
+  - K00
+  - K01
+  - K02
+  - K03
+  - K04
+  - K05
+  - K06
+  - K07
+  - K08
+  - K09
+  - K10
+  - K11
+  - K12
+  - K13
+  - K14
+  - K15
+  - K16
+  - K17
+  - K20
+  - K21
+  - K22
+  - K23
+  - K24
+  - K25
+  - K26
+  - K27
+  - K28
+  - K29
+  - K30
+  - K31
+  - K34
+  - K35
+  - K36
+  - K37
+  - K38
+  - K39
+  - K40
+  - K41
+  - K42
+  - K43
+  - K44
+  - K45
+  - K18
+  - K19
+  - K48
+  - K49
+  - K50
+  - K51
+  - K52
+  - K53
+  - K54
+  - K55
+  - K56
+  - K57
+  - K58
+  - K59
+  - K61
+  - K62
+  - K64
+  - K65
+  output_index_to_physical_id:
+    0: L00
+    1: L01
+    2: L02
+    3: L03
+    4: L04
+    5: L05
+    6: R00
+    7: R01
+    8: R02
+    9: R03
+    10: R04
+    11: R05
+    12: L10
+    13: L11
+    14: L12
+    15: L13
+    16: L14
+    17: L15
+    18: R10
+    19: R11
+    20: R12
+    21: R13
+    22: R14
+    23: R15
+    24: L20
+    25: L21
+    26: L22
+    27: L23
+    28: L24
+    29: L25
+    30: R20
+    31: R21
+    32: R22
+    33: R23
+    34: R24
+    35: R25
+    36: L30
+    37: L31
+    38: L32
+    39: L33
+    40: L34
+    41: L35
+    42: I18_LHYP
+    43: I19_RHYP
+    44: R30
+    45: R31
+    46: R32
+    47: R33
+    48: R34
+    49: R35
+    50: LT0
+    51: LT1
+    52: LT2
+    53: LT3
+    54: LT4
+    55: LT5
+    56: RT0
+    57: RT1
+    58: RT2
+    59: RT3
+  output_index_to_physical_id_note: >
+    Repère lisible (L00…R35, I18_LHYP/I19_RHYP pour le centre bas, LT*/RT*). Dix touches pouce en sortie réelle ;
+    la grille 12 pouces du schéma peut dépasser ce qui est câblé — voir transform dans sofle.keymap.
+layers:
+  MAIN:
+    display_name: QWERTY
+    # Ordre des clés = ordre SOFLE60 (K00…K65). Éditer par id, sans compter une liste.
+    # — rangée chiffres
+    L00: lbktgrave
+    L01: kp_rN1
+    L02: kp_rN2
+    L03: kp_rN3
+    L04: kp_rN4
+    L05: kp_rN5
+    R00: kp_rN6
+    R01: kp_rN7
+    R02: kp_rN8
+    R03: kp_rN9
+    R04: kp_rN0
+    R05: FR_RBKT
+    # — rangée lettres (HYP au centre)
+    L10: FR_TAB
+    L11: FR_Q
+    L12: FR_W
+    L13: FR_E
+    L14: FR_R
+    L15: FR_T
+    I18_LHYP: LHYP
+    I19_RHYP: RHYP
+    R10: FR_Y
+    R11: FR_U
+    R12: FR_I
+    R13: FR_O
+    R14: FR_P
+    R15: FR_MINUS_KEY
+    # — rangée home (MEH au centre)
+    L20: FR_GRAVE
+    L21: LHM4(A)
+    L22: LHM3(S)
+    L23: LHM2(D)
+    L24: LHM1(F)
+    L25: FR_G
+    I32_LMEH: LMEH
+    I33_RMEH: RMEH
+    R20: FR_H
+    R21: RHM1(J)
+    R22: RHM2(K)
+    R23: RHM3(L)
+    R24: RHM4(SEMI)
+    R25: FR_U_GRAVE
+    # — rangée basse (U46/U47 = arguments macro sans sortie)
+    L30: globebslh
+    L31: P_LB4_QWT
+    L32: P_LB3_QWT
+    L33: FR_C
+    L34: AS(V)
+    L35: FR_B
+    U46: none
+    U47: none
+    R30: FR_N
+    R31: FR_M
+    R32: FR_COMMA
+    R33: P_RB3_QWT
+    R34: P_RB4_QWT
+    R35:
+      hmr:
+        mod: GLOBE
+        tap: FR_EQUAL
+    # — pouces (12 args K54…K65)
+    LT0: opttildepipe
+    LT1: motg_sys
+    LT2: P_SF4_QWT
+    LT3: bspcnav
+    LT4:
+      lt:
+        layer: L_SYM
+        tap: FR_ESC
+    LT5:
+      lt:
+        layer: L_MED
+        tap: FR_ENTER
+    RT0: none
+    RT1:
+      hlr:
+        layer: L_NUM
+        tap: FR_SPACE
+    RT2: P_SF4_QWT
+    RT3: none
+    RT4: motg_sys
+    # RC(4,11) firmware = &kp LA(LS(DOT)) (⌥⇧. → \) ; aligner bindings_zmk COLEMAK si besoin.
+    RT5: none
+  COLEMAK:
+    display_name: COLEMAK
+    bindings_zmk:
+    - '&lbktgrave'
+    - '&kp_rN1'
+    - '&kp_rN2'
+    - '&kp_rN3'
+    - '&kp_rN4'
+    - '&kp_rN5'
+    - '&kp_rN6'
+    - '&kp_rN7'
+    - '&kp_rN8'
+    - '&kp_rN9'
+    - '&kp_rN0'
+    - '&kp RBKT'
+    - '&kp TAB'
+    - '&kp Q'
+    - '&kp W'
+    - '&kp F'
+    - '&kp P'
+    - '&kp B'
+    - '&kp LHYP'
+    - '&kp RHYP'
+    - '&kp J'
+    - '&kp L'
+    - '&kp U'
+    - '&kp Y'
+    - '&kp SEMI'
+    - '&kp MINUS'
+    - '&kp GRAVE'
+    - LHM4(A)
+    - LHM3(R)
+    - LHM2(S)
+    - LHM1(T)
+    - '&kp G'
+    - '&kp LMEH'
+    - '&kp RMEH'
+    - '&kp M'
+    - RHM1(N)
+    - RHM2(E)
+    - RHM3(I)
+    - RHM4(O)
+    - '&kp SQT'
+    - '&globebslh'
+    - P_LB4_QWT
+    - P_LB3_QWT
+    - '&kp C'
+    - '&kp D'
+    - '&kp V'
+    - '&none'
+    - '&none'
+    - '&kp K'
+    - '&kp H'
+    - '&kp COMMA'
+    - P_RB3_QWT
+    - P_RB4_QWT
+    - '&hmr GLOBE EQUAL'
+    - '&opttildepipe'
+    - '&motg_sys'
+    - P_SF4_QWT
+    - '&bspcnav'
+    - '&lt L_SYM ESC'
+    - '&lt L_MED RET'
+    - '&none'
+    - '&hlr L_NUM SPACE'
+    - P_SF4_QWT
+    - '&none'
+    - '&motg_sys'
+    - '&kp LA(LS(DOT))'
+  NAV:
+    display_name: Navigation
+    bindings_zmk:
+    - '&appPwinN'
+    - '&kp LG(N1)'
+    - '&kp LG(N2)'
+    - '&kp LG(N3)'
+    - '&kp LG(N4)'
+    - '&kp LG(N5)'
+    - '&none'
+    - '&kp BTAB'
+    - '&kp MAC_FDPRV'
+    - '&kp MAC_FDNXT'
+    - '&kp TAB'
+    - '&none'
+    - '&appswtnxt'
+    - '&kp LG(Q)'
+    - '&kp LG(W)'
+    - '&kp LG(E)'
+    - '&kp LG(R)'
+    - '&kp LG(T)'
+    - '&kp LHYP'
+    - '&kp RHYP'
+    - '&none'
+    - '&kp HOME'
+    - '&kp PG_DN'
+    - '&kp PG_UP'
+    - '&kp END'
+    - '&none'
+    - '&appPwinN'
+    - LMT4(LG(A))
+    - LMT3(LG(S))
+    - LMT2(LG(D))
+    - LMT1(LG(F))
+    - NAV_LG_G
+    - '&kp LMEH'
+    - '&kp RMEH'
+    - '&none'
+    - '&kp LEFT'
+    - '&kp DOWN'
+    - '&kp UP'
+    - '&kp RIGHT'
+    - '&none'
+    - '&winPglobe'
+    - NAV_LG_Z
+    - NAV_LG_X
+    - NAV_LG_C
+    - NAV_LG_V
+    - '&kp LG(B)'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&kp MAC_WRDP'
+    - '&kp MAC_STTL'
+    - '&kp MAC_ENDL'
+    - '&kp MAC_WRDN'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&tog L_NAV'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&molock'
+  NUM:
+    display_name: Numbers
+    bindings_zmk:
+    - '&none'
+    - '&kp N5'
+    - '&kp KP_MULTIPLY'
+    - '&kp KP_DIVIDE'
+    - '&kp MINUS'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&kp TAB'
+    - '&kp KP_N1'
+    - '&kp KP_N2'
+    - '&kp KP_N3'
+    - '&kp KP_N4'
+    - '&kp KP_N5'
+    - '&kp LHYP'
+    - '&kp RHYP'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&kp KP_ENTER'
+    - '&kp KP_N6'
+    - '&kp KP_N7'
+    - '&kp KP_N8'
+    - '&kp KP_N9'
+    - '&kp KP_N0'
+    - '&kp LMEH'
+    - '&kp RMEH'
+    - '&none'
+    - '&kp RHRM1'
+    - '&kp RHRM2'
+    - '&kp RHRM3'
+    - '&kp RHRM4'
+    - '&none'
+    - '&kp KP_EQUAL'
+    - '&none'
+    - '&kp KP_PLUS'
+    - '&kp KP_MINUS'
+    - '&kp M'
+    - '&kp KP_DOT'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&kp GLOBE'
+    - '&none'
+    - '&molock'
+    - '&none'
+    - '&kp_bspcdel'
+    - '&kp SPACE'
+    - '&none'
+    - '&none'
+    - '&tog L_NUM'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+  SYMBOL:
+    display_name: Symbols
+    bindings_zmk:
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&kp LS(M)'
+    - '&kp KP_PLUS'
+    - '&kp KP_MINUS'
+    - '&kp KP_DOT'
+    - '&kp KP_SLASH'
+    - '&kp LA(LS(DOT))'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&kp LHYP'
+    - '&kp RHYP'
+    - '&kp N1'
+    - '&kp GRAVE'
+    - '&kp KP_EQUAL'
+    - '&kp LS(GRAVE)'
+    - '&kp LA(LS(L))'
+    - '&kp LS(NUBS)'
+    - '&none'
+    - '&kp LHRM4'
+    - '&kp LHRM3'
+    - '&kp LHRM2'
+    - '&kp LHRM1'
+    - '&none'
+    - '&kp LMEH'
+    - '&kp RMEH'
+    - '&kp LA(LS(N5))'
+    - '&kp N5'
+    - '&kp DOT'
+    - '&kp MINUS'
+    - '&kp LA(LS(MINUS))'
+    - '&kp LS(SQT)'
+    - '&kp GLOBE'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&kp RBKT'
+    - '&kp LA(N5)'
+    - '&kp KP_MULTIPLY'
+    - '&kp LA(MINUS)'
+    - '&kp LBKT'
+    - '&kp N8'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&tog L_SYM'
+    - '&kp LA(N0)'
+    - '&none'
+    - '&kp SPACE'
+    - '&none'
+    - '&none'
+    - '&molock'
+    - '&none'
+  MEDIA:
+    display_name: Media
+    bindings_zmk:
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&kp C_VOL_UP'
+    - '&kp C_BRI_UP'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&kp LHYP'
+    - '&kp RHYP'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&kp C_VOL_DN'
+    - '&kp C_BRI_DN'
+    - '&kp C_PREV'
+    - '&kp C_PP'
+    - '&kp C_NEXT'
+    - '&none'
+    - '&kp LMEH'
+    - '&kp RMEH'
+    - '&none'
+    - '&kp RHRM1'
+    - '&kp RHRM2'
+    - '&kp RHRM3'
+    - '&kp RHRM4'
+    - '&none'
+    - '&kp C_MUTE'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&kp GLOBE'
+    - '&none'
+    - '&molock'
+    - '&none'
+    - '&none'
+    - '&kp C_STOP'
+    - '&tog L_MED'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+  MOUSE:
+    display_name: Mouse
+    bindings_zmk:
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&mkp MB4'
+    - '&mkp MB3'
+    - '&mkp MB2'
+    - '&mkp MB1'
+    - '&mkp MB5'
+    - '&kp LHYP'
+    - '&kp RHYP'
+    - '&none'
+    - '&kp MAC_CUT'
+    - '&kp MAC_COPY'
+    - '&kp MAC_PASTE'
+    - '&kp MAC_UNDO'
+    - '&none'
+    - '&none'
+    - '&kp LHRM4'
+    - '&kp LHRM3'
+    - '&kp LHRM2'
+    - '&kp LHRM1'
+    - '&none'
+    - '&kp LMEH'
+    - '&kp RMEH'
+    - '&none'
+    - MKP_MOVE_LEFT
+    - MKP_MOVE_DOWN
+    - MKP_MOVE_UP
+    - MKP_MOVE_RIGHT
+    - '&none'
+    - '&kp GLOBE'
+    - P_LB4_MOU
+    - '&kp LHRM4'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - MKP_SCRL_LEFT
+    - MKP_SCRL_DOWN
+    - MKP_SCRL_UP
+    - MKP_SCRL_RIGHT
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&mkp MB2'
+    - '&none'
+    - '&mkp MB1'
+    - '&mkp MB3'
+    - '&none'
+    - '&molock'
+    - '&none'
+  FUNCTIONS:
+    display_name: Functions
+    bindings_zmk:
+    - '&none'
+    - '&kp F16'
+    - '&kp F17'
+    - '&kp F18'
+    - '&kp F19'
+    - '&kp F20'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&kp F11'
+    - '&kp F12'
+    - '&kp F13'
+    - '&kp F14'
+    - '&kp F15'
+    - '&kp LHYP'
+    - '&kp RHYP'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&kp F6'
+    - '&kp F7'
+    - '&kp F8'
+    - '&kp F9'
+    - '&kp F10'
+    - '&kp LMEH'
+    - '&kp RMEH'
+    - '&none'
+    - '&kp RHRM1'
+    - '&kp RHRM2'
+    - '&kp RHRM3'
+    - '&kp RHRM4'
+    - '&none'
+    - '&none'
+    - '&kp F1'
+    - '&kp F2'
+    - '&kp F3'
+    - '&kp F4'
+    - '&kp F5'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - P_RB3_FUN
+    - P_RB4_FUN
+    - '&kp GLOBE'
+    - '&none'
+    - '&molock'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+  BUTTON:
+    display_name: Buttons
+    bindings_zmk:
+    - '&none'
+    - '&kp BTAB'
+    - '&kp MAC_FDPRV'
+    - '&kp MAC_FDNXT'
+    - '&kp TAB'
+    - '&kp MAC_LP'
+    - '&kp MAC_LP'
+    - '&kp BTAB'
+    - '&kp MAC_FDPRV'
+    - '&kp MAC_FDNXT'
+    - '&kp TAB'
+    - '&none'
+    - '&none'
+    - '&kp MAC_DKTP'
+    - '&kp MAC_WINP'
+    - '&kp MAC_WINN'
+    - '&kp MAC_DKTN'
+    - '&kp MAC_APPWIN'
+    - '&kp LHYP'
+    - '&kp RHYP'
+    - '&kp MAC_APPWIN'
+    - '&kp MAC_DKTP'
+    - '&kp MAC_WINP'
+    - '&kp MAC_WINN'
+    - '&kp MAC_DKTN'
+    - '&none'
+    - '&none'
+    - '&kp LHRM4'
+    - '&kp LHRM3'
+    - '&kp LHRM2'
+    - '&kp LHRM1'
+    - '&kp MAC_MC'
+    - '&kp LMEH'
+    - '&kp RMEH'
+    - '&kp MAC_MC'
+    - '&kp RHRM1'
+    - '&kp RHRM2'
+    - '&kp RHRM3'
+    - '&kp RHRM4'
+    - '&none'
+    - '&mt GLOBE MAC_REDO'
+    - P_SB4_BUT
+    - '&kp MAC_CUT'
+    - '&kp MAC_COPY'
+    - '&kp MAC_PASTE'
+    - '&kp MAC_SP'
+    - '&none'
+    - '&none'
+    - '&kp MAC_SP'
+    - '&kp MAC_PASTE'
+    - '&kp MAC_COPY'
+    - '&kp MAC_CUT'
+    - P_SB4_BUT
+    - '&mt GLOBE MAC_REDO'
+    - '&none'
+    - '&molock'
+    - '&tog L_BUT'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&tog_but_thumb_r L_BUT'
+    - '&none'
+    - '&molock'
+    - '&none'
+  SYSTEM:
+    display_name: System
+    bindings_zmk:
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&bootloader'
+    - '&rgb_ug RGB_HUI'
+    - '&rgb_ug RGB_SAI'
+    - '&rgb_ug RGB_BRI'
+    - '&bl_inc'
+    - '&none'
+    - '&kp LHYP'
+    - '&kp RHYP'
+    - '&none'
+    - '&ext_power EP_TOG'
+    - '&out OUT_TOG'
+    - '&kp C_PWR'
+    - '&none'
+    - '&bootloader'
+    - '&sys_reset'
+    - '&rgb_ug RGB_HUD'
+    - '&rgb_ug RGB_SAD'
+    - '&rgb_ug RGB_BRD'
+    - '&bl_dec'
+    - '&none'
+    - '&kp LMEH'
+    - '&kp RMEH'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&sys_reset'
+    - '&none'
+    - '&rgb_ug RGB_TOG'
+    - '&ug_reset'
+    - '&none'
+    - '&rgb_ug RGB_EFF'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&bt BT_SEL 0'
+    - '&bt BT_SEL 1'
+    - '&bt BT_SEL 2'
+    - '&bt BT_SEL 3'
+    - '&bt BT_SEL 4'
+    - '&bt BT_CLR'
+    - '&none'
+    - LOCK_SYS_LAYER
+    - '&none'
+    - '&none'
+    - '&tog L_CMK'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - LOCK_SYS_LAYER
+    - '&none'
+aliases:
+  A:
+    type: keycode
+    value: Q
+    note: AZERTY A -> HID Q
+  Z:
+    type: keycode
+    value: W
+    note: AZERTY Z -> HID W
+  E:
+    type: keycode
+    value: E
+  R:
+    type: keycode
+    value: R
+  T:
+    type: keycode
+    value: T
+  Y:
+    type: keycode
+    value: Y
+  U:
+    type: keycode
+    value: U
+  I:
+    type: keycode
+    value: I
+  O:
+    type: keycode
+    value: O
+  P:
+    type: keycode
+    value: P
+  Q:
+    type: keycode
+    value: A
+    note: AZERTY Q -> HID A
+  S:
+    type: keycode
+    value: S
+  D:
+    type: keycode
+    value: D
+  F:
+    type: keycode
+    value: F
+  G:
+    type: keycode
+    value: G
+  H:
+    type: keycode
+    value: H
+  J:
+    type: keycode
+    value: J
+  K:
+    type: keycode
+    value: K
+  L:
+    type: keycode
+    value: L
+  M:
+    type: keycode
+    value: SEMI
+    note: AZERTY M -> HID ;
+  W:
+    type: keycode
+    value: Z
+    note: AZERTY W -> HID Z
+  X:
+    type: keycode
+    value: X
+  C:
+    type: keycode
+    value: C
+  V:
+    type: keycode
+    value: V
+  B:
+    type: keycode
+    value: B
+  N:
+    type: keycode
+    value: N
+  AMP:
+    type: keycode
+    value: N1
+    note: '&'
+  ONE:
+    type: keycode
+    value: N1
+    mods:
+    - LSHFT
+    note: '1'
+  EACUTE:
+    type: keycode
+    value: N2
+    note: é
+  TWO:
+    type: keycode
+    value: N2
+    mods:
+    - LSHFT
+    note: '2'
+  DQUOTE:
+    type: keycode
+    value: N3
+    note: '"'
+  THREE:
+    type: keycode
+    value: N3
+    mods:
+    - LSHFT
+    note: '3'
+  APOS:
+    type: keycode
+    value: N4
+    note: ''''
+  FOUR:
+    type: keycode
+    value: N4
+    mods:
+    - LSHFT
+    note: '4'
+  LPAR:
+    type: keycode
+    value: N5
+    note: (
+  FIVE:
+    type: keycode
+    value: N5
+    mods:
+    - LSHFT
+    note: '5'
+  MINUS:
+    type: keycode
+    value: N6
+    note: '-'
+  SIX:
+    type: keycode
+    value: N6
+    mods:
+    - LSHFT
+    note: '6'
+  EGRAVE:
+    type: keycode
+    value: N7
+    note: è
+  SEVEN:
+    type: keycode
+    value: N7
+    mods:
+    - LSHFT
+    note: '7'
+  UNDERSCORE:
+    type: keycode
+    value: N8
+    note: _
+  EIGHT:
+    type: keycode
+    value: N8
+    mods:
+    - LSHFT
+    note: '8'
+  CCEDIL:
+    type: keycode
+    value: N9
+    note: ç
+  NINE:
+    type: keycode
+    value: N9
+    mods:
+    - LSHFT
+    note: '9'
+  AGRAVE:
+    type: keycode
+    value: N0
+    note: à
+  ZERO:
+    type: keycode
+    value: N0
+    mods:
+    - LSHFT
+    note: '0'
+  RPAR:
+    type: keycode
+    value: MINUS
+    note: )
+  DEGREE:
+    type: keycode
+    value: MINUS
+    mods:
+    - LSHFT
+    note: °
+  EQUAL:
+    type: keycode
+    value: EQUAL
+    note: '='
+  PLUS:
+    type: keycode
+    value: EQUAL
+    mods:
+    - LSHFT
+    note: +
+  PERCENT:
+    type: keycode
+    value: PRCNT
+    note: '% — HID PRCNT (évite collision avec LBKT ; cf. locale_map_csv PRCNT et LBKT)'
+  UGRAVE:
+    type: keycode
+    value: SQT
+    note: ù — aligné sur locale_map_csv (SQT = ù / shift %) ; RBKT est $ * sur FR ISO
+  ASTERISK:
+    type: keycode
+    value: BSLH
+    note: '*'
+  DOLLAR:
+    type: keycode
+    value: BSLH
+    mods:
+    - LSHFT
+    note: $
+  HASH:
+    type: keycode
+    value: GRAVE
+    note: '#'
+  AT:
+    type: keycode
+    value: GRAVE
+    mods:
+    - LSHFT
+    note: '@'
+  SLASH:
+    type: keycode
+    value: COMMA
+    note: /
+  QMARK:
+    type: keycode
+    value: COMMA
+    mods:
+    - LSHFT
+    note: '?'
+  COMMA:
+    type: keycode
+    value: M
+    note: ','
+  SEMICOLON:
+    type: keycode
+    value: M
+    mods:
+    - LSHFT
+    note: ;
+  DOT:
+    type: keycode
+    value: DOT
+    note: .
+  COLON:
+    type: keycode
+    value: DOT
+    mods:
+    - LSHFT
+    note: ':'
+  EXCL:
+    type: keycode
+    value: SLASH
+    note: '!'
+  SECTION:
+    type: keycode
+    value: SLASH
+    mods:
+    - LSHFT
+    note: §
+  BACKSLASH:
+    type: keycode
+    value: NON_US_BSLH
+    note: \
+  PIPE:
+    type: keycode
+    value: NON_US_BSLH
+    mods:
+    - LSHFT
+    note: '|'
+  LBRACKET:
+    type: keycode
+    value: LBKT
+    note: 'Touche physique ISO souvent étiquetée ^/¨ sous macOS FR (CSV) ; « [ » ASCII est en général une combinaison,
+      pas ce scancode seul.'
+  LBRACE:
+    type: keycode
+    value: LBKT
+    mods:
+    - LSHFT
+    note: '{ — même avertissement que LBRACKET ; vérifier l’hôte et la disposition'
+  RBRACKET:
+    type: keycode
+    value: RBKT
+    note: 'Touche à droite ; sous macOS FR ISO légende $ / * (CSV), pas « ] » seul.'
+  RBRACE:
+    type: keycode
+    value: RBKT
+    mods:
+    - LSHFT
+    note: '} — idem RBRACKET'
+  GRAVE:
+    type: keycode
+    value: GRAVE
+    note: '`'
+  TAB:
+    type: keycode
+    value: TAB
+  ESC:
+    type: keycode
+    value: ESC
+  ENTER:
+    type: keycode
+    value: ENTER
+  SPACE:
+    type: keycode
+    value: SPACE
+  BSPC:
+    type: keycode
+    value: BACKSPACE
+  LGUI:
+    type: keycode
+    value: LGUI
+    note: Commande macOS
+  LALT:
+    type: keycode
+    value: LALT
+    note: Option macOS
+  LCTRL:
+    type: keycode
+    value: LCTRL
+    note: Contrôle macOS
+  LSHIFT:
+    type: keycode
+    value: LSHFT
+  HYPER:
+    type: special
+    value: HYPER
+    note: Réservé / pile de mods — dans le firmware réel utiliser LHYP, RHYP, LMEH, RMEH (specialkeys.dtsi), pas
+      un keycode HYPER unique.
+  'NO':
+    type: special
+    value: NONE
+  TRANS:
+    type: special
+    value: TRANSPARENT
+  LANG_SWITCH:
+    type: macro
+    value: mac_lang_switch
+    note: Changement de langue/saisie
+  SCREENSHOT:
+    type: macro
+    value: mac_screenshot
+    note: Capture d'écran macOS
+  V_SHIFT:
+    type: keycode
+    value: V
+    mods:
+    - LSHFT
+    note: V majuscule
+physical_keys:
+  L00:
+    hand: left
+    row: 0
+    col: 0
+    zone: matrix
+  L01:
+    hand: left
+    row: 0
+    col: 1
+    zone: matrix
+  L02:
+    hand: left
+    row: 0
+    col: 2
+    zone: matrix
+  L03:
+    hand: left
+    row: 0
+    col: 3
+    zone: matrix
+  L04:
+    hand: left
+    row: 0
+    col: 4
+    zone: matrix
+  L05:
+    hand: left
+    row: 0
+    col: 5
+    zone: matrix
+  L10:
+    hand: left
+    row: 1
+    col: 0
+    zone: matrix
+  L11:
+    hand: left
+    row: 1
+    col: 1
+    zone: matrix
+  L12:
+    hand: left
+    row: 1
+    col: 2
+    zone: matrix
+  L13:
+    hand: left
+    row: 1
+    col: 3
+    zone: matrix
+  L14:
+    hand: left
+    row: 1
+    col: 4
+    zone: matrix
+  L15:
+    hand: left
+    row: 1
+    col: 5
+    zone: matrix
+  L20:
+    hand: left
+    row: 2
+    col: 0
+    zone: matrix
+  L21:
+    hand: left
+    row: 2
+    col: 1
+    zone: matrix
+  L22:
+    hand: left
+    row: 2
+    col: 2
+    zone: matrix
+  L23:
+    hand: left
+    row: 2
+    col: 3
+    zone: matrix
+  L24:
+    hand: left
+    row: 2
+    col: 4
+    zone: matrix
+  L25:
+    hand: left
+    row: 2
+    col: 5
+    zone: matrix
+  L30:
+    hand: left
+    row: 3
+    col: 0
+    zone: matrix
+  L31:
+    hand: left
+    row: 3
+    col: 1
+    zone: matrix
+  L32:
+    hand: left
+    row: 3
+    col: 2
+    zone: matrix
+  L33:
+    hand: left
+    row: 3
+    col: 3
+    zone: matrix
+  L34:
+    hand: left
+    row: 3
+    col: 4
+    zone: matrix
+  L35:
+    hand: left
+    row: 3
+    col: 5
+    zone: matrix
+  R00:
+    hand: right
+    row: 0
+    col: 0
+    zone: matrix
+  R01:
+    hand: right
+    row: 0
+    col: 1
+    zone: matrix
+  R02:
+    hand: right
+    row: 0
+    col: 2
+    zone: matrix
+  R03:
+    hand: right
+    row: 0
+    col: 3
+    zone: matrix
+  R04:
+    hand: right
+    row: 0
+    col: 4
+    zone: matrix
+  R05:
+    hand: right
+    row: 0
+    col: 5
+    zone: matrix
+  R10:
+    hand: right
+    row: 1
+    col: 0
+    zone: matrix
+  R11:
+    hand: right
+    row: 1
+    col: 1
+    zone: matrix
+  R12:
+    hand: right
+    row: 1
+    col: 2
+    zone: matrix
+  R13:
+    hand: right
+    row: 1
+    col: 3
+    zone: matrix
+  R14:
+    hand: right
+    row: 1
+    col: 4
+    zone: matrix
+  R15:
+    hand: right
+    row: 1
+    col: 5
+    zone: matrix
+  R20:
+    hand: right
+    row: 2
+    col: 0
+    zone: matrix
+  R21:
+    hand: right
+    row: 2
+    col: 1
+    zone: matrix
+  R22:
+    hand: right
+    row: 2
+    col: 2
+    zone: matrix
+  R23:
+    hand: right
+    row: 2
+    col: 3
+    zone: matrix
+  R24:
+    hand: right
+    row: 2
+    col: 4
+    zone: matrix
+  R25:
+    hand: right
+    row: 2
+    col: 5
+    zone: matrix
+  R30:
+    hand: right
+    row: 3
+    col: 0
+    zone: matrix
+  R31:
+    hand: right
+    row: 3
+    col: 1
+    zone: matrix
+  R32:
+    hand: right
+    row: 3
+    col: 2
+    zone: matrix
+  R33:
+    hand: right
+    row: 3
+    col: 3
+    zone: matrix
+  R34:
+    hand: right
+    row: 3
+    col: 4
+    zone: matrix
+  R35:
+    hand: right
+    row: 3
+    col: 5
+    zone: matrix
+  LT0:
+    hand: left
+    thumb: true
+    index: 0
+    zone: thumb
+  LT1:
+    hand: left
+    thumb: true
+    index: 1
+    zone: thumb
+  LT2:
+    hand: left
+    thumb: true
+    index: 2
+    zone: thumb
+  LT3:
+    hand: left
+    thumb: true
+    index: 3
+    zone: thumb
+  LT4:
+    hand: left
+    thumb: true
+    index: 4
+    zone: thumb
+  LT5:
+    hand: left
+    thumb: true
+    index: 5
+    zone: thumb
+  RT0:
+    hand: right
+    thumb: true
+    index: 0
+    zone: thumb
+  RT1:
+    hand: right
+    thumb: true
+    index: 1
+    zone: thumb
+  RT2:
+    hand: right
+    thumb: true
+    index: 2
+    zone: thumb
+  RT3:
+    hand: right
+    thumb: true
+    index: 3
+    zone: thumb
+  RT4:
+    hand: right
+    thumb: true
+    index: 4
+    zone: thumb
+  RT5:
+    hand: right
+    thumb: true
+    index: 5
+    zone: thumb
+behaviors:
+  tap:
+    type: kp
+  mod_tap:
+    type: mt
+    params:
+      hold: required
+      target: required
+  hold_tap:
+    type: hold_tap
+    params:
+      flavor: optional
+      hold: required
+      tap: required
+    note: Prévoir homologue ZMK &hml / &hmr / &mt / &lt selon le cas.
+  layer_tap:
+    type: layer_tap
+    params:
+      layer: required
+      tap: required
+    note: Ex. '&lt L_SYM ESC'
+  mod_morph:
+    type: mod_morph
+    params:
+      bindings: required
+      mods: required
+    note: Ex. lbktgrave, globebslh (standard_layout.dtsi).
+  behavior_ref:
+    type: zmk_node
+    params:
+      ref: required
+    note: Référence telle quelle vers un behavior défini dans le devicetree (ex. '&bspcnav').
+  macro_ref:
+    type: macro
+    params:
+      target: required
+  special_ref:
+    type: special
+    params:
+      target: required
+aliases_collision_audit:
+  description: Paires d’alias distincts partageant le même HID — intentionnel pour tap/shift ou à documenter.
+  shared_hid:
+  - keys:
+    - HASH
+    - AT
+    hid: GRAVE
+    note: Tap vs shift sur la même touche (CSV GRAVE @ / #).
+  - keys:
+    - EXCL
+    - SECTION
+    hid: SLASH
+    note: Tap vs shift (CSV FSLH ! / §).
+  - keys:
+    - COMMA
+    - SEMICOLON
+    hid: M
+    note: Tap vs shift.
+  - keys:
+    - DOT
+    - COLON
+    hid: DOT
+    note: Tap vs shift.
+  - keys:
+    - DOLLAR
+    - ASTERISK
+    hid: BSLH
+    note: Tap vs shift.
+  - keys:
+    - BACKSLASH
+    - PIPE
+    hid: NON_US_BSLH
+    note: Tap vs shift.
+  - keys:
+    - RPAR
+    - DEGREE
+    hid: MINUS
+    note: Tap vs shift.
+  - keys:
+    - EQUAL
+    - PLUS
+    hid: EQUAL
+    note: Tap vs shift.
+  resolved_distinct_hid:
+  - note: PERCENT utilise désormais PRCNT ; UGRAVE utilise SQT (plus de collision PERCENT/LBRACKET → LBKT).
+macros:
+  mac_lang_switch:
+    note: 'À mapper selon ton choix macOS : ex. Globe, Ctrl+Space, ou Cmd+Space'
+  mac_screenshot:
+    note: 'À mapper selon ton besoin : ex. Cmd+Shift+4'
+notes:
+- Le firmware envoie des codes HID « position US QWERTY » (ex. &kp Q) ; macOS avec clavier FR ISO réinterprète
+  en AZERTY à l’écran.
+- 'kp_rN1…kp_rN0 : tap = symbole US (! @ # …), shift+tap = chiffre (voir specialkeys.dtsi) — légendes
+  FR dans keymap-drawer viennent du CSV locale.'
+- MAIN = mapping id → action sous layers.MAIN ; autres couches = bindings_zmk.
+- Schéma physique et 66 arguments d’entrée SOFLE60 ne se superposent pas ligne à ligne ; pour tracer une sortie
+  ZMK vers un id lisible, utiliser sofle60.output_sequence_60 + output_index_to_physical_id (données outil).
+- Un transpileur devrait charger zmk_stack.layout_includes avant de résoudre les behaviors personnalisés.
+- Les alias « lettres AZERTY → HID » décrivent la sémantique hôte ; la keymap ZMK actuelle utilise surtout des &kp
+  sur les symboles US (Q, W, …), ce qui est équivalent une fois macOS en disposition Français.

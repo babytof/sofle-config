@@ -168,9 +168,9 @@ parse_config:
     DELETE: "$$mdi:backspace-reverse$$"
     DEL: "$$mdi:backspace-reverse$$"
 
-    # Keyboard & Keypad: Keyboard → Navigation
-    HOME: "↖"
-    END: "↘"
+    # Keyboard & Keypad: Keyboard → Navigation (MDI : le CSV locale ne doit pas les remplacer par « Début » / « Fin ».)
+    HOME: "$$mdi:format-vertical-align-top$$"
+    END: "$$mdi:format-vertical-align-bottom$$"
     PAGE_UP: "⇞"
     PG_UP: "⇞"
     PAGE_DOWN: "⇟"
@@ -314,7 +314,8 @@ parse_config:
     # Buttons layer
     "&motg_fun": { t: "$$mdi:numeric-6-box-multiple-outline$$", type: "held" }
     "&hlr L_FUN DOT": { t: ".", s: ">", h: "$$mdi:numeric-6-box-multiple-outline$$", type: "held" }
-    "&hlr L_FUN FSLH": { t: "/", s: "?", h: "$$mdi:numeric-6-box-multiple-outline$$", type: "held" }
+    # RC(3,10) Sofle SOFLE60 — légendes = / + (affichage doc ; le CSV FSLH ne s’applique pas à ce binding).
+    "&hlr L_FUN FSLH": { t: "=", s: "+", h: "$$mdi:numeric-6-box-multiple-outline$$", type: "held" }
     # Buttons layer
     "&motg_but": { t: "$$mdi:numeric-7-box-multiple-outline$$", type: "held" }
     "&hll L_BUT Z": { t: "Z", h: "$$mdi:numeric-7-box-multiple-outline$$", type: "held" }
@@ -325,7 +326,10 @@ parse_config:
     "&tog L_CMK": "$$mdi:keyboard-variant$$"
     # Lock in-place key
     "&molock": "$$mdi:lock-outline$$"
-
+    # RC(4,0) / (4,11) — macOS FR : ⌥n→~, ⇧+⌥L→| ; ⌥⇧.→\ (standard_layout.dtsi).
+    "&opttildepipe": { t: "~", s: "|" }
+    # Layer Symbols : légendes caractère + no-shift → support/keymap-config-symbol-layer-draw.yaml
+    # (fusionnée dans gen-keymap-images.sh pour le rendu de la couche « Symbols » uniquement).
     # Layer deactivation keys
     # These are keys on the layers themselves that are used to move back to the
     # base layer.
@@ -396,6 +400,7 @@ parse_config:
     "&rgb_ug RGB_COLOR_HSB(0, 0, 60)": { t: "$$mdi:palette-outline$$", h: "reset" }
     "&ug_reset": { t: "$$mdi:palette-outline$$", h: "reset", s: "2x: 0" }
     "&rgb_ug RGB_TOG": { t: "$$mdi:palette-outline$$", h: "tog" }
+    "&rgb_ug RGB_EFF": { t: "$$mdi:palette-outline$$", h: "eff+" }
     "&rgb_ug RGB_HUI": { t: "$$mdi:palette-outline$$", h: "hue+" }
     "&rgb_ug RGB_HUD": { t: "$$mdi:palette-outline$$", h: "hue-" }
     "&rgb_ug RGB_SAI": { t: "$$mdi:palette-outline$$", h: "sat+" }
@@ -430,8 +435,8 @@ parse_config:
     #---------------------------------------------------------------------------
     # Backslash on tap, Globe on hold
     "&globebslh": { t: '\', s: "|", h: "$$mdi:web$$", type: "held" }
-    # Equal sign on tap, Globe on hold
-    "&hmr GLOBE EQUAL": { t: "=", s: "+", h: "$$mdi:web$$", type: "held" }
+    # RC(3,11) Sofle SOFLE60 — légendes - / _ (tap MINUS, Shift+UNDERSCORE ; Globe au maintien).
+    "&hmr GLOBE EQUAL": { t: "-", s: "_", h: "$$mdi:web$$", type: "held" }
     # macOS Redo on tap, Globe on hold
     "&mt GLOBE MAC_REDO": { t: "$$mdi:redo$$", h: "$$mdi:web$$", type: "held" }
     "&appPwinN": { t: "⌘`", s: "⇧⌘⇥" }
@@ -441,7 +446,7 @@ parse_config:
     # Morph keys
     #---------------------------------------------------------------------------
     # Open square brackeds; when tapped while holding Command down: Grave
-    "&lbktgrave": { t: "[", s: "{", h: "⌘:`" }
+    "&lbktgrave": { t: "[", s: "{", h: "⌘⇧⇥" }
 
     # Combo keys
     #---------------------------------------------------------------------------
@@ -467,6 +472,8 @@ parse_config:
     "&mkp MB2": { t: "$$mdi:mouse-right-click-outline$$", h: "right" }
     "&mkp MCLK": { t: "$$mdi:mouse-right-click-outline$$", h: "middle" }
     "&mkp MB3": { t: "$$mdi:mouse-right-click-outline$$", h: "middle" }
+    "&mkp MB4": { t: "$$mdi:chevron-left$$", h: "MB4" }
+    "&mkp MB5": { t: "$$mdi:chevron-right$$", h: "MB5" }
 
     # Keyboard shortcut combinations
     #---------------------------------------------------------------------------

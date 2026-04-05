@@ -10,6 +10,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SOFLE_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 # Surcharge possible : export KEYMAP_DRAWER_SUPPORT=/chemin/vers/yamls
 KEYMAP_DRAWER_SUPPORT="${KEYMAP_DRAWER_SUPPORT:-$SCRIPT_DIR}"
+KD_SYM_DRAW_OVERLAY="${KD_SYM_DRAW_OVERLAY:-$KEYMAP_DRAWER_SUPPORT/keymap-config-symbol-layer-draw.yaml}"
 
 ZMK_VENV="${ZMK_VENV:-$HOME/.virtualenvs/zmk}"
 KEYMAP="${KEYMAP:-$ZMK_VENV/bin/keymap}"
@@ -47,10 +48,16 @@ export_layer() {
   local LAYER_NAME=$2
   local OUT_FILE=$3
   local -a EXTRA_FLAG=()
+  local KD_DRAW_CFG="$KD_EFFECTIVE_MAIN"
   [[ -n "${KEYMAP_JSON:-}" && -f "$KEYMAP_JSON" ]] && EXTRA_FLAG+=("-j" "$KEYMAP_JSON")
 
+  # Symbols : locale + no-shift (+ overlay caractères une ligne si présent).
+  if [[ "$LAYER_NAME" == "Symbols" ]]; then
+    KD_DRAW_CFG="$KD_SYMBOL_DRAW"
+  fi
+
   echo "- Couche « $LAYER_NAME » → $OUT_FILE"
-  "$KEYMAP" --config "$KD_EFFECTIVE_MAIN" draw \
+  "$KEYMAP" --config "$KD_DRAW_CFG" draw \
     "${EXTRA_FLAG[@]}" \
     -s "$LAYER_NAME" \
     -o "$OUT_DIR/$OUT_FILE" \
@@ -59,6 +66,7 @@ export_layer() {
 
 echo "Keymap Drawer (style Townk) — Sofle"
 echo "- Parse + fusion YAML (couches base avec légendes Shift, puis le reste sans)"
+echo "- Couche « Symbols » : rendu avec no-shift + ${KD_SYM_DRAW_OVERLAY##*/} (légendes tap)"
 mkdir -p "$OUT_DIR"
 
 KEYMAP_LOCALE_MAP="${KEYMAP_LOCALE_MAP:-$SOFLE_ROOT/support/locale-maps/osx/fr_azerty_iso.csv}"
@@ -80,17 +88,28 @@ KD_CONFIG_BACKGROUND="$(mktemp)"
 cleanup() {
   rm -f "$KD_PARSED" "$KD_KEYMAP" "$KD_CONFIG_NO_SYMBOLS" "$KD_CONFIG_BACKGROUND"
   [[ -n "${KD_LOCALE_TMP:-}" ]] && rm -f "$KD_LOCALE_TMP"
+  [[ -n "${KD_SYM_DRAW_TMP:-}" ]] && rm -f "$KD_SYM_DRAW_TMP"
+  [[ -n "${KD_MAP_ALL_TMP:-}" ]] && rm -f "$KD_MAP_ALL_TMP"
 }
 trap cleanup EXIT
 
 "$PYTHON" "$MERGE_PY" "$KD_EFFECTIVE_MAIN" "$KD_NO_SYM" >"$KD_CONFIG_NO_SYMBOLS"
+
+KD_SYM_DRAW_TMP=""
+KD_SYMBOL_DRAW="$KD_CONFIG_NO_SYMBOLS"
+if [[ -f "$KD_SYM_DRAW_OVERLAY" ]]; then
+  KD_SYM_DRAW_TMP="$(mktemp)"
+  "$PYTHON" "$MERGE_PY" "$KD_CONFIG_NO_SYMBOLS" "$KD_SYM_DRAW_OVERLAY" >"$KD_SYM_DRAW_TMP"
+  KD_SYMBOL_DRAW="$KD_SYM_DRAW_TMP"
+fi
 
 # Bloc 1 : jusqu’à la ligne « Navigation: » (exclue) — mêmes noms de couches que Townk
 "$KEYMAP" --config "$KD_EFFECTIVE_MAIN" parse -z "$KEYMAP_FILE" \
   | sed -n '1,/Navigation:/p' \
   | sed -e '$ d' >"$KD_PARSED"
 
-"$KEYMAP" --config "$KD_CONFIG_NO_SYMBOLS" parse -z "$KEYMAP_FILE" \
+# Navigation → System : même fusion que le rendu Symbols (no-shift + overlay caractères).
+"$KEYMAP" --config "$KD_SYMBOL_DRAW" parse -z "$KEYMAP_FILE" \
   | sed -n '/Navigation:/,$ p' >>"$KD_PARSED"
 
 # Couche purement graphique (absente du firmware) : RC(row,col) du transform Sofle
@@ -111,11 +130,18 @@ done
 export_layer "$KD_KEYMAP" RC_REFERENCE sofle-layer-rc-reference.svg
 
 "$PYTHON" "$MERGE_PY" "$KD_EFFECTIVE_MAIN" "$KD_BG" >"$KD_CONFIG_BACKGROUND"
+KD_MAP_ALL_DRAW="$KD_CONFIG_BACKGROUND"
+KD_MAP_ALL_TMP=""
+if [[ -f "$KD_SYM_DRAW_OVERLAY" ]]; then
+  KD_MAP_ALL_TMP="$(mktemp)"
+  "$PYTHON" "$MERGE_PY" "$KD_CONFIG_BACKGROUND" "$KD_SYM_DRAW_OVERLAY" >"$KD_MAP_ALL_TMP"
+  KD_MAP_ALL_DRAW="$KD_MAP_ALL_TMP"
+fi
 mkdir -p "$SOFLE_ROOT/build/out"
 echo "- Vue complète (fond noir) → build/out/zmk-sofle-layout-map.svg"
 KEYMAP_JSON_ARG=()
 [[ -f "$KEYMAP_JSON" ]] && KEYMAP_JSON_ARG=(-j "$KEYMAP_JSON")
-"$KEYMAP" --config "$KD_CONFIG_BACKGROUND" draw \
+"$KEYMAP" --config "$KD_MAP_ALL_DRAW" draw \
   "${KEYMAP_JSON_ARG[@]}" \
   -s "${LAYOUT_LAYERS[@]}" \
   -o "$SOFLE_ROOT/build/out/zmk-sofle-layout-map.svg" \

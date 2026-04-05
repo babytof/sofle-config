@@ -24,8 +24,9 @@ parse_config:
     N3: "3"
     NUMBER_4: "4"
     N4: "4"
-    NUMBER_5: "5"
-    N5: "5"
+    # FR macOS AZERTY : tap seul (pas de 2ᵉ ligne Shift) — aligné sur fr_azerty_iso.csv colonne tap.
+    NUMBER_5: "("
+    N5: "("
     NUMBER_6: "6"
     N6: "6"
     NUMBER_7: "7"
@@ -38,26 +39,39 @@ parse_config:
     N0: "0"
 
     # Keyboard & Keypad: Keyboard → Symbols / Punctuation
+    # macOS FR AZERTY ISO : colonne « tap » de locale-maps/osx/fr_azerty_iso.csv
+    # (couches Navigation+ ; sinon les légendes US ci-dessous ne correspondaient pas à l’OS).
     EQUAL: "="
-    MINUS: "-"
-    SLASH: "/"
-    FSLH: "/"
-    BACKSLASH: '\'
-    BSLH: '\'
-    NON_US_BACKSLASH: '\'
-    NON_US_BSLH: '\'
-    NUBS: '\'
-    SEMICOLON: ";"
-    SEMI: ";"
-    SINGLE_QUOTE: "'"
-    SQT: "'"
-    APOSTROPHE: "'"
-    APOS: "'"
-    COMMA: ","
-    PERIOD: "."
-    DOT: "."
-    LEFT_BRACKET: "["
-    LBKT: "["
-    RIGHT_BRACKET: "]"
-    RBKT: "]"
-    GRAVE: "`"
+    # FR : parenthèse fermante au tap (NUM 0,4) ; pas d’affichage du « ° » Shift.
+    MINUS: ")"
+    # FR : virgule au tap (NUM 3,4) ; pas d’affichage du « ? » Shift.
+    M: ","
+    SLASH: "!"
+    FSLH: "!"
+    BACKSLASH: "*"
+    BSLH: "*"
+    NON_US_BACKSLASH: "*"
+    NON_US_BSLH: "*"
+    NUBS: "<"
+    SEMICOLON: "m"
+    SEMI: "m"
+    SINGLE_QUOTE: "ù"
+    SQT: "ù"
+    APOSTROPHE: "ù"
+    APOS: "ù"
+    COMMA: ";"
+    PERIOD: ":"
+    DOT: ":"
+    LEFT_BRACKET: "^"
+    LBKT: "^"
+    RIGHT_BRACKET: "$"
+    RBKT: "$"
+    GRAVE: "<"
+    # Pavé numérique (layer Symbols, côté droit)
+    KP_PLUS: "+"
+    KP_MINUS: "-"
+    KP_DOT: "."
+    KP_SLASH: "/"
+    KP_EQUAL: "="
+    KP_MULTIPLY: "*"
+    KP_ASTERISK: "*"

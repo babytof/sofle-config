@@ -18,7 +18,7 @@ from typing import Any, Dict, List
 import yaml
 
 # Ordre SOFLE60 / indices ZMK 0–59 : pouces = RC(4,0)…(4,4), (4,7)…(4,11).
-RC_LABELS: List[str] = [
+RC_COORDS: List[str] = [
     "(0,0)", "(0,1)", "(0,2)", "(0,3)", "(0,4)", "(0,5)",
     "(0,6)", "(0,7)", "(0,8)", "(0,9)", "(0,10)", "(0,11)",
     "(1,0)", "(1,1)", "(1,2)", "(1,3)", "(1,4)", "(1,5)",
@@ -38,6 +38,15 @@ RC_LABELS: List[str] = [
     "(4,9)",
     "(4,10)",
     "(4,11)",
+]
+
+# Paramètres SOFLE60 (entrée macro) pour chaque keypos — aligné sur la sortie ZMK dans sofle.keymap.
+KEYPOS_TO_K: List[str] = [
+    "K00", "K01", "K02", "K03", "K04", "K05", "K06", "K07", "K08", "K09", "K10", "K11",
+    "K12", "K13", "K14", "K15", "K16", "K17", "K20", "K21", "K22", "K23", "K24", "K25",
+    "K26", "K27", "K28", "K29", "K30", "K31", "K34", "K35", "K36", "K37", "K38", "K39",
+    "K40", "K41", "K42", "K43", "K44", "K45", "K18", "K19", "K48", "K49", "K50", "K51",
+    "K52", "K53", "K54", "K55", "K56", "K57", "K58", "K59", "K61", "K62", "K64", "K65",
 ]
 
 LAYER_NAME = "RC_REFERENCE"
@@ -74,7 +83,14 @@ def main() -> None:
         print("« layers » doit être un mapping", file=sys.stderr)
         raise SystemExit(1)
 
-    n = len(RC_LABELS)
+    n = len(RC_COORDS)
+    if len(KEYPOS_TO_K) != n:
+        print(
+            f"Erreur interne : KEYPOS_TO_K ({len(KEYPOS_TO_K)}) ≠ RC_COORDS ({n}).",
+            file=sys.stderr,
+        )
+        raise SystemExit(1)
+
     for name, keys in layers.items():
         if name == LAYER_NAME:
             continue
@@ -86,7 +102,9 @@ def main() -> None:
             )
             break
 
-    layers[LAYER_NAME] = list(RC_LABELS)
+    layers[LAYER_NAME] = [
+        {"t": rc, "h": k} for rc, k in zip(RC_COORDS, KEYPOS_TO_K)
+    ]
 
     out = yaml.dump(
         data,

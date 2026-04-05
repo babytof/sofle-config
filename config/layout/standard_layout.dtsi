@@ -53,7 +53,6 @@
 #define P_LB3_QWT  &kp X
 #define P_LF3_QWT  &none
 #define P_LF3_MOU  &none
-#define P_LB3_MOU  &none
 #define P_LB4_MOU  &tog L_MOU
 
 // Comportements dédiés (autres : specialkeys, homerowmods, autoshift)
@@ -109,12 +108,34 @@
       keep-mods = <(MOD_LGUI|MOD_RGUI)>;
     };
 
-    lbktgrave: left_bracket_or_cmd_grave {
+    /* Cmd maintenu : BTAB = LS(TAB) ; keep-mods GUI → ⌘⇧⇥ (app précédente, macOS). */
+    lbktgrave: left_bracket_or_cmd_shift_tab {
       compatible = "zmk,behavior-mod-morph";
       #binding-cells = <0>;
-      bindings = <&kp LBKT>, <&kp GRAVE>;
+      bindings = <&kp LBKT>, <&kp BTAB>;
       mods = <(MOD_LGUI|MOD_RGUI)>;
       keep-mods = <(MOD_LGUI|MOD_RGUI)>;
+    };
+
+    /* RC(4,0) macOS : ⌥n → tilde mort ~ ; ⇧+tap → |.
+     * Le mod-morph s’active déjà avec ⇧ physiquement tenu : ne pas envoyer LS(L) (double ⇧ HID).
+     * On n’ajoute que ⌥ puis L nu ; le rapport garde le ⇧ déjà enfoncé → ⌥⇧L → |. */
+    opttildepipe_pipe: opttildepipe_pipe_chord {
+      compatible = "zmk,behavior-macro";
+      #binding-cells = <0>;
+      wait-ms = <0>;
+      tap-ms = <8>;
+      bindings =
+        <&macro_press &kp LALT>,
+        <&macro_tap &kp L>,
+        <&macro_release &kp LALT>;
+    };
+
+    opttildepipe: option_n_tilde_or_shift_pipe {
+      compatible = "zmk,behavior-mod-morph";
+      #binding-cells = <0>;
+      bindings = <&kp LA(N)>, <&opttildepipe_pipe>;
+      mods = <(MOD_LSFT|MOD_RSFT)>;
     };
 
     gravecaps: grave_or_capsword {
@@ -181,16 +202,20 @@
     compatible = "zmk,keymap";
 
     /* Pouces : entrée SOFLE60 = 12 paramètres (K54–K65) ; sortie 10 touches sans K60/K63.
-     * (4,0)(4,11)=&none ; le reste aligné Townk (K54,K55,K57,K58,K61,K62,K64,K65). */
+     * (4,0)=&opttildepipe, (4,11)=&kp LA(LS(DOT)) ; le reste aligné Townk (K54,K55,K57,K58,K61,K62,K64,K65).
+     *
+     * 4ᵉ rangée entrée : K46 et K47 ne sont pas émis dans la matrice sortie — la macro SOFLE60
+     * (sofle.keymap) y place K18 et K19 (LHYP/RHYP). &none sur K46–K47 évite les bindings fantômes. */
 
     MAIN {
       display-name = "QWERTY";
+      /* Rangée 0 : chiffres HID classiques (&kp N1…), sans mod-morph kp_rNx (symbole tap / chiffre+Shift). */
       bindings = <SOFLE60(
-        &lbktgrave, &kp_rN1,   &kp_rN2,   &kp_rN3,   &kp_rN4,  &kp_rN5,                               &kp_rN6,       &kp_rN7,   &kp_rN8,   &kp_rN9,   &kp_rN0,    &kp RBKT,
+        &lbktgrave, &kp N1,    &kp N2,    &kp N3,    &kp N4,   &kp N5,                                &kp N6,        &kp N7,    &kp N8,    &kp N9,    &kp N0,     &kp RBKT,
         &kp TAB,    &kp Q,     &kp W,     &kp E,     &kp R,    &kp T,         &kp LHYP,    &kp RHYP,  &kp Y,         &kp U,     &kp I,     &kp O,     &kp P,      &kp MINUS,
         &kp GRAVE,  LHM4(A),   LHM3(S),   LHM2(D),   LHM1(F),  &kp G,         &kp LMEH,    &kp RMEH,  &kp H,         RHM1(J),   RHM2(K),   RHM3(L),   RHM4(SEMI), &kp SQT,
-        &globebslh, P_LB4_QWT, P_LB3_QWT, &kp C,     AS(V),    &kp B,         &kp HOME,    &kp PG_UP, &kp N,         &kp M,     &kp COMMA, P_RB3_QWT, P_RB4_QWT,  &hmr GLOBE EQUAL,
-                    &none,     &motg_sys, P_SF4_QWT, &bspcnav, &lt L_SYM ESC, &lt L_MED RET, &none,     &hlr L_NUM SPACE, P_SF4_QWT,           &none,     &motg_sys,  &none
+        &globebslh, P_LB4_QWT, P_LB3_QWT, &kp C,     AS(V),    &kp B,         &none,       &none, &kp N,         &kp M,     &kp COMMA, P_RB3_QWT, P_RB4_QWT,  &hmr GLOBE EQUAL,
+                    &opttildepipe, &motg_sys, P_SF4_QWT, &bspcnav, &lt L_SYM ESC, &lt L_MED RET, &none,     &hlr L_NUM SPACE, P_SF4_QWT,           &none,     &motg_sys,  &kp LA(LS(DOT))
       )>;
       sensor-bindings = <&mouscrl SCRLDN SCRLUP &inc_dec_kp C_VOL_UP C_VOL_DN>;
     };
@@ -201,8 +226,8 @@
         &lbktgrave, &kp_rN1,   &kp_rN2,   &kp_rN3,   &kp_rN4,   &kp_rN5,                               &kp_rN6,       &kp_rN7,   &kp_rN8,   &kp_rN9,   &kp_rN0,   &kp RBKT,
         &kp TAB,    &kp Q,     &kp W,     &kp F,     &kp P,     &kp B,         &kp LHYP,    &kp RHYP,  &kp J,         &kp L,     &kp U,     &kp Y,     &kp SEMI,  &kp MINUS,
         &kp GRAVE,  LHM4(A),   LHM3(R),   LHM2(S),   LHM1(T),   &kp G,         &kp LMEH,    &kp RMEH,  &kp M,         RHM1(N),   RHM2(E),   RHM3(I),   RHM4(O),   &kp SQT,
-        &globebslh, P_LB4_QWT, P_LB3_QWT, &kp C,     &kp D,     &kp V,         &kp HOME,    &kp PG_UP, &kp K,         &kp H,     &kp COMMA, P_RB3_QWT, P_RB4_QWT, &hmr GLOBE EQUAL,
-                    &none,     &motg_sys, P_SF4_QWT, &bspcnav,  &lt L_SYM ESC, &lt L_MED RET, &none,     &hlr L_NUM SPACE, P_SF4_QWT,           &none,     &motg_sys, &none
+        &globebslh, P_LB4_QWT, P_LB3_QWT, &kp C,     &kp D,     &kp V,         &none,       &none, &kp K,         &kp H,     &kp COMMA, P_RB3_QWT, P_RB4_QWT, &hmr GLOBE EQUAL,
+                    &opttildepipe, &motg_sys, P_SF4_QWT, &bspcnav,  &lt L_SYM ESC, &lt L_MED RET, &none,     &hlr L_NUM SPACE, P_SF4_QWT,           &none,     &motg_sys, &kp LA(LS(DOT))
       )>;
       sensor-bindings = <&mouscrl SCRLDN SCRLUP &inc_dec_kp C_VOL_UP C_VOL_DN>;
     };
@@ -210,22 +235,23 @@
     NAV {
       display-name = "Navigation";
       bindings = <SOFLE60(
-        &appPwinN,  &kp LG(N1),  &kp LG(N2),  &kp LG(N3),  &kp LG(N4),  &kp LG(N5),                         &none, &kp BTAB,     &kp MAC_FDPRV, &kp MAC_FDNXT, &kp TAB,      &none,
-        &appswtnxt, &kp LG(Q),   &kp LG(W),   &kp LG(E),   &kp LG(R),   &kp LG(T),  &kp LHYP,    &kp RHYP,  &none, &kp HOME,     &kp PG_DN,     &kp PG_UP,     &kp END,      &none,
-        &appPwinN,  LMT4(LG(A)), LMT3(LG(S)), LMT2(LG(D)), LMT1(LG(F)), NAV_LG_G,   &kp LMEH,    &kp RMEH,  &none, &kp LEFT,     &kp DOWN,      &kp UP,        &kp RIGHT,    &none,
-        &winPglobe, NAV_LG_Z,    NAV_LG_X,    NAV_LG_C,    NAV_LG_V,    &kp LG(B),  &kp HOME,    &kp PG_UP, &none, &kp MAC_WRDP, &kp MAC_STTL,  &kp MAC_ENDL,  &kp MAC_WRDN, &none,
-                    &none,       &none,       &none,       &tog L_NAV,  &none,      &none,        &none,     &none, &none,        &none,         &none,         &molock
+        &appPwinN,  &kp LG(N1),  &kp LG(N2),  &kp LG(N3),  &kp LG(N4),  &kp LG(N5),                         &kp BTAB,     &kp MAC_FDPRV, &kp MAC_FDNXT, &kp TAB,      &none, &none,
+        &appswtnxt, &kp LG(Q),   &kp LG(W),   &kp LG(E),   &kp LG(R),   &kp LG(T),  &kp LHYP,    &kp RHYP,  &kp HOME,     &kp PG_DN,     &kp PG_UP,     &kp END,      &none, &none,
+        &appPwinN,  LMT4(LG(A)), LMT3(LG(S)), LMT2(LG(D)), LMT1(LG(F)), NAV_LG_G,   &kp LMEH,    &kp RMEH,  &kp LEFT,     &kp DOWN,      &kp UP,        &kp RIGHT,    &none, &none,
+        &winPglobe, NAV_LG_Z,    NAV_LG_X,    NAV_LG_C,    NAV_LG_V,    &kp LG(B),  &none,       &none,     &kp MAC_WRDP, &kp MAC_STTL,  &kp MAC_ENDL,  &kp MAC_WRDN, &none, &none,
+                    &none,       &none,       &none,       &tog L_NAV,  &none,      &none,       &none,     &none, &none,        &none,         &none,         &molock
       )>;
       sensor-bindings = <&mouscrl SCRLDN SCRLUP &inc_dec_kp C_VOL_UP C_VOL_DN>;
     };
 
     NUM {
       display-name = "Numbers";
+      /* (0,1) N5, (0,4) MINUS ; (1,1)–(2,5) pavé HID ; (3,1) none, (3,4) M, (3,5) KP_DOT. */
       bindings = <SOFLE60(
-        &none,        &kp LBKT, &kp STAR, &kp FSLH,  &kp RBKT,    &kp CARET,                          &none, &none,      &none,     &none,     &none,     &none,
-        &kp TAB,      &kp N1,   &kp N2,   &kp N3,    &kp N4,      &kp N5,     &kp LHYP,    &kp RHYP,  &none, &none,      &none,     &none,     &none,     &none,
-        &kp KP_ENTER, &kp N6,   &kp N7,   &kp N8,    &kp N9,      &kp N0,     &kp LMEH,    &kp RMEH,  &none, &kp RHRM1,  &kp RHRM2, &kp RHRM3, &kp RHRM4, &none,
-        &kp EQUAL,    &kp LPAR, &kp PLUS, &kp MINUS, &kp RPAR,    &kp KP_DOT, &kp HOME,    &kp PG_UP, &none, &none,      &none,     &none,     &none,     &kp GLOBE,
+        &none,        &kp N5,   &kp KP_MULTIPLY, &kp KP_DIVIDE, &kp MINUS, &none,                          &none, &none,      &none,     &none,     &none,     &none,
+        &kp TAB,      &kp KP_N1, &kp KP_N2, &kp KP_N3, &kp KP_N4, &kp KP_N5, &kp LHYP,    &kp RHYP,  &none, &none,      &none,     &none,     &none,     &none,
+        &kp KP_ENTER, &kp KP_N6, &kp KP_N7, &kp KP_N8, &kp KP_N9, &kp KP_N0, &kp LMEH,    &kp RMEH,  &none, &kp RHRM1,  &kp RHRM2, &kp RHRM3, &kp RHRM4, &none,
+        &kp KP_EQUAL, &none, &kp KP_PLUS, &kp KP_MINUS, &kp M, &kp KP_DOT, &none,       &none, &none, &none,      &none,     &none,     &none,     &kp GLOBE,
                       &none,    &molock,  &none,     &kp_bspcdel, &kp SPACE,  &none,      &none,     &tog L_NUM, &none,     &none,     &none,     &none
       )>;
       sensor-bindings = <&mouscrl SCRLDN SCRLUP &inc_dec_kp C_VOL_UP C_VOL_DN>;
@@ -233,12 +259,13 @@
 
     SYMBOL {
       display-name = "Symbols";
+      /* Pavé droit layer 3 : séquences imposées (RC + Option/Shift) — voir discussion keymap. */
       bindings = <SOFLE60(
-        &none,     &none,     &none,     &none,     &none,     &none,                              &kp QMARK, &kp PLUS,  &kp MINUS, &kp DOT,  &kp FSLH,  &kp BSLH,
-        &none,     &none,     &none,     &none,     &none,     &none,      &kp LHYP,    &kp RHYP,  &kp AMPS,  &kp LT,    &kp EQUAL, &kp GT,   &kp PIPE,  &kp HASH,
-        &none,     &kp LHRM4, &kp LHRM3, &kp LHRM2, &kp LHRM1, &none,      &kp LMEH,    &kp RMEH,  &kp LBKT,  &kp LPAR,  &kp COLON, &kp RPAR, &kp RBKT,  &kp PRCNT,
-        &kp GLOBE, &none,     &none,     &none,     &none,     &none,      &kp HOME,    &kp PG_UP, &kp DLLR,  &kp LBRC,  &kp STAR,  &kp RBRC, &kp CARET, &kp EXCL,
-                   &none,     &none,     &none,     &none,     &tog L_SYM, &kp AT,      &none,     &kp SPACE, &none,     &none,     &molock,   &none
+        &none,     &none,     &none,     &none,     &none,     &none,                              &kp LS(M), &kp KP_PLUS, &kp KP_MINUS, &kp KP_DOT, &kp KP_SLASH, &kp LA(LS(DOT)),
+        &none,     &none,     &none,     &none,     &none,     &none,      &kp LHYP,    &kp RHYP,  &kp N1,    &kp GRAVE, &kp KP_EQUAL, &kp LS(GRAVE), &kp LA(LS(L)), &kp LS(NUBS),
+        &none,     &kp LHRM4, &kp LHRM3, &kp LHRM2, &kp LHRM1, &none,      &kp LMEH,    &kp RMEH,  &kp LA(LS(N5)), &kp N5, &kp DOT, &kp MINUS, &kp LA(LS(MINUS)), &kp LS(SQT),
+        &kp GLOBE, &none,     &none,     &none,     &none,     &none,      &none,       &none, &kp RBKT,  &kp LA(N5), &kp KP_MULTIPLY, &kp LA(MINUS), &kp LBKT, &kp N8,
+                   &none,     &none,     &none,     &none,     &tog L_SYM, &kp LA(N0),  &none,     &kp SPACE, &none,     &none,     &molock,   &none
       )>;
       sensor-bindings = <&mouscrl SCRLDN SCRLUP &inc_dec_kp C_VOL_UP C_VOL_DN>;
     };
@@ -249,7 +276,7 @@
         &none,        &none,        &none,      &none,    &none,      &none,                              &none,      &none,     &none,     &none,     &none,     &none,
         &kp C_VOL_UP, &kp C_BRI_UP, &none,      &none,    &none,      &none,      &kp LHYP,    &kp RHYP,  &none,      &none,     &none,     &none,     &none,     &none,
         &kp C_VOL_DN, &kp C_BRI_DN, &kp C_PREV, &kp C_PP, &kp C_NEXT, &none,      &kp LMEH,    &kp RMEH,  &none,      &kp RHRM1, &kp RHRM2, &kp RHRM3, &kp RHRM4, &none,
-        &kp C_MUTE,   &none,        &none,      &none,    &none,      &none,      &kp HOME,    &kp PG_UP, &none,      &none,     &none,     &none,     &none,     &kp GLOBE,
+        &kp C_MUTE,   &none,        &none,      &none,    &none,      &none,      &none,       &none, &none,      &none,     &none,     &none,     &none,     &kp GLOBE,
                       &none,       &molock,    &none,     &none,      &kp C_STOP, &tog L_MED, &none,     &none,      &none,     &none,     &none,     &none
       )>;
       sensor-bindings = <&mouscrl SCRLDN SCRLUP &inc_dec_kp C_VOL_UP C_VOL_DN>;
@@ -258,10 +285,10 @@
     MOUSE {
       display-name = "Mouse";
       bindings = <SOFLE60(
-        &none,     &none,     &none,     &none,     &none,     &none,                            &none,     &none,         &none,         &none,         &none,          &none,
-        &none,     &mkp MB4,  &mkp MB3,  &mkp MB2,  &mkp MB1,  &mkp MB5, &kp LHYP,    &kp RHYP,  &none,     &kp MAC_CUT,   &kp MAC_COPY,  &kp MAC_PASTE, &kp MAC_UNDO,   &none,
-        &none,     &kp LHRM4, &kp LHRM3, &kp LHRM2, &kp LHRM1, &none,    &kp LMEH,    &kp RMEH,  &none,     MKP_MOVE_LEFT, MKP_MOVE_DOWN, MKP_MOVE_UP,   MKP_MOVE_RIGHT, &none,
-        &kp GLOBE, P_LB4_MOU, P_LB3_MOU, &none,     &none,     &none,    &kp HOME,    &kp PG_UP, &none,     MKP_SCRL_LEFT, MKP_SCRL_DOWN, MKP_SCRL_UP,   MKP_SCRL_RIGHT, &none,
+        &none,     &none,     &none,     &none,     &none,     &none,                            &none,         &none,         &none,         &none,          &none, &none,
+        &none,     &mkp MB4,  &mkp MB3,  &mkp MB2,  &mkp MB1,  &mkp MB5, &kp LHYP,    &kp RHYP,  &kp MAC_CUT,   &kp MAC_COPY,  &kp MAC_PASTE, &kp MAC_UNDO,   &none, &none,
+        &none,     &kp LHRM4, &kp LHRM3, &kp LHRM2, &kp LHRM1, &none,    &kp LMEH,    &kp RMEH,  MKP_MOVE_LEFT, MKP_MOVE_DOWN, MKP_MOVE_UP,   MKP_MOVE_RIGHT, &none, &none,
+        &kp GLOBE, P_LB4_MOU, &kp LHRM4, &none,     &none,     &none,    &none,       &none,     MKP_SCRL_LEFT, MKP_SCRL_DOWN, MKP_SCRL_UP,   MKP_SCRL_RIGHT, &none, &none,
                    &none,     &none,     &none,     &none,     &none,    &mkp MB2,    &none,     &mkp MB1,      &mkp MB3,      &none,     &molock,     &none
       )>;
       sensor-bindings = <&mouscrl SCRLDN SCRLUP &inc_dec_kp C_VOL_UP C_VOL_DN>;
@@ -273,7 +300,7 @@
         &none, &kp F16, &kp F17, &kp F18, &kp F19, &kp F20,                         &none, &none,     &none,     &none,     &none,     &none,
         &none, &kp F11, &kp F12, &kp F13, &kp F14, &kp F15, &kp LHYP,    &kp RHYP,  &none, &none,     &none,     &none,     &none,     &none,
         &none, &kp F6,  &kp F7,  &kp F8,  &kp F9,  &kp F10, &kp LMEH,    &kp RMEH,  &none, &kp RHRM1, &kp RHRM2, &kp RHRM3, &kp RHRM4, &none,
-        &none, &kp F1,  &kp F2,  &kp F3,  &kp F4,  &kp F5,  &kp HOME,    &kp PG_UP, &none, &none,     &none,     P_RB3_FUN, P_RB4_FUN, &kp GLOBE,
+        &none, &kp F1,  &kp F2,  &kp F3,  &kp F4,  &kp F5,  &none,       &none, &none, &none,     &none,     P_RB3_FUN, P_RB4_FUN, &kp GLOBE,
                &none,   &molock, &none,   &none,   &none,   &none,      &none,     &none, &none,     &none,     &none,     &none
       )>;
       sensor-bindings = <&mouscrl SCRLDN SCRLUP &inc_dec_kp C_VOL_UP C_VOL_DN>;
@@ -285,7 +312,7 @@
         &none,              &kp BTAB,     &kp MAC_FDPRV, &kp MAC_FDNXT, &kp TAB,       &kp MAC_LP,                             &kp MAC_LP,     &kp BTAB,      &kp MAC_FDPRV, &kp MAC_FDNXT, &kp TAB,      &none,
         &none,              &kp MAC_DKTP, &kp MAC_WINP,  &kp MAC_WINN,  &kp MAC_DKTN,  &kp MAC_APPWIN, &kp LHYP,    &kp RHYP,  &kp MAC_APPWIN, &kp MAC_DKTP,  &kp MAC_WINP,  &kp MAC_WINN,  &kp MAC_DKTN, &none,
         &none,              &kp LHRM4,    &kp LHRM3,     &kp LHRM2,     &kp LHRM1,     &kp MAC_MC,     &kp LMEH,    &kp RMEH,  &kp MAC_MC,     &kp RHRM1,     &kp RHRM2,     &kp RHRM3,     &kp RHRM4,    &none,
-        &mt GLOBE MAC_REDO, P_SB4_BUT,    &kp MAC_CUT,   &kp MAC_COPY,  &kp MAC_PASTE, &kp MAC_SP,     &kp HOME,    &kp PG_UP, &kp MAC_SP,     &kp MAC_PASTE, &kp MAC_COPY,  &kp MAC_CUT,   P_SB4_BUT,    &mt GLOBE MAC_REDO,
+        &mt GLOBE MAC_REDO, P_SB4_BUT,    &kp MAC_CUT,   &kp MAC_COPY,  &kp MAC_PASTE, &kp MAC_SP,     &none,       &none, &kp MAC_SP,     &kp MAC_PASTE, &kp MAC_COPY,  &kp MAC_CUT,   P_SB4_BUT,    &mt GLOBE MAC_REDO,
                             &none,        &molock,       &tog L_BUT,    &none,         &none,          &none,       &none,     &none,          &tog_but_thumb_r L_BUT, &none, &molock, &none
       )>;
       sensor-bindings = <&mouscrl SCRLDN SCRLUP &inc_dec_kp C_VOL_UP C_VOL_DN>;
@@ -295,9 +322,9 @@
       display-name = "System";
       bindings = <SOFLE60(
         &none,       &none,           &none,           &none,           &none,   &none,                                     &none,        &none,        &none,        &none,        &none,         &none,
-        &bootloader, &rgb_ug RGB_HUI, &rgb_ug RGB_SAI, &rgb_ug RGB_BRI, &bl_inc, &ext_power EP_TOG, &kp LHYP,    &kp RHYP,  &none,        &none,        &none,        &none,        &none,         &bootloader,
-        &sys_reset,  &rgb_ug RGB_HUD, &rgb_ug RGB_SAD, &rgb_ug RGB_BRD, &bl_dec, &out OUT_TOG,      &kp LMEH,    &kp RMEH,  &none,        &none,        &none,        &none,        &none,         &sys_reset,
-        &none,       &rgb_ug RGB_TOG, &ug_reset,       &none,           &none,   &kp C_PWR,         &kp HOME,    &kp PG_UP, &bt BT_SEL 0, &bt BT_SEL 1, &bt BT_SEL 2, &bt BT_SEL 3, &bt BT_SEL 4,  &bt BT_CLR,
+        &bootloader, &rgb_ug RGB_HUI, &rgb_ug RGB_SAI, &rgb_ug RGB_BRI, &bl_inc, &none,            &kp LHYP,    &kp RHYP,  &none,        &ext_power EP_TOG, &out OUT_TOG, &kp C_PWR,   &none,        &bootloader,
+        &sys_reset,  &rgb_ug RGB_HUD, &rgb_ug RGB_SAD, &rgb_ug RGB_BRD, &bl_dec, &none,            &kp LMEH,    &kp RMEH,  &none,        &none,        &none,        &none,        &none,         &sys_reset,
+        &none,       &rgb_ug RGB_TOG, &ug_reset,       &none,           &rgb_ug RGB_EFF, &none,     &none,       &none, &bt BT_SEL 0, &bt BT_SEL 1, &bt BT_SEL 2, &bt BT_SEL 3, &bt BT_SEL 4,  &bt BT_CLR,
                      &none,            LOCK_SYS_LAYER,  &none,           &none,   &tog L_CMK,        &none,       &none,     &none,        &none,        &none,        LOCK_SYS_LAYER, &none
       )>;
       sensor-bindings = <&mouscrl SCRLDN SCRLUP &inc_dec_kp C_VOL_UP C_VOL_DN>;

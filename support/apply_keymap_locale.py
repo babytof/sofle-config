@@ -81,12 +81,44 @@ def patch_raw_binding_value(val: Any, tap: str, shift: str) -> None:
         val.pop("s", None)
 
 
+# Ne pas recopier le CSV sur le dernier token : ces bindings ont une légende dédiée (RC 3,10 / 3,11).
+_RAW_BINDINGS_SKIP_CSV_TOKEN_PATCH: frozenset[str] = frozenset(
+    {
+        "&hlr L_FUN FSLH",
+        "&hmr GLOBE EQUAL",
+        # Dernier token ESC → CSV « Échap » ; on garde le glyphe ISO ⎋ (U+238B), pas du texte.
+        "&lt L_SYM ESC",
+    }
+)
+
+
 def binding_tail_token(binding: str) -> str | None:
     """Dernier mot du libellé de binding (ex. '&hml LHRM4 A' → 'A')."""
     parts = binding.strip().split()
     if not parts:
         return None
     return parts[-1]
+
+
+def apply_locale_specific_raw_bindings(raw_map: dict[str, Any], locale_csv: Path) -> None:
+    """
+    Bindings composites non couverts par le CSV (dernier token ≠ clé zmk_key).
+    macOS AZERTY ISO : RC(0,0) &lbktgrave → ^ / ¨ (LBKT) ; h = branche Cmd+⇧⇥.
+    globebslh : ` / £ au tap+shift ; Globe au maintien.
+    """
+    if locale_csv.stem != "fr_azerty_iso" or not isinstance(raw_map, dict):
+        return
+    raw_map["&lbktgrave"] = {
+        "t": "^",
+        "s": "¨",
+        "h": "⌘⇧⇥",
+    }
+    raw_map["&globebslh"] = {
+        "t": "`",
+        "s": "£",
+        "h": "$$mdi:web$$",
+        "type": "held",
+    }
 
 
 # __NUM_REVERSE (specialkeys.dtsi) : mod-morph tap = symbole HID, shift = Nx.
@@ -164,6 +196,8 @@ def main() -> None:
         raw_map = {}
         parse_cfg["raw_binding_map"] = raw_map
     for binding, val in raw_map.items():
+        if binding in _RAW_BINDINGS_SKIP_CSV_TOKEN_PATCH:
+            continue
         token = binding_tail_token(binding)
         if not token or token not in locale_rows:
             continue
@@ -177,6 +211,8 @@ def main() -> None:
             continue
         tap, shift = locale_rows[zmk_key]
         raw_map[f"&{behavior}"] = morph_num_reverse_legend(tap, shift)
+
+    apply_locale_specific_raw_bindings(raw_map, args.locale_csv)
 
     args.output.parent.mkdir(parents=True, exist_ok=True)
     with args.output.open("w", encoding="utf-8") as f:

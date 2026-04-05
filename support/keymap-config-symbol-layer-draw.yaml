@@ -1,0 +1,30 @@
+# SPDX-License-Identifier: MIT
+# Fusionnée après locale + no-shift pour le rendu Keymap Drawer de « Symbols » uniquement.
+# Forme { t: … } sans s : une légende (style no-shift-symbol), caractères macOS FR AZERTY ISO.
+parse_config:
+  raw_binding_map:
+    "&kp LS(M)": { t: "?" }
+    "&kp KP_PLUS": { t: "+" }
+    "&kp KP_MINUS": { t: "-" }
+    "&kp KP_DOT": { t: "." }
+    "&kp KP_SLASH": { t: "/" }
+    "&kp LA(LS(DOT))": { t: "\\" }
+    "&kp N1": { t: "&" }
+    "&kp GRAVE": { t: "<" }
+    "&kp KP_EQUAL": { t: "=" }
+    "&kp LS(GRAVE)": { t: ">" }
+    "&kp LA(LS(L))": { t: "|" }
+    "&kp LS(NUBS)": { t: ">" }
+    "&kp LA(LS(N5))": { t: "[" }
+    "&kp N5": { t: "(" }
+    "&kp DOT": { t: ":" }
+    "&kp MINUS": { t: ")" }
+    "&kp LA(LS(MINUS))": { t: "]" }
+    "&kp LS(SQT)": { t: "%" }
+    "&kp RBKT": { t: "$" }
+    "&kp LA(N5)": { t: "{" }
+    "&kp KP_MULTIPLY": { t: "*" }
+    "&kp LA(MINUS)": { t: "}" }
+    "&kp LBKT": { t: "^" }
+    "&kp N8": { t: "!" }
+    "&kp LA(N0)": { t: "@" }
