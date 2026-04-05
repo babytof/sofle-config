@@ -131,6 +131,7 @@ keymap-images:
 		"$(CURDIR)/support/gen-keymap-images.sh"
 
 help:
+	@echo "Bootstrap machine neuve : README.md + ./build-setup.sh (venv activé, Zephyr SDK à part)."
 	@echo "Cibles :"
 	@echo "  make / make all     — les 4 builds (Choc Pro BT) + firmware/*.uf2"
 	@echo "  make left | right | reset-left | reset-right"
