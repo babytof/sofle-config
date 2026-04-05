@@ -1,0 +1,53 @@
+# ---------------------------------------------------------------------------
+# Workspace West / ZMK : ignorer tout ce qui est cloné ou généré hors de ta
+# config utilisateur (dossier config/, Makefile, .gitignore).
+# ---------------------------------------------------------------------------
+
+# Métadonnées West
+.west/
+
+# Projets importés par west.yml (Zephyr, ZMK, modules tiers)
+zephyr/
+zmk/
+modules/
+
+# Sorties de build
+build/
+
+# Copies locales zmk.uf2 (recréées par « make » / « make firmware ») — inutile à versionner
+firmware/
+
+# Caches / outils Zephyr si présents à la racine
+.cache/
+twister-out/
+sanity-out/
+doc/_build/
+
+# Builds CMake/Ninja hors répertoire build/ habituel
+cmake-build-*/
+compile_commands.json
+
+# ---------------------------------------------------------------------------
+# Environnement & éditeurs
+# ---------------------------------------------------------------------------
+.DS_Store
+Thumbs.db
+*.swp
+*~
+.idea/
+.vscode/
+*.code-workspace
+
+# Python (scripts locaux, venv éventuel à la racine)
+__pycache__/
+*.py[cod]
+.Python
+.venv/
+venv/
+.env
+.env.*
+
+# Logs / temporaires
+*.log
+*.tmp
+*.bak

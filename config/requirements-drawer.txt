@@ -1,0 +1,3 @@
+# Outils optionnels : diagrammes de keymap (hors build firmware)
+# Installation : make install-keymap-drawer  (utilise ZMK_VENV)
+keymap-drawer

@@ -1,0 +1,46 @@
+/*
+ * Sofle Choc — 60 touches (ordre ZMK / matrix transform du shield).
+ * Indices : 0–11 rangée1, 12–23 rangée2, 24–35 rangée3, 36–49 rangée4, 50–59 pouces
+ *           RC(4,0)…(4,4) puis RC(4,7)…(4,11).
+ */
+
+#define KEYS_L 0 1 2 3 4 5 12 13 14 15 16 17 24 25 26 27 28 29 36 37 38 39 40 41 42
+#define KEYS_R 6 7 8 9 10 11 18 19 20 21 22 23 30 31 32 33 34 35 43 44 45 46 47 48 49
+#define THUMBS 50 51 52 53 54 55 56 57 58 59
+
+#define LT5 0
+#define LM5 24
+#define LB5 36
+#define LB3 39
+#define LB2 40
+#define LB1 41
+#define RB1 44
+#define RB2 45
+#define RB3 46
+
+#define COMBO_KEY_CAPS_WORD <28 31>
+
+#define USE_HOLD_TAP_LAYER_FUNCTIONS
+#define USE_HOLD_TAP_LAYER_MOUSE
+#define ZMK_MOUSE_DEFAULT_MOVE_VAL 1000
+#define ZMK_MOUSE_DEFAULT_SCRL_VAL 35
+
+/*
+ * SOFLE60 : entrée « grille Townk 14×4 + 12 pouces », sortie 60 touches Sofle.
+ * Retire K18–K19 et K32–K33 des rangées 2–3 ; rangée4 insère K18–K19 entre les
+ * deux moitiés (HYP) ; pouces sans K60 ni K63 (non câblés).
+ */
+#define SOFLE60( \
+    K00, K01, K02, K03, K04, K05,                         K06, K07, K08, K09, K10, K11, \
+    K12, K13, K14, K15, K16, K17, K18, K19, K20, K21, K22, K23, K24, K25, \
+    K26, K27, K28, K29, K30, K31, K32, K33, K34, K35, K36, K37, K38, K39, \
+    K40, K41, K42, K43, K44, K45, K46, K47, K48, K49, K50, K51, K52, K53, \
+              K54, K55, K56, K57, K58, K59, K60, K61, K62, K63, K64, K65 \
+) \
+    K00 K01 K02 K03 K04 K05                         K06 K07 K08 K09 K10 K11 \
+    K12 K13 K14 K15 K16 K17                         K20 K21 K22 K23 K24 K25 \
+    K26 K27 K28 K29 K30 K31                         K34 K35 K36 K37 K38 K39 \
+    K40 K41 K42 K43 K44 K45 K18 K19 K48 K49 K50 K51 K52 K53 \
+              K54 K55 K56 K57 K58 K59 K61 K62 K64 K65
+
+#include "layout/standard_layout.dtsi"
