@@ -1,6 +1,17 @@
 # Layout Sofle Choc Pro BT
 
-Ce clavier reprend la philosophie de la configuration [Townk/zmk-config](https://github.com/Townk/zmk-config) (documentée à l’origine pour le Lily58), **transposée** sur un **Sofle Choc Pro Bluetooth** avec **AZERTY / ISO français** sous **macOS**. Les schémas et le glossaire des pictogrammes sont dans [README.md](README.md) (dossier `docs/`).
+## Lien avec la documentation d’origine (Townk)
+
+| Rôle | Où le lire |
+|------|------------|
+| **Conventions générales** (glossaire des pictogrammes, représentation tap/hold, mod-morph, tap-dance, build amont…) | [README.md sur GitHub — Townk/zmk-config](https://github.com/Townk/zmk-config/blob/main/README.md) |
+| **Récit « par clavier »** dont ce fichier est l’adaptation Sofle | [lily58.md sur GitHub](https://github.com/Townk/zmk-config/blob/main/docs/lily58.md) (équivalent historique Lily58) |
+
+**`docs/sofle.md` (ce document)** = pendant **Sofle Choc Pro BT** de ce dépôt : il part des idées ci-dessus et décrit ce qui change (matrice, AZERTY ISO macOS, fichiers `config/`). Le glossaire détaillé et les légendes des schémas sont centralisés dans [README.md](README.md) (dossier `docs/`), lui-même dérivé du README Townk.
+
+---
+
+Ce clavier reprend la philosophie de la configuration [Townk/zmk-config](https://github.com/Townk/zmk-config), **transposée** sur un **Sofle Choc Pro Bluetooth** avec **AZERTY / ISO français** sous **macOS**.
 
 Quelques principes hérités de cette base :
 

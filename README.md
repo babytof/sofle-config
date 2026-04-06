@@ -11,6 +11,8 @@ Chaque clavier a sa doc de layout ; ici :
 
 Si tu n’as pas encore ouvert ces liens : commence par **`docs/sofle.md`** pour le clavier cible, puis **`docs/README.md`** pour lire les schémas comme Townk.
 
+**Chaîne avec l’amont Townk** — Les conventions générales (glossaire, légendes) viennent du [README de Townk/zmk-config](https://github.com/Townk/zmk-config/blob/main/README.md). Le fichier **`docs/sofle.md`** indique comment ce README et [lily58.md](https://github.com/Townk/zmk-config/blob/main/docs/lily58.md) se rattachent à la doc Sofle.
+
 ## Nouvel ordinateur (ordre recommandé)
 
 ### 1. Outils système

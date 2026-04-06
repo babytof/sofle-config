@@ -36,7 +36,7 @@ WEST = west build$(if $(strip $(PRISTINE)), -p,) -s $(ZMK_APP)
 CHOC_FLAGS_COMMON = -DZMK_CONFIG="$(CURDIR)/config" -DDTS_EXTRA_CPPFLAGS="-DUSE_MOLOCK=1"
 CHOC_FLAGS_KEYMAP = $(CHOC_FLAGS_COMMON) -DKEYMAP_FILE="$(KEYMAP_FILE)"
 
-# Fork Townk (mousemove-molock) : pas de snippet ZMK Studio — voir archive/sofle-choc-pro-bt/build.yaml pour ZMK officiel.
+# Fork Townk (mousemove-molock) : pas de snippet ZMK Studio (build officiel ZMK / doc constructeur à part).
 CHOC_FLAGS_LEFT  = $(CHOC_FLAGS_KEYMAP) -DSHIELD="$(SHIELD_VIEW)"
 CHOC_FLAGS_RIGHT = $(CHOC_FLAGS_KEYMAP) -DSHIELD="$(SHIELD_VIEW)"
 

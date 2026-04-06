@@ -2,6 +2,10 @@
 
 [![ZMK version](https://img.shields.io/badge/ZMK-3.5-blue)](https://zmk.dev/)
 
+Ce fichier est la **traduction / adaptation** du [README principal de Townk/zmk-config](https://github.com/Townk/zmk-config/blob/main/README.md).
+
+- **Détail du layout pour ce clavier** (couches, choix AZERTY, caps word, etc.) : **[sofle.md](sofle.md)** — document compagnon, calqué sur l’esprit de [lily58.md](https://github.com/Townk/zmk-config/blob/main/docs/lily58.md) en amont.
+
 ---
 
 ## Organisation des layouts (idée générale)
@@ -213,3 +217,4 @@ Avec la complexité de cette keymap, l’éditeur web [Keymap Editor](http://nic
 ## Voir aussi
 
 - [README.md](../README.md) — installation, SDK, patches.
+- [sofle.md](sofle.md) — layout Sofle (lié au README Townk, voir en-tête).
