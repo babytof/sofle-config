@@ -3,7 +3,7 @@
 """
 Injecte une couche Keymap Drawer « RC_REFERENCE » (60 touches) dans le YAML parsé.
 
-Rangée principale : coordonnées RC (row,col) comme le transform Sofle.
+Rangée principale : coordonnées RC row,col (sans parenthèses à l’affichage) comme le transform Sofle.
 Rangée pouces (10 touches, indices ZMK 50–59) : uniquement RC(4,*) — pas de noms Lily.
   Ordre : (4,0)…(4,4), puis (4,7)…(4,11). Les colonnes (4,5)(4,6) sont sur la rangée alpha.
 """
@@ -18,27 +18,17 @@ from typing import Any, Dict, List
 import yaml
 
 # Ordre SOFLE60 / indices ZMK 0–59 : pouces = RC(4,0)…(4,4), (4,7)…(4,11).
-RC_COORDS: List[str] = [
-    "(0,0)", "(0,1)", "(0,2)", "(0,3)", "(0,4)", "(0,5)",
-    "(0,6)", "(0,7)", "(0,8)", "(0,9)", "(0,10)", "(0,11)",
-    "(1,0)", "(1,1)", "(1,2)", "(1,3)", "(1,4)", "(1,5)",
-    "(1,6)", "(1,7)", "(1,8)", "(1,9)", "(1,10)", "(1,11)",
-    "(2,0)", "(2,1)", "(2,2)", "(2,3)", "(2,4)", "(2,5)",
-    "(2,6)", "(2,7)", "(2,8)", "(2,9)", "(2,10)", "(2,11)",
-    "(3,0)", "(3,1)", "(3,2)", "(3,3)", "(3,4)", "(3,5)",
-    "(4,5)", "(4,6)",
-    "(3,6)", "(3,7)", "(3,8)", "(3,9)", "(3,10)", "(3,11)",
-    "(4,0)",
-    "(4,1)",
-    "(4,2)",
-    "(4,3)",
-    "(4,4)",
-    "(4,7)",
-    "(4,8)",
-    "(4,9)",
-    "(4,10)",
-    "(4,11)",
-]
+# Légende Keymap Drawer : « row,col » sans parenthèses (lisibilité, pas de césure sur 2 lignes).
+RC_COORDS: List[str] = (
+    [f"0,{c}" for c in range(12)]
+    + [f"1,{c}" for c in range(12)]
+    + [f"2,{c}" for c in range(12)]
+    + [f"3,{c}" for c in range(6)]
+    + ["4,5", "4,6"]
+    + [f"3,{c}" for c in range(6, 12)]
+    + [f"4,{c}" for c in range(5)]
+    + [f"4,{c}" for c in range(7, 12)]
+)
 
 # Paramètres SOFLE60 (entrée macro) pour chaque keypos — aligné sur la sortie ZMK dans sofle.keymap.
 KEYPOS_TO_K: List[str] = [

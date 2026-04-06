@@ -32,7 +32,7 @@ dsl_human:
     Chaque clé sous layers.MAIN est un id physique (repère clavier). La valeur est l’action, un seul niveau.
     kp_rN* → &kp_rN* ; FR_* → &kp + aliases_fr ; mot nu → &behavior ; none → &none ;
     LHM4(A), P_*_QWT, AS(V) → macro telle quelle ; lt / hlr / hmr → sous-clés layer|mod + tap (FR_*).
-    LT0 opttildepipe / RC(4,11) &kp LA(LS(DOT)) — macOS FR : ⌥n→~, ⇧+⌥L→| ; ⌥⇧.→\ (voir standard_layout.dtsi).
+    LT0 opttildepipe / RC(4,11) &dotslsh — tap LS(DOT) / ; ⇧+tap LA(DOT) (\ macOS FR avec ⇧ tenu) ; ⌥n→~, ⇧+⌥L→| (voir standard_layout.dtsi).
     U46 / U47 : arguments SOFLE60 sans effet sur la matrice (none) — voir sofle.keymap.
   aliases_fr:
     FR_RBKT: RBKT
@@ -294,7 +294,7 @@ layers:
     R02: kp_rN8
     R03: kp_rN9
     R04: kp_rN0
-    R05: FR_RBKT
+    R05: FR_MINUS_KEY
     # — rangée lettres (HYP au centre)
     L10: FR_TAB
     L11: FR_Q
@@ -309,7 +309,7 @@ layers:
     R12: FR_I
     R13: FR_O
     R14: FR_P
-    R15: FR_MINUS_KEY
+    R15: FR_RBKT
     # — rangée home (MEH au centre)
     L20: FR_GRAVE
     L21: LHM4(A)
@@ -362,9 +362,8 @@ layers:
         layer: L_NUM
         tap: FR_SPACE
     RT2: P_SF4_QWT
-    RT3: none
+    RT3: dotslsh
     RT4: motg_sys
-    # RC(4,11) firmware = &kp LA(LS(DOT)) (⌥⇧. → \) ; aligner bindings_zmk COLEMAK si besoin.
     RT5: none
   COLEMAK:
     display_name: COLEMAK
@@ -434,7 +433,7 @@ layers:
     - P_SF4_QWT
     - '&none'
     - '&motg_sys'
-    - '&kp LA(LS(DOT))'
+    - '&dotslsh'
   NAV:
     display_name: Navigation
     bindings_zmk:

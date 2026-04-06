@@ -328,6 +328,7 @@ parse_config:
     "&molock": "$$mdi:lock-outline$$"
     # RC(4,0) / (4,11) — macOS FR : ⌥n→~, ⇧+⌥L→| ; ⌥⇧.→\ (standard_layout.dtsi).
     "&opttildepipe": { t: "~", s: "|" }
+    "&dotslsh": { t: "/", s: "\\" }
     "&kp LA(LS(DOT))": { t: "\\" }
     # Layer Symbols : légendes caractère + no-shift → support/keymap-config-symbol-layer-draw.yaml
     # (fusionnée dans gen-keymap-images.sh pour le rendu de la couche « Symbols » uniquement).
