@@ -261,7 +261,7 @@
         &kp TAB,      &kp KP_N1, &kp KP_N2, &kp KP_N3, &kp KP_N4, &kp KP_N5, &kp LHYP,    &kp RHYP,  &none, &none,      &none,     &none,     &none,     &none,
         &kp KP_ENTER, &kp KP_N6, &kp KP_N7, &kp KP_N8, &kp KP_N9, &kp KP_N0, &kp LMEH,    &kp RMEH,  &none, &kp RHRM1,  &kp RHRM2, &kp RHRM3, &kp RHRM4, &none,
         &kp KP_EQUAL, &none, &kp KP_PLUS, &kp KP_MINUS, &kp M, &kp KP_DOT, &none,       &none, &none, &none,      &none,     &none,     &none,     &kp GLOBE,
-                      &none,    &molock,  &none,     &kp_bspcdel, &kp SPACE,  &none,      &none,     &tog L_NUM, &none,     &none,     &none,     &none
+                      &molock,  &none,    &none,     &kp_bspcdel, &kp SPACE,  &none,      &none,     &tog L_NUM, &none,     &none,     &none,     &none
       )>;
       sensor-bindings = <&mouscrl SCRLDN SCRLUP &inc_dec_kp C_VOL_UP C_VOL_DN>;
     };
@@ -274,7 +274,7 @@
         &none,     &none,     &none,     &none,     &none,     &none,      &kp LHYP,    &kp RHYP,  &kp N1,    &kp GRAVE, &kp KP_EQUAL, &kp LS(GRAVE), &kp LA(LS(L)), &kp LS(NUBS),
         &none,     &kp LHRM4, &kp LHRM3, &kp LHRM2, &kp LHRM1, &none,      &kp LMEH,    &kp RMEH,  &kp LA(LS(N5)), &kp N5, &kp DOT, &kp MINUS, &kp LA(LS(MINUS)), &kp LS(SQT),
         &kp GLOBE, &none,     &none,     &none,     &none,     &none,      &none,       &none, &kp RBKT,  &kp LA(N5), &kp KP_MULTIPLY, &kp LA(MINUS), &kp LBKT, &kp N8,
-                   &none,     &none,     &none,     &none,     &tog L_SYM, &kp LA(N0),  &none,     &kp SPACE, &none,     &none,     &molock,   &none
+                   &none,     &none,     &none,     &none,     &tog L_SYM, &kp LA(N0),  &none,     &kp SPACE, &none,     &none,     &none,     &molock
       )>;
       sensor-bindings = <&mouscrl SCRLDN SCRLUP &inc_dec_kp C_VOL_UP C_VOL_DN>;
     };
@@ -286,7 +286,7 @@
         &kp C_VOL_UP, &kp C_BRI_UP, &none,      &none,    &none,      &none,      &kp LHYP,    &kp RHYP,  &none,      &none,     &none,     &none,     &none,     &none,
         &kp C_VOL_DN, &kp C_BRI_DN, &kp C_PREV, &kp C_PP, &kp C_NEXT, &none,      &kp LMEH,    &kp RMEH,  &none,      &kp RHRM1, &kp RHRM2, &kp RHRM3, &kp RHRM4, &none,
         &kp C_MUTE,   &none,        &none,      &none,    &none,      &none,      &none,       &none, &none,      &none,     &none,     &none,     &none,     &kp GLOBE,
-                      &none,       &molock,    &none,     &none,      &kp C_STOP, &tog L_MED, &none,     &none,      &none,     &none,     &none,     &none
+                      &molock,     &none,      &none,     &none,      &kp C_STOP, &tog L_MED, &none,     &none,      &none,     &none,     &none,     &none
       )>;
       sensor-bindings = <&mouscrl SCRLDN SCRLUP &inc_dec_kp C_VOL_UP C_VOL_DN>;
     };
@@ -298,7 +298,7 @@
         &none,     &mkp MB4,  &mkp MB3,  &mkp MB2,  &mkp MB1,  &mkp MB5, &kp LHYP,    &kp RHYP,  &kp MAC_CUT,   &kp MAC_COPY,  &kp MAC_PASTE, &kp MAC_UNDO,   &none, &none,
         &none,     &kp LHRM4, &kp LHRM3, &kp LHRM2, &kp LHRM1, &none,    &kp LMEH,    &kp RMEH,  MKP_MOVE_LEFT, MKP_MOVE_DOWN, MKP_MOVE_UP,   MKP_MOVE_RIGHT, &none, &none,
         &kp GLOBE, P_LB4_MOU, &kp LHRM4, &none,     &none,     &none,    &none,       &none,     MKP_SCRL_LEFT, MKP_SCRL_DOWN, MKP_SCRL_UP,   MKP_SCRL_RIGHT, &none, &none,
-                   &none,     &none,     &none,     &none,     &none,    &mkp MB2,    &none,     &mkp MB1,      &mkp MB3,      &none,     &molock,     &none
+                   &none,     &none,     &none,     &none,     &none,    &mkp MB2,    &none,     &mkp MB1,      &mkp MB3,      &none,     &none,       &molock
       )>;
       sensor-bindings = <&mouscrl SCRLDN SCRLUP &inc_dec_kp C_VOL_UP C_VOL_DN>;
     };
@@ -310,7 +310,7 @@
         &none, &kp F11, &kp F12, &kp F13, &kp F14, &kp F15, &kp LHYP,    &kp RHYP,  &none, &none,     &none,     &none,     &none,     &none,
         &none, &kp F6,  &kp F7,  &kp F8,  &kp F9,  &kp F10, &kp LMEH,    &kp RMEH,  &none, &kp RHRM1, &kp RHRM2, &kp RHRM3, &kp RHRM4, &none,
         &none, &kp F1,  &kp F2,  &kp F3,  &kp F4,  &kp F5,  &none,       &none, &none, &none,     &none,     P_RB3_FUN, P_RB4_FUN, &kp GLOBE,
-               &none,   &molock, &none,   &none,   &none,   &none,      &none,     &none, &none,     &none,     &none,     &none
+               &molock, &none,   &none,   &none,   &none,   &none,      &none,     &none, &none,     &none,     &none,     &none
       )>;
       sensor-bindings = <&mouscrl SCRLDN SCRLUP &inc_dec_kp C_VOL_UP C_VOL_DN>;
     };
@@ -322,7 +322,7 @@
         &none,              &kp MAC_DKTP, &kp MAC_WINP,  &kp MAC_WINN,  &kp MAC_DKTN,  &kp LC(DOWN), &kp LHYP,    &kp RHYP,  &kp LC(DOWN), &kp MAC_DKTP,  &kp MAC_WINP,  &kp MAC_WINN,  &kp MAC_DKTN, &none,
         &none,              &kp LHRM4,    &kp LHRM3,     &kp LHRM2,     &kp LHRM1,     &kp MAC_MC,     &kp LMEH,    &kp RMEH,  &kp MAC_MC,     &kp RHRM1,     &kp RHRM2,     &kp RHRM3,     &kp RHRM4,    &none,
         &mt GLOBE MAC_REDO, P_SB4_BUT,    &kp MAC_CUT,   &kp MAC_COPY,  &kp MAC_PASTE, &kp MAC_SP,     &none,       &none, &kp MAC_SP,     &kp MAC_PASTE, &kp MAC_COPY,  &kp MAC_CUT,   P_SB4_BUT,    &mt GLOBE MAC_REDO,
-                            &none,        &molock,       &tog L_BUT,    &none,         &none,          &none,       &none,     &none,          &tog_but_thumb_r L_BUT, &none, &molock, &none
+                            &molock,      &none,         &tog L_BUT,    &none,         &none,          &none,       &none,     &none,          &tog_but_thumb_r L_BUT, &none, &none, &molock
       )>;
       sensor-bindings = <&mouscrl SCRLDN SCRLUP &inc_dec_kp C_VOL_UP C_VOL_DN>;
     };
@@ -334,7 +334,7 @@
         &bootloader, &rgb_ug RGB_HUI, &rgb_ug RGB_SAI, &rgb_ug RGB_BRI, &bl_inc, &none,            &kp LHYP,    &kp RHYP,  &none,        &ext_power EP_TOG, &out OUT_TOG, &kp C_PWR,   &none,        &bootloader,
         &sys_reset,  &rgb_ug RGB_HUD, &rgb_ug RGB_SAD, &rgb_ug RGB_BRD, &bl_dec, &none,            &kp LMEH,    &kp RMEH,  &none,        &none,        &none,        &none,        &none,         &sys_reset,
         &none,       &rgb_ug RGB_TOG, &ug_reset,       &none,           &rgb_ug RGB_EFF, &none,     &none,       &none, &bt BT_SEL 0, &bt BT_SEL 1, &bt BT_SEL 2, &bt BT_SEL 3, &bt BT_SEL 4,  &bt BT_CLR,
-                     &none,            LOCK_SYS_LAYER,  &none,           &none,   &tog L_CMK,        &none,       &none,     &none,        &none,        &none,        LOCK_SYS_LAYER, &none
+                     LOCK_SYS_LAYER,   &none,            &none,           &none,   &tog L_CMK,        &none,       &none,     &none,        &none,        &none,        &none,          LOCK_SYS_LAYER
       )>;
       sensor-bindings = <&mouscrl SCRLDN SCRLUP &inc_dec_kp C_VOL_UP C_VOL_DN>;
     };
