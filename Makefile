@@ -8,12 +8,16 @@
 # Keymap Drawer : dans le même venv que ZMK (pas d’install globale).
 #   make install-keymap-drawer   # une fois : pip install -r config/requirements-drawer.txt
 #   make keymap-drawer           # SVG rapide (toutes les couches dans un fichier)
-#   make keymap-images           # une SVG par couche + locale (défaut : osx/fr_azerty_iso.csv)
+#   make keymap-images           # SVG + PNG par couche (PNG : rsvg-convert ou Inkscape)
 #
 # Keymap Drawer : configs dans support/ (d’origine Townk zmk-config, MIT).
 KEYMAP_DRAWER_CFG ?= $(CURDIR)/support/keymap-config.yaml
 # Légendes « sortie OS » pour keymap-images (CSV). Vide = désactiver (QWERTY US du YAML).
 KEYMAP_LOCALE_MAP ?= $(CURDIR)/support/locale-maps/osx/fr_azerty_iso.csv
+# Largeur des PNG générés à côté des SVG (gen-keymap-images.sh). KEYMAP_SKIP_PNG=1 pour désactiver les PNG.
+KEYMAP_IMAGE_PNG_WIDTH ?=
+# inkscape | rsvg (librsvg + aplatissement MDI) | auto (Inkscape si présent, sinon rsvg)
+KEYMAP_PNG_RENDERER ?=
 #
 # Défaut : build incrémental (sans -p). Rebuild complet : make left PRISTINE=1
 # UF2 : build/.../zmk.uf2 copiés dans firmware/ (fichiers réels — glisser-déposer vers UF2)
@@ -127,7 +131,9 @@ $(KEYMAP_SVG): $(KEYMAP_PARSED) $(KEYMAP_LAYOUT)
 	@echo "SVG : $(KEYMAP_SVG)"
 
 keymap-images:
-	@export ZMK_VENV="$(ZMK_VENV)" KEYMAP_JSON="$(KEYMAP_LAYOUT)" KEYMAP_LOCALE_MAP="$(KEYMAP_LOCALE_MAP)"; \
+	@export ZMK_VENV="$(ZMK_VENV)" KEYMAP_JSON="$(KEYMAP_LAYOUT)" KEYMAP_LOCALE_MAP="$(KEYMAP_LOCALE_MAP)" \
+		KEYMAP_IMAGE_PNG_WIDTH="$(KEYMAP_IMAGE_PNG_WIDTH)" KEYMAP_SKIP_PNG="$(KEYMAP_SKIP_PNG)" \
+		KEYMAP_PNG_RENDERER="$(KEYMAP_PNG_RENDERER)"; \
 		"$(CURDIR)/support/gen-keymap-images.sh"
 
 help:
@@ -140,7 +146,7 @@ help:
 	@echo "  make clean          — supprime build/ et firmware/"
 	@echo "  make install-keymap-drawer — pip install keymap-drawer dans ZMK_VENV"
 	@echo "  make keymap-drawer  — build/keymap.svg"
-	@echo "  make keymap-images  — docs/images/sofle-layer*.svg (KEYMAP_LOCALE_MAP, défaut AZERTY FR macOS ISO)"
+	@echo "  make keymap-images  — docs/images/sofle-layer*.{svg,png} + build/out/zmk-sofle-layout-map.{svg,png}"
 	@echo ""
 	@echo "Board : $(BOARD_LEFT) / $(BOARD_RIGHT)   Shield : $(SHIELD_VIEW)"
 	@echo "Kconfig utilisateur : config/sofle_choc_pro.conf"

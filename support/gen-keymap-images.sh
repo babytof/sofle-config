@@ -1,8 +1,11 @@
 #!/usr/bin/env bash
 # Génère les SVG par couche (équivalent Townk update-layout-maps.sh, Sofle uniquement).
+# Puis un PNG pour chaque SVG (largeur KEYMAP_IMAGE_PNG_WIDTH, défaut 2400 px).
 # Configs Keymap Drawer : ce répertoire (support/keymap-config*.yaml).
 #
 # Prérequis : venv ZMK avec keymap-drawer + PyYAML (merge_yaml).
+# PNG : Inkscape (prioritaire) ou rsvg-convert + aplatissement MDI (svg_flatten_mdi_uses.py).
+# Désactiver : KEYMAP_SKIP_PNG=1. Forcer moteur : KEYMAP_PNG_RENDERER=inkscape|rsvg|auto
 
 set -euo pipefail
 
@@ -27,6 +30,7 @@ MERGE_PY="$SCRIPT_DIR/merge_yaml.py"
 APPLY_LOCALE_PY="$SCRIPT_DIR/apply_keymap_locale.py"
 APPEND_RC_PY="$SCRIPT_DIR/append_rc_reference_layer.py"
 ANNOTATE_SVG_PY="$SCRIPT_DIR/annotate_layer_numbers_in_svg.py"
+FLATTEN_SVG_PY="$SCRIPT_DIR/svg_flatten_mdi_uses.py"
 
 if [[ ! -f "$KD_CONFIG_MAIN" ]]; then
   echo "Fichier introuvable : $KD_CONFIG_MAIN" >&2
@@ -155,5 +159,66 @@ annotate_targets=(
 shopt -u nullglob
 ((${#annotate_targets[@]})) && "$PYTHON" "$ANNOTATE_SVG_PY" "${annotate_targets[@]}"
 
-echo "Terminé. Images : $OUT_DIR/sofle-layer*.svg (dont sofle-layer-rc-reference.svg = couche RC seule)"
+KEYMAP_IMAGE_PNG_WIDTH="${KEYMAP_IMAGE_PNG_WIDTH:-2400}"
+
+_png_via_inkscape() {
+  inkscape --batch-process "$1" -o "$2" -w "$KEYMAP_IMAGE_PNG_WIDTH"
+}
+
+_png_via_rsvg_flat() {
+  local svg=$1 png=$2 flat
+  if [[ ! -f "$FLATTEN_SVG_PY" ]]; then
+    echo "Fichier introuvable : $FLATTEN_SVG_PY" >&2
+    return 1
+  fi
+  flat="$(mktemp "${TMPDIR:-/tmp}/keymapflat.XXXXXX")"
+  "$PYTHON" "$FLATTEN_SVG_PY" "$svg" "$flat"
+  rsvg-convert -w "$KEYMAP_IMAGE_PNG_WIDTH" -o "$png" "$flat"
+  rm -f "$flat"
+}
+
+svg_to_png() {
+  local svg=$1
+  local png="${svg%.svg}.png"
+  case "${KEYMAP_PNG_RENDERER:-auto}" in
+    inkscape)
+      command -v inkscape &>/dev/null || return 1
+      _png_via_inkscape "$svg" "$png"
+      ;;
+    rsvg)
+      command -v rsvg-convert &>/dev/null || return 1
+      _png_via_rsvg_flat "$svg" "$png"
+      ;;
+    auto|*)
+      if command -v inkscape &>/dev/null; then
+        _png_via_inkscape "$svg" "$png"
+      elif command -v rsvg-convert &>/dev/null; then
+        _png_via_rsvg_flat "$svg" "$png"
+      else
+        return 1
+      fi
+      ;;
+  esac
+}
+
+if [[ "${KEYMAP_SKIP_PNG:-}" == "1" ]]; then
+  echo "- PNG : ignoré (KEYMAP_SKIP_PNG=1)"
+else
+  if ! command -v rsvg-convert &>/dev/null && ! command -v inkscape &>/dev/null; then
+    echo "Erreur : installe rsvg-convert (ex. brew install librsvg) ou Inkscape pour générer les PNG." >&2
+    exit 1
+  fi
+  if ! command -v inkscape &>/dev/null && [[ ! -f "$FLATTEN_SVG_PY" ]]; then
+    echo "Erreur : $FLATTEN_SVG_PY requis pour rsvg-convert (glyphes MDI)." >&2
+    exit 1
+  fi
+  echo "- Export PNG (${KEYMAP_IMAGE_PNG_WIDTH}px, moteur ${KEYMAP_PNG_RENDERER:-auto}) …"
+  for svg in "${annotate_targets[@]}"; do
+    [[ -f "$svg" ]] || continue
+    svg_to_png "$svg"
+    echo "  → ${svg%.svg}.png"
+  done
+fi
+
+echo "Terminé. Images : $OUT_DIR/sofle-layer*.svg (+ .png) ; build/out/zmk-sofle-layout-map.svg (+ .png)"
 echo "Glyphes MDI (README, etc.) : $SOFLE_ROOT/docs/glyphs/"

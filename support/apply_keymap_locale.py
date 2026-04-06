@@ -104,7 +104,7 @@ def apply_locale_specific_raw_bindings(raw_map: dict[str, Any], locale_csv: Path
     """
     Bindings composites non couverts par le CSV (dernier token ≠ clé zmk_key).
     macOS AZERTY ISO : RC(0,0) &lbktgrave → ^ / ¨ (LBKT) ; h = branche Cmd+⇧⇥.
-    globebslh : ` / £ au tap+shift ; Globe au maintien.
+    globebslh : ` / ´ (légende doc) au shift ; Globe au maintien ; tap+⇧ = ⌥⇧1.
     """
     if locale_csv.stem != "fr_azerty_iso" or not isinstance(raw_map, dict):
         return
@@ -115,7 +115,7 @@ def apply_locale_specific_raw_bindings(raw_map: dict[str, Any], locale_csv: Path
     }
     raw_map["&globebslh"] = {
         "t": "`",
-        "s": "£",
+        "s": "´",
         "h": "$$mdi:web$$",
         "type": "held",
     }

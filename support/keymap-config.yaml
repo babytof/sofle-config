@@ -434,8 +434,8 @@ parse_config:
 
     # Tap-hold keys
     #---------------------------------------------------------------------------
-    # Backslash on tap, Globe on hold
-    "&globebslh": { t: '\', s: "|", h: "$$mdi:web$$", type: "held" }
+    # BSLH au tap ; ⇧+tap → ⌥⇧1 (firmware) ; légende shift = accent aigu ´ (doc).
+    "&globebslh": { t: '\', s: "´", h: "$$mdi:web$$", type: "held" }
     # RC(3,11) Sofle SOFLE60 — légendes - / _ (tap MINUS, Shift+UNDERSCORE ; Globe au maintien).
     "&hmr GLOBE EQUAL": { t: "-", s: "_", h: "$$mdi:web$$", type: "held" }
     # macOS Redo on tap, Globe on hold

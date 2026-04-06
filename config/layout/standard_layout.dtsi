@@ -100,10 +100,19 @@
       bindings = <&mo L_MOU>, <&tog L_MOU>;
     };
 
+    /* ⇧+tap → ⌥⇧1 ; sinon &hml GLOBE BSLH (hold-tap : phandles uniquement — pas de &kp dans bindings du HT). */
+    globebslh_shift: globe_bslh_or_opt_shift_n1 {
+      compatible = "zmk,behavior-mod-morph";
+      #binding-cells = <0>;
+      bindings = <&hml GLOBE BSLH>, <&kp LA(LS(N1))>;
+      mods = <(MOD_LSFT|MOD_RSFT)>;
+      keep-mods = <(MOD_LSFT|MOD_RSFT)>;
+    };
+
     globebslh: globe_or_backslash {
       compatible = "zmk,behavior-mod-morph";
       #binding-cells = <0>;
-      bindings = <&hml GLOBE BSLH>, <&kp TILDE>;
+      bindings = <&globebslh_shift>, <&kp TILDE>;
       mods = <(MOD_LGUI|MOD_RGUI)>;
       keep-mods = <(MOD_LGUI|MOD_RGUI)>;
     };
