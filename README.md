@@ -1,5 +1,7 @@
 # Configuration ZMK — Sofle Choc Pro BT
 
+> **À propos de ce dépôt** — Configuration issue d’un fork de [Townk/zmk-config](https://github.com/Townk/zmk-config), avec adaptation du mapping **Lily58** vers un **Sofle Choc Pro Bluetooth**, pour une utilisation **AZERTY / ISO français** sous **macOS**.
+
 Keymap, board et manifest **West** pour le firmware Townk (ZMK `mousemove-molock`) + module `zmk-tri-state`. Les arborescences **zephyr/**, **zmk/** et **modules/** sont ignorées par Git (`.gitignore`) : elles sont recréées par West et éventuellement modifiées par des **patches versionnés** dans `support/patches/`.
 
 ## Nouvel ordinateur (ordre recommandé)
