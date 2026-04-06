@@ -2,10 +2,6 @@
 
 [![ZMK version](https://img.shields.io/badge/ZMK-3.5-blue)](https://zmk.dev/)
 
-Ce document reprend et traduit les conventions décrites dans le [README de Townk/zmk-config](https://github.com/Townk/zmk-config/blob/main/README.md) (référence de travail locale possible : `archive/zmk-config/README.md` à côté de ce dépôt, si tu utilises l’arborescence `keyboard/` complète). Il sert de **référence** pour les symboles, les représentations des touches et les comportements affichés sur les schémas.
-
-**Médias** — Tous les liens pointent vers des fichiers **dans ce dossier** : [glyphs/](glyphs/) et [images/](images/).
-
 ---
 
 ## Organisation des layouts (idée générale)

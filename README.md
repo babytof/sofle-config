@@ -4,6 +4,13 @@
 
 Keymap, board et manifest **West** pour le firmware Townk (ZMK `mousemove-molock`) + module `zmk-tri-state`. Les arborescences **zephyr/**, **zmk/** et **modules/** sont ignorées par Git (`.gitignore`) : elles sont recréées par West et éventuellement modifiées par des **patches versionnés** dans `support/patches/`.
 
+Chaque clavier a sa doc de layout ; ici :
+
+- [Sofle Choc Pro BT](docs/sofle.md) — couches, choix de mapping et liens vers les schémas
+- [Conventions (symboles, représentation des touches)](docs/README.md)
+
+Si tu n’as pas encore ouvert ces liens : commence par **`docs/sofle.md`** pour le clavier cible, puis **`docs/README.md`** pour lire les schémas comme Townk.
+
 ## Nouvel ordinateur (ordre recommandé)
 
 ### 1. Outils système
