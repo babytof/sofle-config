@@ -334,7 +334,7 @@
         &bootloader, &rgb_ug RGB_HUI, &rgb_ug RGB_SAI, &rgb_ug RGB_BRI, &bl_inc, &none,            &kp LHYP,    &kp RHYP,  &none,        &ext_power EP_TOG, &out OUT_TOG, &kp C_PWR,   &none,        &bootloader,
         &sys_reset,  &rgb_ug RGB_HUD, &rgb_ug RGB_SAD, &rgb_ug RGB_BRD, &bl_dec, &none,            &kp LMEH,    &kp RMEH,  &none,        &none,        &none,        &none,        &none,         &sys_reset,
         &none,       &rgb_ug RGB_TOG, &ug_reset,       &none,           &rgb_ug RGB_EFF, &none,     &none,       &none, &bt BT_SEL 0, &bt BT_SEL 1, &bt BT_SEL 2, &bt BT_SEL 3, &bt BT_SEL 4,  &bt BT_CLR,
-                     LOCK_SYS_LAYER,   &none,            &none,           &none,   &tog L_CMK,        &none,       &none,     &none,        &none,        &none,        &none,          LOCK_SYS_LAYER
+                     LOCK_SYS_LAYER,   &tog L_SYS,      &none,           &none,   &tog L_CMK,        &none,       &none,     &none,        &none,        &none,        &tog L_SYS,     LOCK_SYS_LAYER
       )>;
       sensor-bindings = <&mouscrl SCRLDN SCRLUP &inc_dec_kp C_VOL_UP C_VOL_DN>;
     };

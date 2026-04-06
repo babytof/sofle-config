@@ -976,7 +976,7 @@ layers:
     - '&bt BT_SEL 4'
     - '&bt BT_CLR'
     - LOCK_SYS_LAYER
-    - '&none'
+    - '&tog L_SYS'
     - '&none'
     - '&none'
     - '&tog L_CMK'
@@ -985,7 +985,7 @@ layers:
     - '&none'
     - '&none'
     - '&none'
-    - '&none'
+    - '&tog L_SYS'
     - LOCK_SYS_LAYER
 aliases:
   A:
