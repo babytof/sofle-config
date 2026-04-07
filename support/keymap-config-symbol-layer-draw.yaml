@@ -14,7 +14,7 @@ parse_config:
     "&kp KP_EQUAL": { t: "=" }
     "&kp LS(GRAVE)": { t: ">" }
     "&kp LA(LS(L))": { t: "|" }
-    "&kp LS(NUBS)": { t: ">" }
+    "&kp LS(NUBS)": { t: "#" }
     "&kp LA(LS(N5))": { t: "[" }
     "&kp N5": { t: "(" }
     "&kp DOT": { t: ":" }
