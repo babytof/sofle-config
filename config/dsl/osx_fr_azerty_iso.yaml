@@ -32,7 +32,7 @@ dsl_human:
     Chaque clé sous layers.MAIN est un id physique (repère clavier). La valeur est l’action, un seul niveau.
     kp_rN* → &kp_rN* ; FR_* → &kp + aliases_fr ; mot nu → &behavior ; none → &none ;
     LHM4(A), P_*_QWT, AS(V) → macro telle quelle ; lt / hlr / hmr → sous-clés layer|mod + tap (FR_*).
-    LT0 opttildepipe / RC(4,11) &dotslsh — tap LS(DOT) / ; ⇧+tap LA(DOT) (\ macOS FR avec ⇧ tenu) ; ⌥n→~, ⇧+⌥L→| (voir standard_layout.dtsi).
+    LT0 opttildepipe / RC(4,11) MAIN &nubsladot — tap NUBS ; ⇧+tap LA(DOT) (\ avec ⇧ tenu, comme dotslsh) ; COLEMAK : &dotslsh ; ⌥n→~, ⇧+⌥L→| sur LT0 (voir standard_layout.dtsi).
     U46 / U47 : arguments SOFLE60 sans effet sur la matrice (none) — voir sofle.keymap.
   aliases_fr:
     FR_RBKT: RBKT
@@ -362,7 +362,7 @@ layers:
         layer: L_NUM
         tap: FR_SPACE
     RT2: P_SF4_QWT
-    RT3: dotslsh
+    RT3: nubsladot
     RT4: motg_sys
     RT5: none
   COLEMAK:

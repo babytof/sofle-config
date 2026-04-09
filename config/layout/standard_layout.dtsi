@@ -156,6 +156,15 @@
       keep-mods = <(MOD_LSFT|MOD_RSFT)>;
     };
 
+    /* MAIN (4,11) : tap → NUBS ; ⇧+tap → LA(DOT) (même branche ⇧ que dotslsh). COLEMAK : &dotslsh inchangé. */
+    nubsladot: nubs_or_opt_dot_with_shift {
+      compatible = "zmk,behavior-mod-morph";
+      #binding-cells = <0>;
+      bindings = <&kp NUBS>, <&kp LA(DOT)>;
+      mods = <(MOD_LSFT|MOD_RSFT)>;
+      keep-mods = <(MOD_LSFT|MOD_RSFT)>;
+    };
+
     gravecaps: grave_or_capsword {
       compatible = "zmk,behavior-tap-dance";
       #binding-cells = <0>;
@@ -220,7 +229,7 @@
     compatible = "zmk,keymap";
 
     /* Pouces : entrée SOFLE60 = 12 paramètres (K54–K65) ; sortie 10 touches sans K60/K63.
-     * (4,0)=&opttildepipe, (4,11)=&dotslsh ; le reste aligné Townk (K54,K55,K57,K58,K61,K62,K64,K65).
+     * (4,0)=&opttildepipe ; (4,11) MAIN=&nubsladot, COLEMAK=&dotslsh ; le reste aligné Townk (K54,K55,K57,K58,K61,K62,K64,K65).
      *
      * 4ᵉ rangée entrée : K46 et K47 ne sont pas émis dans la matrice sortie — la macro SOFLE60
      * (sofle.keymap) y place K18 et K19 (LHYP/RHYP). &none sur K46–K47 évite les bindings fantômes. */
@@ -234,7 +243,7 @@
         &kp TAB,    &kp Q,     &kp W,     &kp E,     &kp R,    &kp T,         &kp LHYP,    &kp RHYP,  &kp Y,         &kp U,     &kp I,     &kp O,     &kp P,      &kp RBKT,
         &kp GRAVE,  LHM4(A),   LHM3(S),   LHM2(D),   LHM1(F),  &kp G,         &kp LMEH,    &kp RMEH,  &kp H,         RHM1(J),   RHM2(K),   RHM3(L),   RHM4(SEMI), &kp SQT,
         &globebslh, P_LB4_QWT, P_LB3_QWT, &kp C,     AS(V),    &kp B,         &none,       &none, &kp N,         &kp M,     &kp COMMA, P_RB3_QWT, P_RB4_QWT,  &hmr GLOBE EQUAL,
-                    &opttildepipe, &motg_sys, P_SF4_QWT, &bspcnav, &lt L_SYM ESC, &lt L_MED RET, &none,     &hlr L_NUM SPACE, P_SF4_QWT,           &none,     &motg_sys,  &dotslsh
+                    &opttildepipe, &motg_sys, P_SF4_QWT, &bspcnav, &lt L_SYM ESC, &lt L_MED RET, &none,     &hlr L_NUM SPACE, P_SF4_QWT,           &none,     &motg_sys,  &nubsladot
       )>;
       sensor-bindings = <&mouscrl SCRLDN SCRLUP &inc_dec_kp C_VOL_UP C_VOL_DN>;
     };
