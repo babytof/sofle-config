@@ -16,6 +16,7 @@
     figure {
       margin: 0 0 1.5rem;
       padding: 0 0.5rem;
+      scroll-margin-top: 2rem;
     }
     figcaption {
       font-size: 0.85rem;
@@ -27,48 +28,300 @@
       width: 100%;
       height: auto;
     }
+    #shortcuts-hint {
+      scroll-margin-top: 0.5rem;
+    }
+    .shortcuts-hint {
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      margin: 0 0 0.65rem;
+      padding: 0.3rem 0.55rem;
+      background: #252525;
+      border-bottom: 1px solid #333;
+      font-size: 0.75rem;
+      line-height: 1.35;
+      opacity: 0.95;
+    }
+    .shortcuts-hint--expanded {
+      padding: 0.5rem 0.75rem;
+      font-size: 0.8rem;
+      line-height: 1.4;
+      margin-bottom: 1rem;
+    }
+    .shortcuts-hint-compact {
+      margin: 0;
+    }
+    .shortcuts-hint--expanded .shortcuts-hint-compact {
+      display: none;
+    }
+    .shortcuts-hint-details[hidden] {
+      display: none;
+    }
+    .shortcuts-hint kbd {
+      display: inline-block;
+      padding: 0.1em 0.35em;
+      border-radius: 3px;
+      background: #333;
+      font-family: inherit;
+      font-size: 0.9em;
+    }
+    .shortcuts-hint-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(12.5rem, 1fr));
+      gap: 0.35rem 0.75rem;
+      font-size: 0.78rem;
+      line-height: 1.35;
+    }
+    .shortcuts-hint-list li {
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: baseline;
+      gap: 0.35rem;
+    }
+    .shortcuts-hint-list .sec-keys {
+      flex: 0 0 auto;
+      white-space: nowrap;
+      text-align: left;
+    }
+    .shortcuts-hint-list .sec-name {
+      flex: 1 1 auto;
+      min-width: 0;
+      opacity: 0.92;
+    }
+    .shortcuts-hint-foot {
+      margin: 0.55rem 0 0;
+      padding-top: 0.45rem;
+      border-top: 1px solid #383838;
+      font-size: 0.78rem;
+      opacity: 0.95;
+    }
+    figcaption .kbd-ref {
+      margin-left: 0.35em;
+      padding: 0.1em 0.4em;
+      border-radius: 3px;
+      background: #2a2a2a;
+      font-size: 0.8em;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      opacity: 0.95;
+    }
   </style>
 </head>
 <body>
-  <figure>
-    <figcaption>0 — QWERTY (principal)</figcaption>
+  <div class="shortcuts-hint" id="shortcuts-hint" aria-expanded="false">
+    <p class="shortcuts-hint-compact">
+      Sofle — raccourcis · <kbd>H</kbd> aide complète (toutes les couches) · <kbd>J</kbd> / <kbd>K</kbd> sections
+    </p>
+    <div class="shortcuts-hint-details" id="shortcuts-hint-details" hidden>
+      <ul class="shortcuts-hint-list">
+        <li><span class="sec-keys"><kbd>0</kbd> <kbd>A</kbd></span><span class="sec-name">QWERTY (principal)</span></li>
+        <li><span class="sec-keys"><kbd>1</kbd> <kbd>B</kbd></span><span class="sec-name">Navigation</span></li>
+        <li><span class="sec-keys"><kbd>2</kbd> <kbd>C</kbd></span><span class="sec-name">Numbers</span></li>
+        <li><span class="sec-keys"><kbd>3</kbd> <kbd>D</kbd></span><span class="sec-name">Symbols</span></li>
+        <li><span class="sec-keys"><kbd>4</kbd> <kbd>E</kbd></span><span class="sec-name">Media</span></li>
+        <li><span class="sec-keys"><kbd>5</kbd> <kbd>F</kbd></span><span class="sec-name">Mouse</span></li>
+        <li><span class="sec-keys"><kbd>6</kbd> <kbd>G</kbd></span><span class="sec-name">Functions</span></li>
+        <li><span class="sec-keys"><kbd>7</kbd> <kbd>P</kbd></span><span class="sec-name">Buttons</span></li>
+        <li><span class="sec-keys"><kbd>8</kbd> <kbd>I</kbd></span><span class="sec-name">System</span></li>
+        <li><span class="sec-keys"><kbd>9</kbd> <kbd>R</kbd></span><span class="sec-name">Référence</span></li>
+        <li><span class="sec-keys"><kbd>H</kbd></span><span class="sec-name">Aide (liste complète)</span></li>
+      </ul>
+      <p class="shortcuts-hint-foot">
+        <kbd>J</kbd> section suivante · <kbd>K</kbd> section précédente
+      </p>
+    </div>
+  </div>
+  <figure id="layer-0">
+    <figcaption>0 — QWERTY (principal) <span class="kbd-ref" title="Touche qui produit la lettre A (selon la disposition)">A</span></figcaption>
     <img src="sofle-layer0-main.svg" alt="Couche QWERTY" width="900" height="428" loading="lazy" />
   </figure>
-  <figure>
-    <figcaption>1 — Navigation</figcaption>
+  <figure id="layer-1">
+    <figcaption>1 — Navigation <span class="kbd-ref" title="Touche qui produit la lettre B (selon la disposition)">B</span></figcaption>
     <img src="sofle-layer1-navigation.svg" alt="Couche Navigation" width="900" height="428" loading="lazy" />
   </figure>
-  <figure>
-    <figcaption>2 — Numbers</figcaption>
+  <figure id="layer-2">
+    <figcaption>2 — Numbers <span class="kbd-ref" title="Touche qui produit la lettre C (selon la disposition)">C</span></figcaption>
     <img src="sofle-layer2-numbers.svg" alt="Couche Numbers" width="900" height="428" loading="lazy" />
   </figure>
-  <figure>
-    <figcaption>3 — Symbols</figcaption>
+  <figure id="layer-3">
+    <figcaption>3 — Symbols <span class="kbd-ref" title="Touche qui produit la lettre D (selon la disposition)">D</span></figcaption>
     <img src="sofle-layer3-symbols.svg" alt="Couche Symbols" width="900" height="428" loading="lazy" />
   </figure>
-  <figure>
-    <figcaption>4 — Media</figcaption>
+  <figure id="layer-4">
+    <figcaption>4 — Media <span class="kbd-ref" title="Touche qui produit la lettre E (selon la disposition)">E</span></figcaption>
     <img src="sofle-layer4-media.svg" alt="Couche Media" width="900" height="428" loading="lazy" />
   </figure>
-  <figure>
-    <figcaption>5 — Mouse</figcaption>
+  <figure id="layer-5">
+    <figcaption>5 — Mouse <span class="kbd-ref" title="Touche qui produit la lettre F (selon la disposition)">F</span></figcaption>
     <img src="sofle-layer5-mouse.svg" alt="Couche Mouse" width="900" height="428" loading="lazy" />
   </figure>
-  <figure>
-    <figcaption>6 — Functions</figcaption>
+  <figure id="layer-6">
+    <figcaption>6 — Functions <span class="kbd-ref" title="Touche qui produit la lettre G (selon la disposition)">G</span></figcaption>
     <img src="sofle-layer6-functions.svg" alt="Couche Functions" width="900" height="428" loading="lazy" />
   </figure>
-  <figure>
-    <figcaption>7 — Buttons</figcaption>
+  <figure id="layer-7">
+    <figcaption>7 — Buttons <span class="kbd-ref" title="Touche qui produit la lettre P (selon la disposition) — H est réservé à l’aide">P</span></figcaption>
     <img src="sofle-layer7-buttons.svg" alt="Couche Buttons" width="900" height="428" loading="lazy" />
   </figure>
-  <figure>
-    <figcaption>8 — System</figcaption>
+  <figure id="layer-8">
+    <figcaption>8 — System <span class="kbd-ref" title="Touche qui produit la lettre I (selon la disposition)">I</span></figcaption>
     <img src="sofle-layer8-system.svg" alt="Couche System" width="900" height="428" loading="lazy" />
   </figure>
-  <figure>
-    <figcaption>Référence — indices matrice RC et paramètres K (SOFLE60)</figcaption>
+  <figure id="layer-ref">
+    <figcaption>Référence — indices matrice RC et paramètres K (SOFLE60) <span class="kbd-ref" title="Touche qui produit la lettre R (selon la disposition)">R</span></figcaption>
     <img src="sofle-layer-rc-reference.svg" alt="Référence RC et K00–K65" width="900" height="428" loading="lazy" />
   </figure>
+  <script>
+    (function () {
+      /* Chiffres : event.code (position physique) — AZERTY : &é"'(-è_çà reste Digit1… */
+      var codeTargets = {
+        Digit0: "layer-0",
+        Digit1: "layer-1",
+        Digit2: "layer-2",
+        Digit3: "layer-3",
+        Digit4: "layer-4",
+        Digit5: "layer-5",
+        Digit6: "layer-6",
+        Digit7: "layer-7",
+        Digit8: "layer-8",
+        Digit9: "layer-ref",
+        Numpad0: "layer-0",
+        Numpad1: "layer-1",
+        Numpad2: "layer-2",
+        Numpad3: "layer-3",
+        Numpad4: "layer-4",
+        Numpad5: "layer-5",
+        Numpad6: "layer-6",
+        Numpad7: "layer-7",
+        Numpad8: "layer-8",
+        Numpad9: "layer-ref"
+      };
+      /* Lettres : event.key (caractère selon la disposition — AZERTY / QWERTY / …) */
+      var letterTargets = {
+        a: "layer-0",
+        b: "layer-1",
+        c: "layer-2",
+        d: "layer-3",
+        e: "layer-4",
+        f: "layer-5",
+        g: "layer-6",
+        p: "layer-7",
+        i: "layer-8",
+        r: "layer-ref"
+      };
+
+      var sectionOrder = [
+        "shortcuts-hint",
+        "layer-0",
+        "layer-1",
+        "layer-2",
+        "layer-3",
+        "layer-4",
+        "layer-5",
+        "layer-6",
+        "layer-7",
+        "layer-8",
+        "layer-ref"
+      ];
+
+      function scrollToId(id) {
+        var el = document.getElementById(id);
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }
+
+      /** Dernière section dont le haut est passé sous la ligne de lecture (bandeau sticky pris en compte). */
+      function currentSectionIndex() {
+        var hintEl = document.getElementById("shortcuts-hint");
+        var pad = hintEl && hintEl.classList.contains("shortcuts-hint--expanded") ? 52 : 36;
+        var y = window.scrollY + pad;
+        var idx = 0;
+        for (var i = 0; i < sectionOrder.length; i++) {
+          var el = document.getElementById(sectionOrder[i]);
+          if (!el) continue;
+          if (el.offsetTop <= y) {
+            idx = i;
+          } else {
+            break;
+          }
+        }
+        return idx;
+      }
+
+      function scrollToSectionDelta(delta) {
+        var n = sectionOrder.length;
+        if (n === 0) return;
+        var i = (currentSectionIndex() + delta + n) % n;
+        scrollToId(sectionOrder[i]);
+      }
+
+      function collapseShortcutsHint() {
+        var bar = document.getElementById("shortcuts-hint");
+        var details = document.getElementById("shortcuts-hint-details");
+        if (bar) {
+          bar.classList.remove("shortcuts-hint--expanded");
+          bar.setAttribute("aria-expanded", "false");
+        }
+        if (details) {
+          details.hidden = true;
+        }
+      }
+
+      document.addEventListener("keydown", function (e) {
+        if (e.defaultPrevented) return;
+        if (e.ctrlKey || e.metaKey || e.altKey) return;
+        var tag = (e.target && e.target.tagName) || "";
+        if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT" || (e.target && e.target.isContentEditable)) return;
+
+        var k0 = e.key;
+        if (k0 && k0.length === 1 && k0.toLowerCase() === "h") {
+          e.preventDefault();
+          var bar = document.getElementById("shortcuts-hint");
+          var details = document.getElementById("shortcuts-hint-details");
+          if (bar && details) {
+            var exp = bar.classList.toggle("shortcuts-hint--expanded");
+            details.hidden = !exp;
+            bar.setAttribute("aria-expanded", exp ? "true" : "false");
+          }
+          scrollToId("shortcuts-hint");
+          return;
+        }
+        var byCode = codeTargets[e.code];
+        if (byCode) {
+          e.preventDefault();
+          collapseShortcutsHint();
+          scrollToId(byCode);
+          return;
+        }
+        var k = e.key;
+        if (k && k.length === 1) {
+          var lk = k.toLowerCase();
+          if (lk === "j") {
+            e.preventDefault();
+            collapseShortcutsHint();
+            scrollToSectionDelta(1);
+            return;
+          }
+          if (lk === "k") {
+            e.preventDefault();
+            collapseShortcutsHint();
+            scrollToSectionDelta(-1);
+            return;
+          }
+          var lid = letterTargets[lk];
+          if (lid) {
+            e.preventDefault();
+            collapseShortcutsHint();
+            scrollToId(lid);
+          }
+        }
+      });
+    })();
+  </script>
 </body>
 </html>
