@@ -34,7 +34,7 @@ Génération à la **racine du dépôt** : `make keymap-images` (SVG/PNG dans `d
 | COLEMAK | [images/sofle-layer9-colemak.svg](images/sofle-layer9-colemak.svg) |
 | Réf. RC (indices matrice) | [images/sofle-layer-rc-reference.svg](images/sofle-layer-rc-reference.svg) |
 
-Aperçu HTML (couches 0–8) : [images/cheatsheet.html](images/cheatsheet.html).
+Aperçu HTML (sections 0–9, ordre d’affichage) : [images/cheatsheet.html](images/cheatsheet.html).
 
 > **Numéros sur les pictogrammes « couche »** — Dans le glossaire ci-dessous, les icônes `numeric-1` … `numeric-6` reprennent la **légende d’origine Townk** (libellés « Numbers », « Symbols », etc.). L’**index de couche** dans les noms de fichiers `sofle-layerN-…` peut ne pas coïncider avec ce chiffre sur l’icône ; se fier au **nom de fichier** et à la cheatsheet ci-dessus.
 
