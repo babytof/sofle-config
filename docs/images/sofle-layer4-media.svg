@@ -352,15 +352,21 @@ rect.ghost { fill: #7b7e81; }
 </g>
 <g transform="translate(532, 41)" class="key keypos-6">
 <rect rx="6" ry="6" x="-24" y="-24" width="48" height="48" class="key"/>
+<use href="#mdi:keyboard-tab-reverse" xlink:href="#mdi:keyboard-tab-reverse" x="-7" y="-7" height="14" width="14.0" class="key tap glyph mdi:keyboard-tab-reverse"/>
 </g>
 <g transform="translate(588, 35)" class="key keypos-7">
 <rect rx="6" ry="6" x="-24" y="-24" width="48" height="48" class="key"/>
+<use href="#mdi:magnify" xlink:href="#mdi:magnify" x="-7" y="-7" height="14" width="14.0" class="key tap glyph mdi:magnify"/>
+<text x="0" y="20" class="key hold">←</text>
 </g>
 <g transform="translate(644, 28)" class="key keypos-8">
 <rect rx="6" ry="6" x="-24" y="-24" width="48" height="48" class="key"/>
+<use href="#mdi:magnify" xlink:href="#mdi:magnify" x="-7" y="-7" height="14" width="14.0" class="key tap glyph mdi:magnify"/>
+<text x="0" y="20" class="key hold">→</text>
 </g>
 <g transform="translate(700, 35)" class="key keypos-9">
 <rect rx="6" ry="6" x="-24" y="-24" width="48" height="48" class="key"/>
+<use href="#mdi:keyboard-tab" xlink:href="#mdi:keyboard-tab" x="-7" y="-7" height="14" width="14.0" class="key tap glyph mdi:keyboard-tab"/>
 </g>
 <g transform="translate(756, 49)" class="key keypos-10">
 <rect rx="6" ry="6" x="-24" y="-24" width="48" height="48" class="key"/>
@@ -390,15 +396,19 @@ rect.ghost { fill: #7b7e81; }
 </g>
 <g transform="translate(532, 97)" class="key keypos-18">
 <rect rx="6" ry="6" x="-24" y="-24" width="48" height="48" class="key"/>
+<use href="#mdi:format-vertical-align-top" xlink:href="#mdi:format-vertical-align-top" x="-7" y="-7" height="14" width="14.0" class="key tap glyph mdi:format-vertical-align-top"/>
 </g>
 <g transform="translate(588, 91)" class="key keypos-19">
 <rect rx="6" ry="6" x="-24" y="-24" width="48" height="48" class="key"/>
+<text x="0" y="0" class="key tap">⇟</text>
 </g>
 <g transform="translate(644, 84)" class="key keypos-20">
 <rect rx="6" ry="6" x="-24" y="-24" width="48" height="48" class="key"/>
+<text x="0" y="0" class="key tap">⇞</text>
 </g>
 <g transform="translate(700, 91)" class="key keypos-21">
 <rect rx="6" ry="6" x="-24" y="-24" width="48" height="48" class="key"/>
+<use href="#mdi:format-vertical-align-bottom" xlink:href="#mdi:format-vertical-align-bottom" x="-7" y="-7" height="14" width="14.0" class="key tap glyph mdi:format-vertical-align-bottom"/>
 </g>
 <g transform="translate(756, 105)" class="key keypos-22">
 <rect rx="6" ry="6" x="-24" y="-24" width="48" height="48" class="key"/>
@@ -431,18 +441,19 @@ rect.ghost { fill: #7b7e81; }
 </g>
 <g transform="translate(532, 153)" class="key keypos-30">
 <rect rx="6" ry="6" x="-24" y="-24" width="48" height="48" class="key"/>
+<text x="0" y="0" class="key tap">←</text>
 </g>
-<g transform="translate(588, 147)" class="key held keypos-31">
-<rect rx="6" ry="6" x="-24" y="-24" width="48" height="48" class="key held"/>
-<use href="#mdi:apple-keyboard-shift" xlink:href="#mdi:apple-keyboard-shift" x="-7" y="-7" height="14" width="14.0" class="key held tap glyph mdi:apple-keyboard-shift"/>
+<g transform="translate(588, 147)" class="key keypos-31">
+<rect rx="6" ry="6" x="-24" y="-24" width="48" height="48" class="key"/>
+<text x="0" y="0" class="key tap">↓</text>
 </g>
-<g transform="translate(644, 140)" class="key held keypos-32">
-<rect rx="6" ry="6" x="-24" y="-24" width="48" height="48" class="key held"/>
-<use href="#mdi:apple-keyboard-command" xlink:href="#mdi:apple-keyboard-command" x="-7" y="-7" height="14" width="14.0" class="key held tap glyph mdi:apple-keyboard-command"/>
+<g transform="translate(644, 140)" class="key keypos-32">
+<rect rx="6" ry="6" x="-24" y="-24" width="48" height="48" class="key"/>
+<text x="0" y="0" class="key tap">↑</text>
 </g>
-<g transform="translate(700, 147)" class="key held keypos-33">
-<rect rx="6" ry="6" x="-24" y="-24" width="48" height="48" class="key held"/>
-<use href="#mdi:apple-keyboard-option" xlink:href="#mdi:apple-keyboard-option" x="-7" y="-7" height="14" width="14.0" class="key held tap glyph mdi:apple-keyboard-option"/>
+<g transform="translate(700, 147)" class="key keypos-33">
+<rect rx="6" ry="6" x="-24" y="-24" width="48" height="48" class="key"/>
+<text x="0" y="0" class="key tap">→</text>
 </g>
 <g transform="translate(756, 161)" class="key held keypos-34">
 <rect rx="6" ry="6" x="-24" y="-24" width="48" height="48" class="key held"/>
@@ -480,15 +491,19 @@ rect.ghost { fill: #7b7e81; }
 </g>
 <g transform="translate(532, 209)" class="key keypos-44">
 <rect rx="6" ry="6" x="-24" y="-24" width="48" height="48" class="key"/>
+<use href="#mdi:format-letter-starts-with" xlink:href="#mdi:format-letter-starts-with" x="-7" y="-7" height="14" width="14.0" class="key tap glyph mdi:format-letter-starts-with"/>
 </g>
 <g transform="translate(588, 203)" class="key keypos-45">
 <rect rx="6" ry="6" x="-24" y="-24" width="48" height="48" class="key"/>
+<use href="#mdi:format-pilcrow-arrow-left" xlink:href="#mdi:format-pilcrow-arrow-left" x="-7" y="-7" height="14" width="14.0" class="key tap glyph mdi:format-pilcrow-arrow-left"/>
 </g>
 <g transform="translate(644, 196)" class="key keypos-46">
 <rect rx="6" ry="6" x="-24" y="-24" width="48" height="48" class="key"/>
+<use href="#mdi:format-pilcrow-arrow-right" xlink:href="#mdi:format-pilcrow-arrow-right" x="-7" y="-7" height="14" width="14.0" class="key tap glyph mdi:format-pilcrow-arrow-right"/>
 </g>
 <g transform="translate(700, 203)" class="key keypos-47">
 <rect rx="6" ry="6" x="-24" y="-24" width="48" height="48" class="key"/>
+<use href="#mdi:format-letter-ends-with" xlink:href="#mdi:format-letter-ends-with" x="-7" y="-7" height="14" width="14.0" class="key tap glyph mdi:format-letter-ends-with"/>
 </g>
 <g transform="translate(756, 217)" class="key keypos-48">
 <rect rx="6" ry="6" x="-24" y="-24" width="48" height="48" class="key"/>
