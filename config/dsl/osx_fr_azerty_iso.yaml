@@ -682,8 +682,8 @@ layers:
     - '&kp RHRM1'
     - '&kp RHRM2'
     - '&kp RHRM3'
-    - '&kp RHRM4'
-    - '&none'
+    - NAV_LG_C
+    - '&kp LG(R)'
     - '&kp C_MUTE'
     - '&none'
     - '&none'
@@ -697,7 +697,10 @@ layers:
     - '&none'
     - '&none'
     - '&none'
+    - NAV_LG_V
     - '&kp GLOBE'
+    - '&none'
+    - '&none'
     - '&molock'
     - '&none'
     - '&none'

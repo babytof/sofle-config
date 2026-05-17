@@ -455,12 +455,13 @@ rect.ghost { fill: #7b7e81; }
 <rect rx="6" ry="6" x="-24" y="-24" width="48" height="48" class="key"/>
 <text x="0" y="0" class="key tap">→</text>
 </g>
-<g transform="translate(756, 161)" class="key held keypos-34">
-<rect rx="6" ry="6" x="-24" y="-24" width="48" height="48" class="key held"/>
-<use href="#mdi:apple-keyboard-control" xlink:href="#mdi:apple-keyboard-control" x="-7" y="-7" height="14" width="14.0" class="key held tap glyph mdi:apple-keyboard-control"/>
+<g transform="translate(756, 161)" class="key keypos-34">
+<rect rx="6" ry="6" x="-24" y="-24" width="48" height="48" class="key"/>
+<text x="0" y="0" class="key tap">⌘C</text>
 </g>
 <g transform="translate(812, 161)" class="key keypos-35">
 <rect rx="6" ry="6" x="-24" y="-24" width="48" height="48" class="key"/>
+<text x="0" y="0" class="key tap">⌘R</text>
 </g>
 <g transform="translate(28, 217)" class="key keypos-36">
 <rect rx="6" ry="6" x="-24" y="-24" width="48" height="48" class="key"/>
@@ -507,6 +508,7 @@ rect.ghost { fill: #7b7e81; }
 </g>
 <g transform="translate(756, 217)" class="key keypos-48">
 <rect rx="6" ry="6" x="-24" y="-24" width="48" height="48" class="key"/>
+<text x="0" y="0" class="key tap">⌘V</text>
 </g>
 <g transform="translate(812, 217)" class="key held keypos-49">
 <rect rx="6" ry="6" x="-24" y="-24" width="48" height="48" class="key held"/>

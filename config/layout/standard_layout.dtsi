@@ -304,8 +304,8 @@
       bindings = <SOFLE60(
         &none,        &none,        &none,      &none,    &none,      &none,                              &kp BTAB,     &kp MAC_FDPRV, &kp MAC_FDNXT, &kp TAB,      &none, &none,
         &kp C_VOL_UP, &kp C_BRI_UP, &none,      &none,    &none,      &none,      &kp LHYP,    &kp RHYP,  &kp HOME,     &kp PG_DN,     &kp PG_UP,     &kp END,      &none, &none,
-        &kp C_VOL_DN, &kp C_BRI_DN, &kp C_PREV, &kp C_PP, &kp C_NEXT, &none,      &kp LMEH,    &kp RMEH,  &kp LEFT,     &kp DOWN,      &kp UP,        &kp RIGHT,    &kp RHRM4, &none,
-        &kp C_MUTE,   &none,        &none,      &none,    &none,      &none,      &none,       &none, &kp MAC_WRDP, &kp MAC_STTL,  &kp MAC_ENDL,  &kp MAC_WRDN, &none,     &kp GLOBE,
+        &kp C_VOL_DN, &kp C_BRI_DN, &kp C_PREV, &kp C_PP, &kp C_NEXT, &none,      &kp LMEH,    &kp RMEH,  &kp LEFT,     &kp DOWN,      &kp UP,        &kp RIGHT,    NAV_LG_C,     &kp LG(R),
+        &kp C_MUTE,   &none,        &none,      &none,    &none,      &none,      &none,       &none, &kp MAC_WRDP, &kp MAC_STTL,  &kp MAC_ENDL,  &kp MAC_WRDN, NAV_LG_V, &kp GLOBE,
                       &molock,     &none,      &none,     &none,      &kp C_STOP, &tog L_MED, &none,     &none,      &none,     &none,     &none,     &none
       )>;
       sensor-bindings = <&mouscrl SCRLDN SCRLUP &inc_dec_kp C_VOL_UP C_VOL_DN>;
