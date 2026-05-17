@@ -17,19 +17,6 @@
 #if defined(KEYMAP_DRAWER)
 / {
   macros {
-    // This is a helper macro to allow me to mark the `molock` key on the
-    // System layer as a the key that enable the layer itself. This is only
-    // used by Keymap-Drawer to color the key differently.
-    syslocktog: system_layer_lock_or_toggle {
-      compatible = "zmk,behavior-macro";
-      #binding-cells = <0>;
-#if defined(USE_MOLOCK)
-      bindings = <&molock>;
-#else
-      bindings = <&tog L_SYS>;
-#endif
-    };
-
     butundotog: undo_or_buttons_layer_toggle {
       compatible = "zmk,behavior-macro";
       #binding-cells = <0>;
@@ -67,7 +54,6 @@
     };
   };
 };
-#define LOCK_SYS_LAYER &syslocktog
 #define UNDO_TOG_BUT_LAYER &butundotog
 #define NAV_LG_Z &navcmdz
 #define NAV_LG_X &navcmdx
@@ -75,7 +61,6 @@
 #define NAV_LG_V &navcmdv
 #define NAV_LG_G &navcmdg
 #else
-#define LOCK_SYS_LAYER &molock
 #define UNDO_TOG_BUT_LAYER &kp MAC_UNDO
 #define NAV_LG_Z &kp LG(Z)
 #define NAV_LG_X &kp LG(X)

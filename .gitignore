@@ -10,6 +10,9 @@
 zephyr/
 zmk/
 modules/
+# Modules West sans path: (clonés à la racine par west update)
+zmk-raw-hid/
+zmk-keypeek-layer-notifier/
 
 # Sorties de build
 build/

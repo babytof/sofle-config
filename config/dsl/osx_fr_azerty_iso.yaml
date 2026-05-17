@@ -502,7 +502,7 @@ layers:
     - '&none'
     - '&none'
     - '&none'
-    - '&molock'
+    - '&none'
   NUM:
     display_name: Numbers
     bindings_zmk:
@@ -560,7 +560,7 @@ layers:
     - '&none'
     - '&none'
     - '&kp GLOBE'
-    - '&molock'
+    - '&none'
     - '&none'
     - '&none'
     - '&kp_bspcdel'
@@ -640,7 +640,7 @@ layers:
     - '&none'
     - '&none'
     - '&none'
-    - '&molock'
+    - '&none'
   MEDIA:
     display_name: Media
     bindings_zmk:
@@ -701,7 +701,7 @@ layers:
     - '&kp GLOBE'
     - '&none'
     - '&none'
-    - '&molock'
+    - '&none'
     - '&none'
     - '&none'
     - '&none'
@@ -781,7 +781,7 @@ layers:
     - '&mkp MB3'
     - '&none'
     - '&none'
-    - '&molock'
+    - '&none'
   FUNCTIONS:
     display_name: Functions
     bindings_zmk:
@@ -839,7 +839,7 @@ layers:
     - P_RB3_FUN
     - P_RB4_FUN
     - '&kp GLOBE'
-    - '&molock'
+    - '&none'
     - '&none'
     - '&none'
     - '&none'
@@ -908,7 +908,7 @@ layers:
     - '&kp MAC_CUT'
     - P_SB4_BUT
     - '&mt GLOBE MAC_REDO'
-    - '&molock'
+    - '&none'
     - '&none'
     - '&tog L_BUT'
     - '&none'
@@ -919,7 +919,7 @@ layers:
     - '&tog_but_thumb_r L_BUT'
     - '&none'
     - '&none'
-    - '&molock'
+    - '&none'
   SYSTEM:
     display_name: System
     bindings_zmk:
@@ -977,7 +977,7 @@ layers:
     - '&bt BT_SEL 3'
     - '&bt BT_SEL 4'
     - '&bt BT_CLR'
-    - LOCK_SYS_LAYER
+    - '&studio_unlock'
     - '&tog L_SYS'
     - '&none'
     - '&none'
@@ -988,7 +988,7 @@ layers:
     - '&none'
     - '&none'
     - '&tog L_SYS'
-    - LOCK_SYS_LAYER
+    - '&studio_unlock'
 aliases:
   A:
     type: keycode

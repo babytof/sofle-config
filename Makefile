@@ -33,12 +33,14 @@ PRISTINE ?=
 WEST = west build$(if $(strip $(PRISTINE)), -p,) -s $(ZMK_APP)
 
 # Kconfig / keymap utilisateur (reset : pas de KEYMAP_FILE → keymap du shield settings_reset)
-CHOC_FLAGS_COMMON = -DZMK_CONFIG="$(CURDIR)/config" -DDTS_EXTRA_CPPFLAGS="-DUSE_MOLOCK=1"
+CHOC_FLAGS_COMMON = -DZMK_CONFIG="$(CURDIR)/config"
 CHOC_FLAGS_KEYMAP = $(CHOC_FLAGS_COMMON) -DKEYMAP_FILE="$(KEYMAP_FILE)"
 
-# Fork Townk (mousemove-molock) : pas de snippet ZMK Studio (build officiel ZMK / doc constructeur à part).
-CHOC_FLAGS_LEFT  = $(CHOC_FLAGS_KEYMAP) -DSHIELD="$(SHIELD_VIEW)"
+# KeyPeek (moitié centrale) : RPC Studio + raw HID — voir https://github.com/srwi/keypeek
+SHIELD_LEFT  = $(SHIELD_VIEW) raw_hid_adapter
+CHOC_FLAGS_LEFT  = $(CHOC_FLAGS_KEYMAP) -DSHIELD="$(SHIELD_LEFT)"
 CHOC_FLAGS_RIGHT = $(CHOC_FLAGS_KEYMAP) -DSHIELD="$(SHIELD_VIEW)"
+WEST_SNIPPET_LEFT = -S studio-rpc-usb-uart
 
 # Environnement Python / Keymap Drawer (même venv que west)
 ZMK_VENV         ?= $(HOME)/.virtualenvs/zmk
@@ -55,7 +57,7 @@ KEYMAP_SVG       := $(CURDIR)/build/keymap.svg
 
 all:
 	@echo "=== Build Sofle Choc Pro BT (left, right, reset-left, reset-right) ==="
-	$(WEST) -d build/left -b $(BOARD_LEFT) -- $(CHOC_FLAGS_LEFT)
+	$(WEST) $(WEST_SNIPPET_LEFT) -d build/left -b $(BOARD_LEFT) -- $(CHOC_FLAGS_LEFT)
 	$(WEST) -d build/right -b $(BOARD_RIGHT) -- $(CHOC_FLAGS_RIGHT)
 	$(WEST) -d build/reset-left -b $(BOARD_LEFT) -- $(CHOC_FLAGS_COMMON) -DSHIELD=settings_reset
 	$(WEST) -d build/reset-right -b $(BOARD_RIGHT) -- $(CHOC_FLAGS_COMMON) -DSHIELD=settings_reset
@@ -65,7 +67,7 @@ all:
 
 left:
 	@echo "=== Build LEFT ($(BOARD_LEFT) + $(SHIELD_VIEW)) ==="
-	$(WEST) -d build/left -b $(BOARD_LEFT) -- $(CHOC_FLAGS_LEFT)
+	$(WEST) $(WEST_SNIPPET_LEFT) -d build/left -b $(BOARD_LEFT) -- $(CHOC_FLAGS_LEFT)
 	@$(MAKE) --no-print-directory firmware
 	@echo "UF2 : $(CURDIR)/firmware/zmk-left.uf2  (copie de build/left/zephyr/zmk.uf2)"
 
@@ -148,7 +150,7 @@ help:
 	@echo "  make keymap-drawer  — build/keymap.svg"
 	@echo "  make keymap-images  — docs/images/sofle-layer*.{svg,png} + build/out/zmk-sofle-layout-map.{svg,png}"
 	@echo ""
-	@echo "Board : $(BOARD_LEFT) / $(BOARD_RIGHT)   Shield : $(SHIELD_VIEW)"
+	@echo "Board : $(BOARD_LEFT) / $(BOARD_RIGHT)   Shield gauche : $(SHIELD_LEFT)   droite : $(SHIELD_VIEW)"
 	@echo "Kconfig utilisateur : config/sofle_choc_pro.conf"
 	@echo "Changement de cible ou de KEYMAP_FILE : make clean ou PRISTINE=1"
 	@echo "Variables : ZMK_APP=$(ZMK_APP)  ZMK_VENV=$(ZMK_VENV)  KEYMAP_FILE=$(KEYMAP_FILE)"

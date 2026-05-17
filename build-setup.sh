@@ -75,7 +75,7 @@ if [[ ! -f "$ROOT/.west/config" ]]; then
 fi
 
 echo "==> pip : west + dépendances Zephyr (build) + Keymap Drawer…"
-python -m pip install --upgrade pip wheel setuptools
+python -m pip install --upgrade pip wheel 'setuptools<81'
 python -m pip install west
 
 echo "==> west update (zephyr, zmk, modules/zmk-tri-state, …)…"

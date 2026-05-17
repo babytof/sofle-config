@@ -45,7 +45,7 @@ CONFIG_ZMK_RGB_UNDERGLOW_SAT_START=98
 # Windows Battery Reporting Fix
 CONFIG_BT_GATT_ENFORCE_SUBSCRIPTION=n
 
-# ZMK Studio : non présent sur le fork ZMK (mousemove-molock) — ne pas activer CONFIG_ZMK_STUDIO ici.
+# ZMK Studio / KeyPeek : CONFIG_ZMK_STUDIO dans config/sofle_choc_pro.conf ; build gauche avec snippet studio-rpc-usb-uart.
 
 # Improved connection stability
 CONFIG_ZMK_BLE_EXPERIMENTAL_CONN=y

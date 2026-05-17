@@ -28,7 +28,6 @@ parse_config:
   # generation
   zmk_preamble: |
     #define KEYMAP_DRAWER
-    #define USE_MOLOCK
     #define MOVE_LEFT 1
     #define MOVE_DOWN 2
     #define MOVE_UP 3
@@ -322,10 +321,9 @@ parse_config:
     "&hlr L_BUT FSLH": { t: "/", s: "?", h: "$$mdi:numeric-7-box-multiple-outline$$", type: "held" }
     # System layer
     "&motg_sys": { t: "$$mdi:numeric-8-box-multiple-outline$$", type: "held" }
+    "&studio_unlock": "$$mdi:lock-open-outline$$"
     # Alternative layout
     "&tog L_CMK": "$$mdi:keyboard-variant$$"
-    # Lock in-place key
-    "&molock": "$$mdi:lock-outline$$"
     # RC(4,0) / (4,11) — macOS FR : ⌥n→~, ⇧+⌥L→| ; ⌥⇧.→\ (standard_layout.dtsi).
     "&opttildepipe": { t: "~", s: "|" }
     # MAIN K65 : tap NUBS ; ⇧+tap LA(DOT). macOS FR-ISO : NUBS → @ (tap).
@@ -358,8 +356,6 @@ parse_config:
     # remove the System layer toggle from the keyboard, but I left its
     # definition hefe just in case I change my mind in the future.
     "&tog L_SYS": { t: "$$mdi:numeric-8-box-multiple-outline$$", type: "ghost" }
-    # Comme &molock : cadenas en couleur normale sur la carte System (pas ghost).
-    "&syslocktog": "$$mdi:lock-outline$$"
 
     # Homerow modifiers
     #---------------------------------------------------------------------------
