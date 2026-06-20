@@ -26,7 +26,6 @@ LAYER_NUM: dict[str, int] = {
             "Functions",
             "Buttons",
             "System",
-            "COLEMAK",
             "RC_REFERENCE",
         )
     )

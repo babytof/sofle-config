@@ -31,7 +31,6 @@ Génération à la **racine du dépôt** : `make keymap-images` (SVG/PNG dans `d
 | Fonctions | [images/sofle-layer6-functions.svg](images/sofle-layer6-functions.svg) |
 | Boutons | [images/sofle-layer7-buttons.svg](images/sofle-layer7-buttons.svg) |
 | Système | [images/sofle-layer8-system.svg](images/sofle-layer8-system.svg) |
-| COLEMAK | [images/sofle-layer9-colemak.svg](images/sofle-layer9-colemak.svg) |
 | Réf. RC (indices matrice) | [images/sofle-layer-rc-reference.svg](images/sofle-layer-rc-reference.svg) |
 
 Aperçu HTML (couches 0–8) : [images/cheatsheet.html](images/cheatsheet.html).
@@ -94,7 +93,6 @@ Dans les fichiers de keymap et sur les visuels, des symboles hors usage courant 
 | ← ![Virtual desktop](glyphs/window-maximize.svg) | Bureau virtuel à gauche (`⌘ ⌃ ←`) |
 | ![Window](glyphs/window-restore.svg) → | Fenêtre suivante (`` ⌘ ` ``) |
 | ← ![Window](glyphs/window-restore.svg) | Fenêtre précédente (`⌘ ~`) |
-| ![Keyboard](glyphs/keyboard-variant.svg) | Disposition alternative (COLEMAK) |
 | ![Bluetooth profile](glyphs/bluetooth-connect.svg) | Profil Bluetooth |
 | ![Bluetooth clear](glyphs/bluetooth-off.svg) | Effacer le profil Bluetooth |
 | ![Keyboard power](glyphs/power-plug-outline.svg) | Basculer l’affichage OLED (si présent) |

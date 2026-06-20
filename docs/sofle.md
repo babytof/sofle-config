@@ -31,11 +31,11 @@ Quelques principes hérités de cette base :
 
 ![Couche principale](./images/sofle-layer0-main.svg)
 
-La couche **QWERTY** concentre homerow mods, touches morphées et raccourcis macOS. C’est aussi celle à modifier en priorité si tu changes la disposition de base ; la couche **COLEMAK** (couche dédiée) reprend la même logique avec une autre carte des lettres.
+La couche **QWERTY** concentre homerow mods, touches morphées et raccourcis macOS. C’est la couche à modifier en priorité si tu changes la disposition de base.
 
 ### Rangée des chiffres
 
-Le Sofle expose une **rangée supérieure** complète. Ici, en **QWERTY**, la rangée 0 utilise des codes **HID classiques** (`N1` … `N0`) — comportement proche d’un clavier standard **sous macOS FR** (avec la couche **Symboles** et la couche **Nombres** pour les usages plus « pavé » ou les accords à deux mains). Sur la couche **COLEMAK**, les touches chiffres reprennent la logique Townk **inversée** (`kp_rN*`) : symbole au tap, chiffre avec **Shift**, ce qui complète la rangée dédiée aux nombres.
+Le Sofle expose une **rangée supérieure** complète. Ici, la rangée 0 utilise des codes **HID classiques** (`N1` … `N0`) — comportement proche d’un clavier standard **sous macOS FR** (avec la couche **Symboles** et la couche **Nombres** pour les usages plus « pavé » ou les accords à deux mains).
 
 ### Homerow mods
 
@@ -43,7 +43,7 @@ Voir la config dans `config/layout/homerowmods.dtsi` et les paramètres **`tappi
 
 ### Caps Word
 
-Pas de `CAPS_LOCK` classique : on utilise **`&caps_word`** (liste de continuation incluant underscore, tiret et retour arrière dans `standard_layout.dtsi`). Dans cette keymap, **Caps Word** est déclenché par un **combo** sur les positions matricielles **28 et 31** (voir `COMBO_KEY_CAPS_WORD` dans `sofle.keymap`) — en QWERTY, sur la 3ᵉ rangée, cela correspond aux touches **F** et **J** (index sur la homerow), actif sur les couches **QWERTY** et **COLEMAK**.
+Pas de `CAPS_LOCK` classique : on utilise **`&caps_word`** (liste de continuation incluant underscore, tiret et retour arrière dans `standard_layout.dtsi`). Dans cette keymap, **Caps Word** est déclenché par un **combo** sur les positions matricielles **28 et 31** (voir `COMBO_KEY_CAPS_WORD` dans `sofle.keymap`) — sur la 3ᵉ rangée, cela correspond aux touches **F** et **J** (index sur la homerow).
 
 Des comportements optionnels du type *double tap Globe → Caps Word* existent dans le dépôt Townk (`globecaps` dans `specialkeys.dtsi`) mais **ne sont pas branchés** sur la couche principale actuelle.
 
@@ -119,15 +119,7 @@ Couche **la plus symétrique** : couper / copier / coller, Spotlight, etc., en m
 
 ![Système](./images/sofle-layer8-system.svg)
 
-Bluetooth, sortie USB/BLE, reset, bootloader, sous-couche **système** ; **pas** entièrement symétrique : certaines actions concernent une moitié du clavier. Basculer vers **COLEMAK** ou revenir au **QWERTY** se fait depuis cette couche (voir schéma).
-
----
-
-## Disposition alternative (COLEMAK)
-
-![COLEMAK](./images/sofle-layer9-colemak.svg)
-
-Couche de base alternative ; la rangée des chiffres utilise les comportements **`kp_rN*`** (symbole au tap, chiffre avec Shift). Les mêmes principes (homerow mods, combo Caps Word, etc.) s’appliquent.
+Bluetooth, sortie USB/BLE, reset, bootloader, sous-couche **système** ; **pas** entièrement symétrique : certaines actions concernent une moitié du clavier (voir schéma).
 
 ---
 

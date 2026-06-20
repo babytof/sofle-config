@@ -29,6 +29,7 @@ KD_BG="$KEYMAP_DRAWER_SUPPORT/keymap-config-background-color.yaml"
 MERGE_PY="$SCRIPT_DIR/merge_yaml.py"
 APPLY_LOCALE_PY="$SCRIPT_DIR/apply_keymap_locale.py"
 APPEND_RC_PY="$SCRIPT_DIR/append_rc_reference_layer.py"
+PATCH_LAYER_GHOSTS_PY="$SCRIPT_DIR/patch_layer_activation_ghosts.py"
 ANNOTATE_SVG_PY="$SCRIPT_DIR/annotate_layer_numbers_in_svg.py"
 FLATTEN_SVG_PY="$SCRIPT_DIR/svg_flatten_mdi_uses.py"
 
@@ -118,13 +119,14 @@ fi
 
 # Couche purement graphique (absente du firmware) : RC(row,col) du transform Sofle
 "$PYTHON" "$APPEND_RC_PY" "$KD_PARSED" -o "$KD_KEYMAP"
+"$PYTHON" "$PATCH_LAYER_GHOSTS_PY" "$KD_KEYMAP" -o "$KD_KEYMAP"
 
 LAYOUT_LAYERS=(
-  QWERTY Navigation Numbers Symbols Media Mouse Functions Buttons System COLEMAK
+  QWERTY Navigation Numbers Symbols Media Mouse Functions Buttons System
 )
 LAYOUT_MAP_NAMES=(
   layer0-main layer1-navigation layer2-numbers layer3-symbols layer4-media
-  layer5-mouse layer6-functions layer7-buttons layer8-system layer9-colemak
+  layer5-mouse layer6-functions layer7-buttons layer8-system
 )
 
 for i in "${!LAYOUT_LAYERS[@]}"; do

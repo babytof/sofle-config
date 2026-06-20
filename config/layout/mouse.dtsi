@@ -1,0 +1,25 @@
+/*
+ * Souris : vitesses via mmv_input_listener.
+ * L_MOU rapide (×1,5) ; frein L_MOU_SLOW (×¼) s’applique à tous les événements mmv
+ * (démarrage au frein ou ralenti en cours de mouvement).
+ */
+
+#include <input/processors.dtsi>
+
+&mmv {
+  time-to-max-speed-ms = <40>;
+  acceleration-exponent = <0>;
+};
+
+&mmv_input_listener {
+  /* Évalué en premier : frein actif → ralentit même si le mouvement a démarré vite. */
+  mouse_slow {
+    layers = <L_MOU_SLOW>;
+    input-processors = <&zip_xy_scaler 1 4>;
+  };
+
+  mouse_fast {
+    layers = <L_MOU>;
+    input-processors = <&zip_xy_scaler 3 2>;
+  };
+};

@@ -32,7 +32,7 @@ dsl_human:
     Chaque clé sous layers.MAIN est un id physique (repère clavier). La valeur est l’action, un seul niveau.
     kp_rN* → &kp_rN* ; FR_* → &kp + aliases_fr ; mot nu → &behavior ; none → &none ;
     LHM4(A), P_*_QWT, AS(V) → macro telle quelle ; lt / hlr / hmr → sous-clés layer|mod + tap (FR_*).
-    LT0 opttildepipe / RC(4,11) MAIN &nubsladot — tap NUBS ; ⇧+tap LA(DOT) (\ avec ⇧ tenu, comme dotslsh) ; COLEMAK : &dotslsh ; ⌥n→~, ⇧+⌥L→| sur LT0 (voir standard_layout.dtsi).
+    LT0 opttildepipe / RC(4,11) MAIN &nubsladot — tap NUBS ; ⇧+tap LA(DOT) (\ avec ⇧ tenu, comme dotslsh) ; ⌥n→~, ⇧+⌥L→| sur LT0 (voir standard_layout.dtsi).
     U46 / U47 : arguments SOFLE60 sans effet sur la matrice (none) — voir sofle.keymap.
   aliases_fr:
     FR_RBKT: RBKT
@@ -327,11 +327,14 @@ layers:
     R25: FR_U_GRAVE
     # — rangée basse (U46/U47 = arguments macro sans sortie)
     L30: globebslh
-    L31: P_LB4_QWT
+    L31: FR_Z
     L32: P_LB3_QWT
     L33: FR_C
     L34: AS(V)
-    L35: FR_B
+    L35:
+      hll:
+        layer: L_MOU
+        tap: FR_B
     U46: none
     U47: none
     R30: FR_N
@@ -345,95 +348,23 @@ layers:
         tap: FR_EQUAL
     # — pouces (12 args K54…K65)
     LT0: opttildepipe
-    LT1: motg_sys
+    LT1: '&mo L_SYS'
     LT2: P_SF4_QWT
-    LT3: bspcnav
+    LT3: '&hll L_NAV ESC'
     LT4:
       lt:
         layer: L_SYM
-        tap: FR_ESC
+        tap: FR_ENTER
     LT5:
       lt:
         layer: L_MED
-        tap: FR_ENTER
-    RT0: none
-    RT1:
-      hlr:
-        layer: L_NUM
         tap: FR_SPACE
+    RT0: none
+    RT1: bspcnum
     RT2: P_SF4_QWT
     RT3: nubsladot
-    RT4: motg_sys
+    RT4: '&mo L_SYS'
     RT5: none
-  COLEMAK:
-    display_name: COLEMAK
-    bindings_zmk:
-    - '&lbktgrave'
-    - '&kp_rN1'
-    - '&kp_rN2'
-    - '&kp_rN3'
-    - '&kp_rN4'
-    - '&kp_rN5'
-    - '&kp_rN6'
-    - '&kp_rN7'
-    - '&kp_rN8'
-    - '&kp_rN9'
-    - '&kp_rN0'
-    - '&kp RBKT'
-    - '&kp TAB'
-    - '&kp Q'
-    - '&kp W'
-    - '&kp F'
-    - '&kp P'
-    - '&kp B'
-    - '&kp LHYP'
-    - '&kp RHYP'
-    - '&kp J'
-    - '&kp L'
-    - '&kp U'
-    - '&kp Y'
-    - '&kp SEMI'
-    - '&kp MINUS'
-    - '&kp GRAVE'
-    - LHM4(A)
-    - LHM3(R)
-    - LHM2(S)
-    - LHM1(T)
-    - '&kp G'
-    - '&kp LMEH'
-    - '&kp RMEH'
-    - '&kp M'
-    - RHM1(N)
-    - RHM2(E)
-    - RHM3(I)
-    - RHM4(O)
-    - '&kp SQT'
-    - '&globebslh'
-    - P_LB4_QWT
-    - P_LB3_QWT
-    - '&kp C'
-    - '&kp D'
-    - '&kp V'
-    - '&none'
-    - '&none'
-    - '&kp K'
-    - '&kp H'
-    - '&kp COMMA'
-    - P_RB3_QWT
-    - P_RB4_QWT
-    - '&hmr GLOBE EQUAL'
-    - '&opttildepipe'
-    - '&motg_sys'
-    - P_SF4_QWT
-    - '&bspcnav'
-    - '&lt L_SYM ESC'
-    - '&lt L_MED RET'
-    - '&none'
-    - '&hlr L_NUM SPACE'
-    - P_SF4_QWT
-    - '&none'
-    - '&motg_sys'
-    - '&dotslsh'
   NAV:
     display_name: Navigation
     bindings_zmk:
@@ -494,7 +425,6 @@ layers:
     - '&none'
     - '&none'
     - '&none'
-    - '&tog L_NAV'
     - '&none'
     - '&none'
     - '&none'
@@ -503,6 +433,7 @@ layers:
     - '&none'
     - '&none'
     - '&none'
+    - P_LT65_NAV
   NUM:
     display_name: Numbers
     bindings_zmk:
@@ -560,14 +491,14 @@ layers:
     - '&none'
     - '&none'
     - '&kp GLOBE'
-    - '&none'
+    - P_LT54_NUM
     - '&none'
     - '&none'
     - '&kp_bspcdel'
     - '&kp SPACE'
     - '&none'
     - '&none'
-    - '&tog L_NUM'
+    - '&none'
     - '&none'
     - '&none'
     - '&none'
@@ -633,14 +564,14 @@ layers:
     - '&none'
     - '&none'
     - '&none'
-    - '&tog L_SYM'
+    - '&none'
+    - '&kp BSPC'
+    - '&none'
     - '&kp LA(N0)'
     - '&none'
-    - '&kp SPACE'
     - '&none'
     - '&none'
-    - '&none'
-    - '&none'
+    - P_LT65_SYM
   MEDIA:
     display_name: Media
     bindings_zmk:
@@ -703,11 +634,8 @@ layers:
     - '&none'
     - '&none'
     - '&none'
-    - '&none'
-    - '&none'
-    - '&kp C_STOP'
+    - '&kp BSPC'
     - '&tog L_MED'
-    - '&none'
     - '&none'
     - '&none'
     - '&none'
@@ -760,8 +688,7 @@ layers:
     - P_LB4_MOU
     - '&kp LHRM4'
     - '&none'
-    - '&none'
-    - '&none'
+    - P_MOUSE_SLOW
     - '&none'
     - '&none'
     - '&none'
@@ -774,7 +701,7 @@ layers:
     - '&none'
     - '&none'
     - '&none'
-    - '&none'
+    - P_LT58_MOU
     - '&mkp MB2'
     - '&none'
     - '&mkp MB1'
@@ -910,13 +837,13 @@ layers:
     - '&mt GLOBE MAC_REDO'
     - '&none'
     - '&none'
-    - '&tog L_BUT'
     - '&none'
     - '&none'
     - '&none'
     - '&none'
     - '&none'
-    - '&tog_but_thumb_r L_BUT'
+    - '&none'
+    - '&none'
     - '&none'
     - '&none'
     - '&none'
@@ -978,16 +905,16 @@ layers:
     - '&bt BT_SEL 4'
     - '&bt BT_CLR'
     - '&studio_unlock'
-    - '&tog L_SYS'
-    - '&none'
-    - '&none'
-    - '&tog L_CMK'
     - '&none'
     - '&none'
     - '&none'
     - '&none'
     - '&none'
-    - '&tog L_SYS'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
+    - '&none'
     - '&studio_unlock'
 aliases:
   A:

@@ -278,18 +278,19 @@ parse_config:
   # as a shortcut, I will add an entry for them here. I use this, also, to tweak
   # the default label for some keys that don't exactly match my layout style.
   raw_binding_map:
-    # Layer activation keys
-    # These are all located in my base layers (QWERTY and COLEMAK)
+    # Layer activation keys (couche QWERTY)
     #---------------------------------------------------------------------------
     # Navigation layer
-    "&bspcnav":
+    "&hll L_NAV ESC":
+      { t: "⎋", h: "$$mdi:numeric-1-box-multiple-outline$$", type: "held" }
+    "&bspcnum":
       {
         t: "$$mdi:backspace$$",
         s: "$$mdi:backspace-reverse$$",
-        h: "$$mdi:numeric-1-box-multiple-outline$$",
+        h: "$$mdi:numeric-2-box-multiple-outline$$",
         type: "held",
       }
-    # Number layer
+    # Number layer (conservé pour légendes legacy / autres couches)
     "&hlr L_NUM SPACE":
       {
         t: "$$mdi:keyboard-space$$",
@@ -297,20 +298,43 @@ parse_config:
         type: "held",
       }
     # Symbols layer
+    "&lt L_SYM RET":
+      {
+        t: "$$mdi:keyboard-return$$",
+        h: "$$mdi:numeric-3-box-multiple-outline$$",
+        type: "held",
+      }
+    # Media layer
+    "&lt L_MED SPACE":
+      {
+        t: "$$mdi:keyboard-space$$",
+        h: "$$mdi:numeric-4-box-multiple-outline$$",
+        type: "held",
+      }
+    # Legacy (non utilisé sur MAIN)
+    "&bspcnav":
+      {
+        t: "$$mdi:backspace$$",
+        s: "$$mdi:backspace-reverse$$",
+        h: "$$mdi:numeric-1-box-multiple-outline$$",
+        type: "held",
+      }
     "&lt L_SYM ESC":
       { t: "⎋", h: "$$mdi:numeric-3-box-multiple-outline$$", type: "held" }
-    # Media layer
     "&lt L_MED RET":
       {
         t: "$$mdi:keyboard-return$$",
         h: "$$mdi:numeric-4-box-multiple-outline$$",
         type: "held",
       }
-    # Buttons layer
+    # Mouse layer
     "&motg_mou": { t: "$$mdi:numeric-5-box-multiple-outline$$", type: "held" }
+    "&hll L_MOU B":
+      { t: "B", h: "$$mdi:numeric-5-box-multiple-outline$$", type: "held" }
+    "&mo L_MOU_SLOW":
+      { t: "¼", h: "frein", type: "held" }
     "&hll L_MOU Z": { t: "Z", h: "$$mdi:numeric-5-box-multiple-outline$$", type: "held" }
     "&hll L_MOU X": { t: "X", h: "$$mdi:numeric-5-box-multiple-outline$$", type: "held" }
-    # Buttons layer
     "&motg_fun": { t: "$$mdi:numeric-6-box-multiple-outline$$", type: "held" }
     "&hlr L_FUN DOT": { t: ".", s: ">", h: "$$mdi:numeric-6-box-multiple-outline$$", type: "held" }
     # RC(3,10) Sofle SOFLE60 — légendes = / + (affichage doc ; le CSV FSLH ne s’applique pas à ce binding).
@@ -320,10 +344,8 @@ parse_config:
     "&hll L_BUT Z": { t: "Z", h: "$$mdi:numeric-7-box-multiple-outline$$", type: "held" }
     "&hlr L_BUT FSLH": { t: "/", s: "?", h: "$$mdi:numeric-7-box-multiple-outline$$", type: "held" }
     # System layer
-    "&motg_sys": { t: "$$mdi:numeric-8-box-multiple-outline$$", type: "held" }
+    "&mo L_SYS": { t: "$$mdi:numeric-8-box-multiple-outline$$", type: "held" }
     "&studio_unlock": "$$mdi:lock-open-outline$$"
-    # Alternative layout
-    "&tog L_CMK": "$$mdi:keyboard-variant$$"
     # RC(4,0) / (4,11) — macOS FR : ⌥n→~, ⇧+⌥L→| ; ⌥⇧.→\ (standard_layout.dtsi).
     "&opttildepipe": { t: "~", s: "|" }
     # MAIN K65 : tap NUBS ; ⇧+tap LA(DOT). macOS FR-ISO : NUBS → @ (tap).
@@ -332,30 +354,29 @@ parse_config:
     "&kp LA(LS(DOT))": { t: "\\" }
     # Layer Symbols : légendes caractère + no-shift → support/keymap-config-symbol-layer-draw.yaml
     # (fusionnée dans gen-keymap-images.sh pour le rendu de la couche « Symbols » uniquement).
-    # Layer deactivation keys
-    # These are keys on the layers themselves that are used to move back to the
-    # base layer.
+    # Verrouillage couche (ghost, cadenas seul — touche de toggle sur la couche)
+    # Référence couche (ghost, icône + numéro) : patch draw ou holds depuis QWERTY
     #---------------------------------------------------------------------------
-    "&tog L_NAV": { t: "$$mdi:numeric-1-box-multiple-outline$$", type: "ghost" }
-    "&tog L_NUM": { t: "$$mdi:numeric-2-box-multiple-outline$$", type: "ghost" }
-    "&tog L_SYM": { t: "$$mdi:numeric-3-box-multiple-outline$$", type: "ghost" }
-    "&tog L_MED": { t: "$$mdi:numeric-4-box-multiple-outline$$", type: "ghost" }
-    "&tog L_MOU": { t: "$$mdi:numeric-5-box-multiple-outline$$", type: "ghost" }
-    "&tog L_FUN": { t: "$$mdi:numeric-6-box-multiple-outline$$", type: "ghost" }
-    "&tog L_BUT": { t: "$$mdi:numeric-7-box-multiple-outline$$", type: "ghost" }
+    "&tog L_NAV": { t: "$$mdi:lock-outline$$", type: "ghost" }
+    "&tog L_NUM": { t: "$$mdi:lock-outline$$", type: "ghost" }
+    "&tog L_SYM": { t: "$$mdi:lock-outline$$", type: "ghost" }
+    "&tog L_MED": { t: "$$mdi:lock-outline$$", type: "ghost" }
+    "&tog L_MOU": { t: "$$mdi:lock-outline$$", type: "ghost" }
+    "&tog L_FUN": { t: "$$mdi:lock-outline$$", type: "ghost" }
+    "&tog L_BUT": { t: "$$mdi:lock-outline$$", type: "ghost" }
     # Drawer : L_BUT n’est pas toujours développé en 8 comme dans le firmware.
     "&tog_but_thumb_r L_BUT":
-      { t: "$$mdi:numeric-7-box-multiple-outline$$", type: "ghost" }
+      { t: "$$mdi:lock-outline$$", type: "ghost" }
     "&tog_but_thumb_r 8":
-      { t: "$$mdi:numeric-7-box-multiple-outline$$", type: "ghost" }
-    "&butundotog": { t: "$$mdi:undo$$", h: "$$mdi:numeric-7-box-multiple-outline$$", type: "ghost" }
+      { t: "$$mdi:lock-outline$$", type: "ghost" }
+    "&butundotog": { t: "$$mdi:undo$$", h: "$$mdi:lock-outline$$", type: "ghost" }
     # NOTE:
     # The System layer have activation keys on both halfs of the keyboard and
     # this breaks the pattern of locking the layer with the System layer key,
     # and toggle them back using the key that activate it. The solution was to
     # remove the System layer toggle from the keyboard, but I left its
     # definition hefe just in case I change my mind in the future.
-    "&tog L_SYS": { t: "$$mdi:numeric-8-box-multiple-outline$$", type: "ghost" }
+    "&tog L_SYS": { t: "$$mdi:lock-outline$$", type: "ghost" }
 
     # Homerow modifiers
     #---------------------------------------------------------------------------
@@ -368,14 +389,6 @@ parse_config:
     "&hmr RHRM2 K":    { t: "K",  h: "$$mdi:apple-keyboard-command$$", type: "held" }
     "&hmr RHRM3 L":    { t: "L",  h: "$$mdi:apple-keyboard-option$$",  type: "held" }
     "&hmr RHRM4 SEMI": { t: ";",  h: "$$mdi:apple-keyboard-control$$", type: "held", s: ":" }
-    # COLEMAK layer
-    "&hml LHRM3 R":    { t: "R",  h: "$$mdi:apple-keyboard-option$$",  type: "held" }
-    "&hml LHRM2 S":    { t: "S",  h: "$$mdi:apple-keyboard-command$$", type: "held" }
-    "&hsl LHRM1 T":    { t: "T",  h: "$$mdi:apple-keyboard-shift$$",   type: "held" }
-    "&hsr RHRM1 N":    { t: "N",  h: "$$mdi:apple-keyboard-shift$$",   type: "held" }
-    "&hmr RHRM2 E":    { t: "E",  h: "$$mdi:apple-keyboard-command$$", type: "held" }
-    "&hmr RHRM3 I":    { t: "I",  h: "$$mdi:apple-keyboard-option$$",  type: "held" }
-    "&hmr RHRM4 O":    { t: "O",  h: "$$mdi:apple-keyboard-control$$", type: "held" }
     # Navigation layer
     "&mt LHRM1 LG(F)": { s: "⌘F", t: "$$mdi:apple-keyboard-shift$$",   type: "held" }
     "&mt LHRM2 LG(D)": { s: "⌘D", t: "$$mdi:apple-keyboard-command$$", type: "held" }

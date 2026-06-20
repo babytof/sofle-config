@@ -87,6 +87,7 @@ _RAW_BINDINGS_SKIP_CSV_TOKEN_PATCH: frozenset[str] = frozenset(
         "&hlr L_FUN FSLH",
         "&hmr GLOBE EQUAL",
         # Dernier token ESC → CSV « Échap » ; on garde le glyphe ISO ⎋ (U+238B), pas du texte.
+        "&hll L_NAV ESC",
         "&lt L_SYM ESC",
     }
 )
