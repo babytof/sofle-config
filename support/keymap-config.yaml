@@ -345,7 +345,9 @@ parse_config:
     "&hlr L_BUT FSLH": { t: "/", s: "?", h: "$$mdi:numeric-7-box-multiple-outline$$", type: "held" }
     # System layer
     "&mo L_SYS": { t: "$$mdi:numeric-8-box-multiple-outline$$", type: "held" }
-    "&studio_unlock": "$$mdi:lock-open-outline$$"
+    # ZMK Studio / KeyPeek (≠ verrou couche &tog — cadenas fermé)
+    "&studio_unlock":
+      { t: "$$mdi:lock-open-outline$$", h: "KeyPeek" }
     # RC(4,0) / (4,11) — macOS FR : ⌥n→~, ⇧+⌥L→| ; ⌥⇧.→\ (standard_layout.dtsi).
     "&opttildepipe": { t: "~", s: "|" }
     # MAIN K65 : tap NUBS ; ⇧+tap LA(DOT). macOS FR-ISO : NUBS → @ (tap).

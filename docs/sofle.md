@@ -104,7 +104,7 @@ Les **cadenas** sur les visuels correspondent aux vrais **`&tog`** du firmware (
 
 ### `&studio_unlock` (couche Système)
 
-Les touches **`&studio_unlock`** sur la couche **Système** ne verrouillent **pas** une couche clavier : elles **déverrouillent le firmware pour ZMK Studio** (édition keymap via USB). Avec **KeyPeek**, l’overlay macOS reflète l’état des couches actives en temps réel.
+Les touches **`&studio_unlock`** sur la couche **Système** (pouces extérieurs gauche et droit — cadenas **ouvert** + libellé **KeyPeek** sur [le schéma](./images/sofle-layer8-system.svg)) ne verrouillent **pas** une couche clavier : elles **déverrouillent le firmware pour ZMK Studio / KeyPeek** (édition keymap via USB). Ce n’est **pas** le même geste que le cadenas **fermé** des toggles `&tog L_*` sur les autres overlays.
 
 ---
 

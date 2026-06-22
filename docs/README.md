@@ -108,6 +108,7 @@ Dans les fichiers de keymap et sur les visuels, des symboles hors usage courant 
 | ![Layer 5](glyphs/numeric-5-box-multiple-outline.svg) | Couche Boutons |
 | ![Layer 6](glyphs/numeric-6-box-multiple-outline.svg) | Couche Système |
 | ![Layer lock](glyphs/lock-outline.svg) | Basculer le verrou d’une couche (`&tog L_*`) — réappuyer pour déverrouiller |
+| ![Studio unlock](glyphs/lock-open-outline.svg) | Déverrouiller ZMK Studio / KeyPeek (`&studio_unlock`, couche Système — libellé **KeyPeek** sur le schéma ; ≠ cadenas fermé des toggles couche) |
 
 ---
 
@@ -149,6 +150,7 @@ Sur les schémas de couches **1–8**, certaines touches apparaissent en **gris*
 
 - **Icône numérotée** (`1` … `8`) + chiffre en dessous — rappel visuel de la touche d’**activation** depuis **AZERTY** (hold / tap-dance). Injecté au rendu par `support/patch_layer_activation_ghosts.py` ; la position peut être `&none` dans le firmware.
 - **Cadenas** — vrai **`&tog L_*`** sur cette position : **verrouiller / déverrouiller** la couche correspondante (ZMK v0.3, plus de **`molock`** Townk).
+- **Cadenas ouvert** + libellé **KeyPeek** — **`&studio_unlock`** (couche Système uniquement) : autoriser ZMK Studio / KeyPeek via USB. **Ne pas confondre** avec le **cadenas fermé** (`&tog L_*`) des verrous de couche.
 
 Voir le détail par couche dans [sofle.md — Verrouillage des couches](sofle.md#verrouillage-des-couches).
 

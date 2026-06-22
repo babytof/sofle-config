@@ -32,9 +32,8 @@ ACTIVATION_GHOSTS: List[Tuple[str, int, int]] = [
     ("System", 58, 8),       # K64  mo L_SYS
 ]
 
-# Couche System : pas de toggle ; masquer studio_unlock (cadenas ouvert) au draw.
-SYSTEM_DRAW_BLANK_KEYPOS: Tuple[int, ...] = (50, 59)  # K54, K65
-
+# &studio_unlock (K54/K65) : légende via raw_binding_map dans keymap-config.yaml
+# (lock-open-outline) — ne pas écraser ici.
 
 def layer_ref_legend(layer_num: int) -> Dict[str, Any]:
     return {
@@ -69,11 +68,6 @@ def patch(data: Dict[str, Any]) -> None:
             print(f"Couche « {layer_name} » absente ou invalide", file=sys.stderr)
             raise SystemExit(1)
         _set_binding(bindings, keypos, layer_ref_legend(layer_num), layer_name)
-
-    system = layers.get("System")
-    if isinstance(system, list):
-        for keypos in SYSTEM_DRAW_BLANK_KEYPOS:
-            _set_binding(system, keypos, "", "System")
 
 
 def main() -> None:
