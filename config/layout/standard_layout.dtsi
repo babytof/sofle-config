@@ -243,7 +243,7 @@
      * (sofle.keymap) y place K18 et K19 (LHYP/RHYP). &none sur K46–K47 évite les bindings fantômes. */
 
     MAIN {
-      display-name = "QWERTY";
+      display-name = "AZERTY";
       /* Rangée 0 : chiffres HID classiques (&kp N1…), sans mod-morph kp_rNx (symbole tap / chiffre+Shift).
        * K11 ↔ K25 : mêmes codes qu’avant, positions inversées (RBKT sur lettres, MINUS sur chiffres). */
       bindings = <SOFLE60(

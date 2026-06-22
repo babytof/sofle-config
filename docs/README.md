@@ -22,7 +22,7 @@ Génération à la **racine du dépôt** : `make keymap-images` (SVG/PNG dans `d
 
 | Couche | Fichier |
 |--------|---------|
-| Principal (QWERTY) | [images/sofle-layer0-main.svg](images/sofle-layer0-main.svg) |
+| Principal (AZERTY) | [images/sofle-layer0-main.svg](images/sofle-layer0-main.svg) |
 | Navigation | [images/sofle-layer1-navigation.svg](images/sofle-layer1-navigation.svg) |
 | Nombres | [images/sofle-layer2-numbers.svg](images/sofle-layer2-numbers.svg) |
 | Symboles | [images/sofle-layer3-symbols.svg](images/sofle-layer3-symbols.svg) |
@@ -107,7 +107,7 @@ Dans les fichiers de keymap et sur les visuels, des symboles hors usage courant 
 | ![Layer 4](glyphs/numeric-4-box-multiple-outline.svg) | Couche Média |
 | ![Layer 5](glyphs/numeric-5-box-multiple-outline.svg) | Couche Boutons |
 | ![Layer 6](glyphs/numeric-6-box-multiple-outline.svg) | Couche Système |
-| ![Layer lock](glyphs/lock-outline.svg) | Verrouiller la couche (molock) |
+| ![Layer lock](glyphs/lock-outline.svg) | Basculer le verrou d’une couche (`&tog L_*`) — réappuyer pour déverrouiller |
 
 ---
 
@@ -142,6 +142,15 @@ Sur les schémas, la valeur **maintenue** est indiquée **sous** le symbole norm
 ![Hold-tap F / Shift](images/f-shift-key.svg)
 
 Ici : tap = `f` (ou `F` avec Shift) ; **maintenir** la touche = comportement **Shift** (ex. `2` → `@`).
+
+### Touches ghost (couches overlay)
+
+Sur les schémas de couches **1–8**, certaines touches apparaissent en **gris** (*ghost*) :
+
+- **Icône numérotée** (`1` … `8`) + chiffre en dessous — rappel visuel de la touche d’**activation** depuis **AZERTY** (hold / tap-dance). Injecté au rendu par `support/patch_layer_activation_ghosts.py` ; la position peut être `&none` dans le firmware.
+- **Cadenas** — vrai **`&tog L_*`** sur cette position : **verrouiller / déverrouiller** la couche correspondante (ZMK v0.3, plus de **`molock`** Townk).
+
+Voir le détail par couche dans [sofle.md — Verrouillage des couches](sofle.md#verrouillage-des-couches).
 
 > **Mod-morph et tap-dance** — Keymap Drawer ne représente pas nativement [Mod-Morph](https://zmk.dev/docs/behaviors/mod-morph) ni [Tap-Dance](https://zmk.dev/docs/behaviors/tap-dance). Convention affichée :
 >

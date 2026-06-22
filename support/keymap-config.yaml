@@ -278,7 +278,7 @@ parse_config:
   # as a shortcut, I will add an entry for them here. I use this, also, to tweak
   # the default label for some keys that don't exactly match my layout style.
   raw_binding_map:
-    # Layer activation keys (couche QWERTY)
+    # Layer activation keys (couche AZERTY)
     #---------------------------------------------------------------------------
     # Navigation layer
     "&hll L_NAV ESC":
@@ -355,7 +355,7 @@ parse_config:
     # Layer Symbols : légendes caractère + no-shift → support/keymap-config-symbol-layer-draw.yaml
     # (fusionnée dans gen-keymap-images.sh pour le rendu de la couche « Symbols » uniquement).
     # Verrouillage couche (ghost, cadenas seul — touche de toggle sur la couche)
-    # Référence couche (ghost, icône + numéro) : patch draw ou holds depuis QWERTY
+    # Référence couche (ghost, icône + numéro) : patch draw ou holds depuis AZERTY
     #---------------------------------------------------------------------------
     "&tog L_NAV": { t: "$$mdi:lock-outline$$", type: "ghost" }
     "&tog L_NUM": { t: "$$mdi:lock-outline$$", type: "ghost" }
@@ -380,7 +380,7 @@ parse_config:
 
     # Homerow modifiers
     #---------------------------------------------------------------------------
-    # QWERTY layer
+    # AZERTY layer
     "&hml LHRM4 A":    { t: "A",  h: "$$mdi:apple-keyboard-control$$", type: "held" }
     "&hml LHRM3 S":    { t: "S",  h: "$$mdi:apple-keyboard-option$$",  type: "held" }
     "&hml LHRM2 D":    { t: "D",  h: "$$mdi:apple-keyboard-command$$", type: "held" }

@@ -17,7 +17,7 @@ LAYER_NUM: dict[str, int] = {
     name: i
     for i, name in enumerate(
         (
-            "QWERTY",
+            "AZERTY",
             "Navigation",
             "Numbers",
             "Symbols",

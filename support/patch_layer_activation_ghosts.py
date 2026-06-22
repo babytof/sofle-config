@@ -5,7 +5,7 @@ Draw uniquement : légendes ghost (icône couche + numéro) sur les touches d’
 
 En firmware ces positions peuvent rester &none (ou autre binding) sur la couche
 overlay ; le toggle est sur une autre touche quand il existe. Indique d’où l’on
-entre depuis QWERTY (hold / tap-dance).
+entre depuis AZERTY (hold / tap-dance).
 """
 
 from __future__ import annotations

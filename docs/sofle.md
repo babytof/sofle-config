@@ -18,7 +18,7 @@ Quelques principes hérités de cette base :
 - **Couches « unilatérales »** : une couche momentanée évite en général de placer les actions utiles des **deux** côtés à la fois ; tu gardes les modificateurs sur la main qui a ouvert la couche, ce qui permet de les combiner avec les touches de l’autre moitié.
 - **Nombres et symboles séparés** : deux couches distinctes pour aider à choisir la main / le contexte.
 - **Couche raccourcis (Boutons)** : celle qui est en pratique la plus **symétrique** (édition / presse-papiers).
-- **Couches momentanées + verrouillage** : accès principal au **maintien** d’une touche ; **verrouillage** possible via **`molock`** (branche / patchs ZMK de ce dépôt, voir `support/patches/`).
+- **Couches momentanées + verrouillage** : accès principal au **maintien** d’une touche sur la couche AZERTY ; **verrouillage** via **`&tog L_*`** (ZMK v0.3, voir [Verrouillage des couches](#verrouillage-des-couches) ci-dessous). L’ancien behavior **`molock`** du fork Townk n’est plus utilisé.
 - **Touches dynamiques** : mod-morph, hold-tap, tap-dance, tri-state (`&appswtnxt`, `&winswtnxt`, etc.).
 - **Homerow mods « timeless »** : approche inspirée de [urob/zmk-config](https://github.com/urob/zmk-config), avec `tapping-term-ms` à **200** ms dans cette config.
 
@@ -27,11 +27,11 @@ Quelques principes hérités de cette base :
 
 ---
 
-## Couche de base (QWERTY)
+## Couche de base (AZERTY)
 
 ![Couche principale](./images/sofle-layer0-main.svg)
 
-La couche **QWERTY** concentre homerow mods, touches morphées et raccourcis macOS. C’est la couche à modifier en priorité si tu changes la disposition de base.
+La couche **AZERTY** (couche 0, `MAIN` dans le firmware) concentre homerow mods, touches morphées et raccourcis macOS. C’est la couche à modifier en priorité si tu changes la disposition de base. Le firmware émet des codes HID « position US » ; macOS avec clavier **FR ISO** les réinterprète en AZERTY (voir `config/dsl/osx_fr_azerty_iso.yaml`).
 
 ### Rangée des chiffres
 
@@ -56,6 +56,55 @@ Comme dans la doc Lily58 d’origine : **un** autoshift ciblé sur **`V`** (`AS(
 Même idée que Townk : raccourcis proches du clavier Apple pour **⌘⇥** / **⌘⇧⇥** et la bascule de **fenêtres** de l’app courante, via **tri-state** et **mod-morph** (`&appswtnxt`, `&winswtnxt`, `&lbktgrave`, `&appPwinN`, `&winPglobe`, etc. — détails dans `standard_layout.dtsi` et `specialkeys.dtsi`).
 
 Touches spécifiques **AZERTY / ISO** : par exemple **`&opttildepipe`** (pouce) pour tilde / pipe côté macOS FR, et **`&globebslh`** pour Globe + antislash avec variante **⇧** (voir commentaires dans `standard_layout.dtsi`).
+
+---
+
+## Verrouillage des couches
+
+Cette config repose sur **ZMK officiel v0.3** : il n’y a **plus** de touche universelle **`molock`** (behavior du fork Townk `mousemove-molock`). Le verrouillage repose sur des toggles **`&tog L_*`** et, pour une couche, sur un **tap-dance**.
+
+### Momentané vs verrouillé
+
+| Mode | Gestuelle | Effet |
+|------|-----------|-------|
+| **Momentané** | Maintenir une touche d’activation (hold-tap, layer-tap, etc.) depuis **AZERTY** | La couche overlay est active tant que la touche est enfoncée |
+| **Verrouillé** | Appuyer une touche **`&tog L_*`** (cadenas sur les schémas) | La couche reste active après relâchement ; **réappuyer** la même touche la désactive |
+
+Sur ZMK v0.3, **`&tog`** est un behavior « locking » : si tu verrouilles une couche **pendant** qu’elle est ouverte en momentané, **relâcher** la touche d’entrée ne la fermera plus — seul un nouveau **`&tog`** (ou un autre behavior locking) la coupe.
+
+### Entrées depuis AZERTY (momentané)
+
+| Couche | Touche (hold) |
+|--------|----------------|
+| Navigation | Hold **⎋** (pouce gauche) |
+| Nombres | Hold **⌫** (pouce droit, `&bspcnum`) |
+| Symboles | Hold **↵** (pouce gauche) |
+| Média | Hold **Espace** (pouce gauche) |
+| Souris | Hold **B** (rangée du bas gauche) |
+| Fonctions | Hold **=** / **+** (droite) |
+| Boutons | Hold **SF4** (pouces) |
+| Système | Hold touche Sys (pouces) — **sans verrou couche** |
+
+Un **tap** court sur ces touches envoie l’action normale (Esc, Backspace, Entrée, etc.).
+
+### Toggles de verrouillage (sur l’overlay)
+
+| Couche | Touche toggle | Schéma |
+|--------|---------------|--------|
+| Navigation | Pouce droit bas | Cadenas sur [Navigation](./images/sofle-layer1-navigation.svg) |
+| Nombres | Pouce gauche bas | Cadenas sur [Nombres](./images/sofle-layer2-numbers.svg) |
+| Symboles | Pouce droit bas | Cadenas sur [Symboles](./images/sofle-layer3-symbols.svg) |
+| Média | Pouce (toggle média) | Voir [Média](./images/sofle-layer4-media.svg) |
+| Souris | Pouce gauche | Cadenas sur [Souris](./images/sofle-layer5-mouse.svg) |
+| Fonctions | — | **Pas de toggle** : momentané uniquement |
+| Boutons | Double tap **SF4** depuis AZERTY (`&motg_but`) | Pas de cadenas sur l’overlay |
+| Système | — | **Pas de toggle couche** |
+
+Les **cadenas** sur les visuels correspondent aux vrais **`&tog`** du firmware (voir glossaire dans [README.md](README.md)). Les pictogrammes **numérotés** en gris (ghost) sur certaines overlays rappellent **d’où l’on entre** depuis AZERTY — c’est un aide visuelle Keymap Drawer, pas une touche de verrouillage.
+
+### `&studio_unlock` (couche Système)
+
+Les touches **`&studio_unlock`** sur la couche **Système** ne verrouillent **pas** une couche clavier : elles **déverrouillent le firmware pour ZMK Studio** (édition keymap via USB). Avec **KeyPeek**, l’overlay macOS reflète l’état des couches actives en temps réel.
 
 ---
 

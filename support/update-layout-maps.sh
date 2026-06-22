@@ -95,7 +95,7 @@ export_layout_map() {
   "$PYTHON" "$SCRIPT_DIR/patch_layer_activation_ghosts.py" "$KD_KEYMAP" -o "$KD_KEYMAP"
 
   LAYOUT_LAYERS=(
-    QWERTY Navigation Numbers Symbols Media Mouse Functions Buttons System
+    AZERTY Navigation Numbers Symbols Media Mouse Functions Buttons System
   )
   LAYOUT_MAP_NAMES=(
     layer0-main layer1-navigation layer2-numbers layer3-symbols layer4-media

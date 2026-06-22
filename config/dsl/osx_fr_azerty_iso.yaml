@@ -280,7 +280,7 @@ sofle60:
     la grille 12 pouces du schéma peut dépasser ce qui est câblé — voir transform dans sofle.keymap.
 layers:
   MAIN:
-    display_name: QWERTY
+    display_name: AZERTY
     # Ordre des clés = ordre SOFLE60 (K00…K65). Éditer par id, sans compter une liste.
     # — rangée chiffres
     L00: lbktgrave
