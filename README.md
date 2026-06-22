@@ -1,17 +1,15 @@
 # Configuration ZMK — Sofle Choc Pro BT
 
-> **À propos de ce dépôt** — Configuration issue d’un fork de [Townk/zmk-config](https://github.com/Townk/zmk-config), avec adaptation du mapping **Lily58** vers un **Sofle Choc Pro Bluetooth**, pour une utilisation **AZERTY / ISO français** sous **macOS**.
+> **À propos de ce dépôt** — Keymap et board pour un **Sofle Choc Pro Bluetooth**, en **AZERTY / ISO français** sous **macOS**. Firmware basé sur **[ZMK officiel](https://github.com/zmkfirmware/zmk)** (`v0.3` via `config/west.yml`), avec modules complémentaires et overlay **KeyPeek**.
 
-Keymap, board et manifest **West** pour ZMK officiel + modules `zmk-tri-state`, `zmk-raw-hid`, `zmk-keypeek-layer-notifier` (KeyPeek). Les arborescences **zephyr/**, **zmk/** et **modules/** sont ignorées par Git (`.gitignore`) : elles sont recréées par West et éventuellement modifiées par des **patches versionnés** dans `support/patches/`.
+Keymap, board et manifest **West** pour **ZMK officiel** + modules `zmk-tri-state`, `zmk-raw-hid`, `zmk-keypeek-layer-notifier` (KeyPeek). La moitié **gauche** active **ZMK Studio** (RPC USB + `raw_hid_adapter`) pour KeyPeek et l’édition keymap. Les arborescences **zephyr/**, **zmk/** et **modules/** sont ignorées par Git (`.gitignore`) : elles sont recréées par West et éventuellement modifiées par des **patches versionnés** dans `support/patches/`.
 
 Chaque clavier a sa doc de layout ; ici :
 
 - [Sofle Choc Pro BT](docs/sofle.md) — couches, choix de mapping et liens vers les schémas
 - [Conventions (symboles, représentation des touches)](docs/README.md)
 
-Si tu n’as pas encore ouvert ces liens : commence par **`docs/sofle.md`** pour le clavier cible, puis **`docs/README.md`** pour lire les schémas comme Townk.
-
-**Chaîne avec l’amont Townk** — Les conventions générales (glossaire, légendes) viennent du [README de Townk/zmk-config](https://github.com/Townk/zmk-config/blob/main/README.md). Le fichier **`docs/sofle.md`** indique comment ce README et [lily58.md](https://github.com/Townk/zmk-config/blob/main/docs/lily58.md) se rattachent à la doc Sofle.
+Si tu n’as pas encore ouvert ces liens : commence par **`docs/sofle.md`** pour le clavier cible, puis **`docs/README.md`** pour le glossaire et la lecture des schémas.
 
 ## Nouvel ordinateur (ordre recommandé)
 
