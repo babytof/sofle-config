@@ -47,10 +47,6 @@ Pas de `CAPS_LOCK` classique : on utilise **`&caps_word`** (liste de continuatio
 
 Des comportements optionnels du type *double tap Globe → Caps Word* existent dans le dépôt Townk (`globecaps` dans `specialkeys.dtsi`) mais **ne sont pas branchés** sur la couche principale actuelle.
 
-### Autoshift
-
-Comme dans la doc Lily58 d’origine : **un** autoshift ciblé sur **`V`** (`AS(V)`), pratique notamment pour **Vim** (`Shift+V` ligne) lorsque le Shift homerow complique le geste une seule main.
-
 ### Navigation macOS (apps / fenêtres)
 
 Même idée que Townk : raccourcis proches du clavier Apple pour **⌘⇥** / **⌘⇧⇥** et la bascule de **fenêtres** de l’app courante, via **tri-state** et **mod-morph** (`&appswtnxt`, `&winswtnxt`, `&lbktgrave`, `&appPwinN`, `&winPglobe`, etc. — détails dans `standard_layout.dtsi` et `specialkeys.dtsi`).
