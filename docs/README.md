@@ -35,6 +35,8 @@ Génération à la **racine du dépôt** : `make keymap-images` (SVG/PNG dans `d
 
 Aperçu HTML (couches 0–8) : [images/cheatsheet.html](images/cheatsheet.html).
 
+**Gabarit brouillon** (3 couches vierges par page, fond blanc, imprimable) : `make keymap-blank-sheet` → [images/blank-layer-sheet.html](images/blank-layer-sheet.html).
+
 > **Numéros sur les pictogrammes « couche »** — Dans le glossaire ci-dessous, les icônes `numeric-1` … `numeric-6` reprennent la **légende d’origine Townk** (libellés « Numbers », « Symbols », etc.). L’**index de couche** dans les noms de fichiers `sofle-layerN-…` peut ne pas coïncider avec ce chiffre sur l’icône ; se fier au **nom de fichier** et à la cheatsheet ci-dessus.
 
 ---

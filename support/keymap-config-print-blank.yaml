@@ -1,0 +1,13 @@
+# SPDX-License-Identifier: MIT
+# Rendu impression : fond blanc, touches vides, sans mode sombre.
+
+draw_config:
+  dark_mode: false
+  separate_combo_diagrams: false
+  footer_text: ""
+  use_local_cache: true
+  svg_extra_style: |
+    svg.keymap { background-color: #ffffff; }
+    rect.key { fill: #ffffff; }
+    rect.key, rect.combo { stroke: #999999; stroke-width: 1; }
+    text.label { display: none; }

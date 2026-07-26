@@ -53,7 +53,7 @@ KEYMAP_SVG       := $(CURDIR)/build/keymap.svg
 .DEFAULT_GOAL := all
 
 .PHONY: all left right reset-left reset-right reset clean firmware help \
-	install-keymap-drawer keymap-drawer keymap-images
+	install-keymap-drawer keymap-drawer keymap-images keymap-blank-sheet
 
 all:
 	@echo "=== Build Sofle Choc Pro BT (left, right, reset-left, reset-right) ==="
@@ -138,6 +138,10 @@ keymap-images:
 		KEYMAP_PNG_RENDERER="$(KEYMAP_PNG_RENDERER)"; \
 		"$(CURDIR)/support/gen-keymap-images.sh"
 
+keymap-blank-sheet:
+	@export ZMK_VENV="$(ZMK_VENV)" KEYMAP_JSON="$(KEYMAP_LAYOUT)"; \
+		"$(CURDIR)/support/gen-blank-layer-sheet.sh"
+
 help:
 	@echo "Bootstrap machine neuve : README.md + ./build-setup.sh (venv activé, Zephyr SDK à part)."
 	@echo "Cibles :"
@@ -149,6 +153,7 @@ help:
 	@echo "  make install-keymap-drawer — pip install keymap-drawer dans ZMK_VENV"
 	@echo "  make keymap-drawer  — build/keymap.svg"
 	@echo "  make keymap-images  — docs/images/sofle-layer*.{svg,png} + build/out/zmk-sofle-layout-map.{svg,png}"
+	@echo "  make keymap-blank-sheet — gabarit imprimable (3 couches vierges/page, docs/images/blank-layer-sheet.html)"
 	@echo ""
 	@echo "Board : $(BOARD_LEFT) / $(BOARD_RIGHT)   Shield gauche : $(SHIELD_LEFT)   droite : $(SHIELD_VIEW)"
 	@echo "Kconfig utilisateur : config/sofle_choc_pro.conf"
