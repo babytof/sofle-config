@@ -1,12 +1,16 @@
 /*
- * Sofle Choc — 60 touches (ordre ZMK / matrix transform du shield).
+ * Sofle Choc — matrice 60, firmware actif = port Corne 42 Vial (42 switches peuplés).
  * Indices : 0–11 rangée1, 12–23 rangée2, 24–35 rangée3, 36–49 rangée4, 50–59 pouces
  *           RC(4,0)…(4,4) puis RC(4,7)…(4,11).
+ *
+ * Positions actives Corne : 12–41, 44–49, 52–57. Hors Corne : &none dans le layout.
+ * Layout Townk (60 touches) : config/layout/standard_layout.dtsi (non inclus).
  */
 
-#define KEYS_L 0 1 2 3 4 5 12 13 14 15 16 17 24 25 26 27 28 29 36 37 38 39 40 41 42
-#define KEYS_R 6 7 8 9 10 11 18 19 20 21 22 23 30 31 32 33 34 35 43 44 45 46 47 48 49
-#define THUMBS 50 51 52 53 54 55 56 57 58 59
+/* Hold-tap positionnels : 42 touches Corne uniquement (hors chiffres / HYP / pouces externes) */
+#define KEYS_L 12 13 14 15 16 17 24 25 26 27 28 29 36 37 38 39 40 41
+#define KEYS_R 18 19 20 21 22 23 30 31 32 33 34 35 44 45 46 47 48 49
+#define THUMBS 52 53 54 55 56 57
 
 #define LT5 0
 #define LM5 24
@@ -18,8 +22,10 @@
 #define RB2 45
 #define RB3 46
 
-#define COMBO_KEY_CAPS_WORD <28 31>
+/* Combo Caps Word Townk désactivé ; combo J+K+L→Enter dans corne_vial_layout.dtsi */
+/* #define COMBO_KEY_CAPS_WORD <28 31> */
 
+/* Conservés pour réactivation future de mouse.dtsi / hold-tap Townk */
 #define USE_HOLD_TAP_LAYER_FUNCTIONS
 #define USE_HOLD_TAP_LAYER_MOUSE
 #define MOVE_X_DECODE 1
@@ -46,4 +52,4 @@
     K40 K41 K42 K43 K44 K45 K18 K19 K48 K49 K50 K51 K52 K53 \
               K54 K55 K56 K57 K58 K59 K61 K62 K64 K65
 
-#include "layout/standard_layout.dtsi"
+#include "layout/corne_vial_layout.dtsi"

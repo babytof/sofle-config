@@ -1,5 +1,10 @@
 # Layout Sofle Choc Pro BT
 
+> [!IMPORTANT]
+> **Firmware actif** : port du keymap **Corne 42 Vial** (QMK) vers cette matrice Sofle, avec **42 switches** seulement (rangée chiffres, HYP et pouces externes sans switch). Fichier : [`config/layout/corne_vial_layout.dtsi`](../config/layout/corne_vial_layout.dtsi).
+>
+> L’ancien layout Townk / Sofle 60 reste disponible dans [`config/layout/standard_layout.dtsi`](../config/layout/standard_layout.dtsi) (non inclus par `sofle.keymap`). Schémas : `make keymap-images` (détection auto Corne / Townk). Souris et behaviors Townk conservés pour réactivation ultérieure.
+
 ## Lien avec la documentation d’origine (Townk)
 
 | Rôle | Où le lire |

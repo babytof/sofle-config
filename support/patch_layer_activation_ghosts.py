@@ -19,7 +19,9 @@ import yaml
 
 # (nom couche Keymap Drawer, keypos SOFLE60, numéro couche)
 # keypos ↔ KEYPOS_TO_K dans append_rc_reference_layer.py
-ACTIVATION_GHOSTS: List[Tuple[str, int, int]] = [
+
+# Layout Townk / Sofle 60 (standard_layout.dtsi)
+ACTIVATION_GHOSTS_TOWNK: List[Tuple[str, int, int]] = [
     ("Navigation", 53, 1),   # K57  hold Esc → Nav
     ("Numbers", 56, 2),      # K61  hold → Num
     ("Symbols", 54, 3),      # K58  hold Ret → Sym
@@ -30,6 +32,15 @@ ACTIVATION_GHOSTS: List[Tuple[str, int, int]] = [
     ("Buttons", 57, 7),      # K62  motg_but
     ("System", 51, 8),       # K55  mo L_SYS
     ("System", 58, 8),       # K64  mo L_SYS
+]
+
+# Layout Corne Vial 42 (corne_vial_layout.dtsi)
+ACTIVATION_GHOSTS_CORNE: List[Tuple[str, int, int]] = [
+    ("Nav", 55, 1),          # K59  hold Space → Nav
+    ("Symbols", 54, 2),      # K58  hold Ret → Sym
+    ("Functions", 54, 3),    # K58  depuis Nav (pouce Enter)
+    ("Functions", 55, 3),    # K59  depuis Sym (pouce Space)
+    ("Adjust", 57, 5),       # K62  hold → Adjust
 ]
 
 # &studio_unlock (K54/K65) : légende via raw_binding_map dans keymap-config.yaml
@@ -62,7 +73,18 @@ def patch(data: Dict[str, Any]) -> None:
         print("YAML invalide : clé « layers » attendue", file=sys.stderr)
         raise SystemExit(1)
 
-    for layer_name, keypos, layer_num in ACTIVATION_GHOSTS:
+    if "AZERTY" in layers:
+        ghosts = ACTIVATION_GHOSTS_TOWNK
+    elif "Base" in layers or "Nav" in layers:
+        ghosts = ACTIVATION_GHOSTS_CORNE
+    else:
+        print(
+            "Layout inconnu (ni AZERTY Townk ni Base/Nav Corne) — ghosts ignorés.",
+            file=sys.stderr,
+        )
+        return
+
+    for layer_name, keypos, layer_num in ghosts:
         bindings = layers.get(layer_name)
         if not isinstance(bindings, list):
             print(f"Couche « {layer_name} » absente ou invalide", file=sys.stderr)

@@ -30,6 +30,7 @@ MERGE_PY="$SCRIPT_DIR/merge_yaml.py"
 APPLY_LOCALE_PY="$SCRIPT_DIR/apply_keymap_locale.py"
 APPEND_RC_PY="$SCRIPT_DIR/append_rc_reference_layer.py"
 PATCH_LAYER_GHOSTS_PY="$SCRIPT_DIR/patch_layer_activation_ghosts.py"
+PATCH_NOSWITCH_PY="$SCRIPT_DIR/patch_noswitch_keys.py"
 ANNOTATE_SVG_PY="$SCRIPT_DIR/annotate_layer_numbers_in_svg.py"
 FLATTEN_SVG_PY="$SCRIPT_DIR/svg_flatten_mdi_uses.py"
 
@@ -90,11 +91,14 @@ KD_PARSED="$(mktemp)"
 KD_KEYMAP="$(mktemp)"
 KD_CONFIG_NO_SYMBOLS="$(mktemp)"
 KD_CONFIG_BACKGROUND="$(mktemp)"
+KD_PROBE=""
 cleanup() {
   rm -f "$KD_PARSED" "$KD_KEYMAP" "$KD_CONFIG_NO_SYMBOLS" "$KD_CONFIG_BACKGROUND"
   [[ -n "${KD_LOCALE_TMP:-}" ]] && rm -f "$KD_LOCALE_TMP"
   [[ -n "${KD_SYM_DRAW_TMP:-}" ]] && rm -f "$KD_SYM_DRAW_TMP"
   [[ -n "${KD_MAP_ALL_TMP:-}" ]] && rm -f "$KD_MAP_ALL_TMP"
+  [[ -n "${KD_PROBE:-}" ]] && rm -f "$KD_PROBE"
+  return 0
 }
 trap cleanup EXIT
 
@@ -108,26 +112,50 @@ if [[ -f "$KD_SYM_DRAW_OVERLAY" ]]; then
   KD_SYMBOL_DRAW="$KD_SYM_DRAW_TMP"
 fi
 
-# Bloc 1 : jusqu’à la ligne « Navigation: » (exclue) — mêmes noms de couches que Townk
+# Détection layout actif (Corne Vial 42 vs Townk Sofle 60)
+KD_PROBE="$(mktemp)"
+"$KEYMAP" --config "$KD_EFFECTIVE_MAIN" parse -z "$KEYMAP_FILE" >"$KD_PROBE"
+if grep -q '^  Base:' "$KD_PROBE" || grep -q '^  Nav:' "$KD_PROBE"; then
+  LAYOUT_KIND=corne
+  # Symbols+ : no-shift ; Base+Nav gardent les légendes Shift (ex. GRAVE → @ / #)
+  SPLIT_LAYER=Symbols
+  LAYOUT_LAYERS=(Base Nav Symbols Functions Spare Adjust)
+  LAYOUT_MAP_NAMES=(
+    layer0-main layer1-navigation layer2-symbols layer3-functions
+    layer4-spare layer5-adjust
+  )
+  echo "- Layout détecté : Corne Vial 42"
+else
+  LAYOUT_KIND=townk
+  SPLIT_LAYER=Navigation
+  LAYOUT_LAYERS=(
+    AZERTY Navigation Numbers Symbols Media Mouse Functions Buttons System
+  )
+  LAYOUT_MAP_NAMES=(
+    layer0-main layer1-navigation layer2-numbers layer3-symbols layer4-media
+    layer5-mouse layer6-functions layer7-buttons layer8-system
+  )
+  echo "- Layout détecté : Townk Sofle 60"
+fi
+
+# Bloc 1 : couches base avec légendes Shift (jusqu’à SPLIT_LAYER exclue)
 "$KEYMAP" --config "$KD_EFFECTIVE_MAIN" parse -z "$KEYMAP_FILE" \
-  | sed -n '1,/Navigation:/p' \
+  | sed -n "1,/${SPLIT_LAYER}:/p" \
   | sed -e '$ d' >"$KD_PARSED"
 
-# Navigation → System : même fusion que le rendu Symbols (no-shift + overlay caractères).
+# Overlays : même fusion que le rendu Symbols (no-shift + overlay caractères).
 "$KEYMAP" --config "$KD_SYMBOL_DRAW" parse -z "$KEYMAP_FILE" \
-  | sed -n '/Navigation:/,$ p' >>"$KD_PARSED"
+  | sed -n "/${SPLIT_LAYER}:/,\$ p" >>"$KD_PARSED"
+
+rm -f "$KD_PROBE"
+KD_PROBE=""
 
 # Couche purement graphique (absente du firmware) : RC(row,col) du transform Sofle
 "$PYTHON" "$APPEND_RC_PY" "$KD_PARSED" -o "$KD_KEYMAP"
 "$PYTHON" "$PATCH_LAYER_GHOSTS_PY" "$KD_KEYMAP" -o "$KD_KEYMAP"
-
-LAYOUT_LAYERS=(
-  AZERTY Navigation Numbers Symbols Media Mouse Functions Buttons System
-)
-LAYOUT_MAP_NAMES=(
-  layer0-main layer1-navigation layer2-numbers layer3-symbols layer4-media
-  layer5-mouse layer6-functions layer7-buttons layer8-system
-)
+if [[ "$LAYOUT_KIND" == "corne" && -f "$PATCH_NOSWITCH_PY" ]]; then
+  "$PYTHON" "$PATCH_NOSWITCH_PY" "$KD_KEYMAP" -o "$KD_KEYMAP"
+fi
 
 for i in "${!LAYOUT_LAYERS[@]}"; do
   export_layer "$KD_KEYMAP" "${LAYOUT_LAYERS[$i]}" "sofle-${LAYOUT_MAP_NAMES[$i]}.svg"
@@ -153,12 +181,15 @@ KEYMAP_JSON_ARG=()
   -o "$SOFLE_ROOT/build/out/zmk-sofle-layout-map.svg" \
   "$KD_KEYMAP"
 
-shopt -s nullglob
-annotate_targets=(
-  "$OUT_DIR"/sofle-layer*.svg
+annotate_targets=()
+for name in "${LAYOUT_MAP_NAMES[@]}"; do
+  annotate_targets+=("$OUT_DIR/sofle-${name}.svg")
+done
+annotate_targets+=(
+  "$OUT_DIR/sofle-layer-rc-reference.svg"
   "$SOFLE_ROOT/build/out/zmk-sofle-layout-map.svg"
 )
-shopt -u nullglob
+export KEYMAP_LAYOUT_KIND="$LAYOUT_KIND"
 ((${#annotate_targets[@]})) && "$PYTHON" "$ANNOTATE_SVG_PY" "${annotate_targets[@]}"
 
 KEYMAP_IMAGE_PNG_WIDTH="${KEYMAP_IMAGE_PNG_WIDTH:-2400}"

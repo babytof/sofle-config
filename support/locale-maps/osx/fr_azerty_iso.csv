@@ -101,8 +101,10 @@ LBRC,{,{
 RBKT,$,*
 RIGHT_BRACKET,$,*
 RBRC,},}
-GRAVE,<,>
-TILDE,~,~
+# macOS FR ISO (aligné Corne keymap_drawer_fr_mac_iso / QMK keymap_french_mac_iso.h)
+GRAVE,@,#
+GRV,@,#
+TILDE,#,#
 TILDE2,~,~
 NUHS,§,£
 NON_US_HASH,§,£

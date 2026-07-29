@@ -11,14 +11,26 @@ draw_config:
   dark_mode: true
   separate_combo_diagrams: false
   combo_diagrams_scale: 4
+  # Boîte combo plus basse pour tenir dans l’interstice entre rangées Sofle
+  combo_h: 16
+  combo_w: 22
   inner_pad_w: 4.0
   inner_pad_h: 4.0
+  # Moins d’air vertical entre couches empilées (cheatsheet HTML)
+  outer_pad_h: 12
   small_pad: 4
   shrink_wide_legends: 5
   footer_text: ""
   use_local_cache: true
   svg_extra_style: |
     rect.ghost { fill: #7b7e81; }
+    /* Positions Sofle sans switch (Corne 42) */
+    rect.key.noswitch {
+      fill: #1a1d22;
+      stroke: #6b7280;
+      stroke-dasharray: 4 3;
+      opacity: 0.5;
+    }
 
 # Configuration for the Keymap Drawer parser.
 # This is  where most of the magic will happen by replacing the standard
@@ -52,6 +64,16 @@ parse_config:
     right_gui: "⌘"
     keycode_combiner: "{mods}{key}"
     mod_combiner: "{mod_1}{mod_2}"
+
+  # Positionnement des combos sur le SVG (align + offset en unités de touche)
+  zmk_combos:
+    # Juste au-dessus de JKL (rangées trop serrées pour un gros décalage)
+    combo_jkl_enter:
+      align: top
+      offset: 0.0
+    combo_caps_word:
+      align: top
+      offset: 0.0
 
   # Any key that is used with `&kp` and has a special representation on the
   # keymap, has my special representation defined here.
@@ -120,7 +142,7 @@ parse_config:
     PIPE: "|"
     NON_US_BACKSLASH: { t: '\', s: "|" }
     NON_US_BSLH: { t: '\', s: "|" }
-    NUBS: { t: '\', s: "|" }
+    NUBS: { t: "<", s: ">", type: fr }
     PIPE2: "|"
     SEMICOLON: { t: ";", s: ":" }
     SEMI: { t: ";", s: ":" }
@@ -146,8 +168,9 @@ parse_config:
     RBKT: { t: "]", s: "}" }
     RIGHT_BRACE: "}"
     RBRC: "}"
-    GRAVE: { t: "`", s: "~" }
-    TILDE: "~"
+    GRAVE: { t: "@", s: "#", type: fr }
+    GRV: { t: "@", s: "#", type: fr }
+    TILDE: "#"
     NON_US_HASH: "#"
     NUHS: "#"
     TILDE2: "~"
