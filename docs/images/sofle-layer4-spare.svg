@@ -224,6 +224,12 @@ rect.key.noswitch {
   stroke-dasharray: 4 3;
   opacity: 0.5;
 }
+/* Légendes remappées affichage ≠ firmware (type fr), comme Corne keymap.html */
+text.fr.tap,
+text.fr.shifted,
+text.fr.hold {
+  fill: #e8a030;
+}
 </style>
 <g transform="translate(30, 0)" class="layer-Spare">
 <text x="0" y="6" class="label" id="Spare">Spare (4):</text>

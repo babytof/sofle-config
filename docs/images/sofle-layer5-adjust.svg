@@ -224,6 +224,12 @@ rect.key.noswitch {
   stroke-dasharray: 4 3;
   opacity: 0.5;
 }
+/* Légendes remappées affichage ≠ firmware (type fr), comme Corne keymap.html */
+text.fr.tap,
+text.fr.shifted,
+text.fr.hold {
+  fill: #e8a030;
+}
 </style>
 <g transform="translate(30, 0)" class="layer-Adjust">
 <text x="0" y="6" class="label" id="Adjust">Adjust (5):</text>
@@ -459,7 +465,6 @@ rect.key.noswitch {
 <g transform="translate(602, 259)" class="key ghost keypos-57">
 <rect rx="6" ry="6" x="-24" y="-24" width="48" height="48" class="key ghost"/>
 <use href="#mdi:numeric-5-box-multiple-outline" xlink:href="#mdi:numeric-5-box-multiple-outline" x="-7" y="-7" height="14" width="14.0" class="key ghost tap glyph mdi:numeric-5-box-multiple-outline"/>
-<text x="0" y="20" class="key ghost hold">5</text>
 </g>
 <g transform="translate(658, 259)" class="key noswitch keypos-58">
 <rect rx="6" ry="6" x="-24" y="-24" width="48" height="48" class="key noswitch"/>

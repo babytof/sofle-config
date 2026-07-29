@@ -224,6 +224,12 @@ rect.key.noswitch {
   stroke-dasharray: 4 3;
   opacity: 0.5;
 }
+/* Légendes remappées affichage ≠ firmware (type fr), comme Corne keymap.html */
+text.fr.tap,
+text.fr.shifted,
+text.fr.hold {
+  fill: #e8a030;
+}
 </style>
 <g transform="translate(30, 0)" class="layer-Functions">
 <text x="0" y="6" class="label" id="Functions">Functions (3):</text>
@@ -330,25 +336,25 @@ rect.key.noswitch {
 <rect rx="6" ry="6" x="-24" y="-24" width="48" height="48" class="key"/>
 <text x="0" y="0" class="key tap">(</text>
 </g>
-<g transform="translate(308, 153)" class="key keypos-29">
-<rect rx="6" ry="6" x="-24" y="-24" width="48" height="48" class="key"/>
-<text x="0" y="0" class="key tap">⇧:</text>
+<g transform="translate(308, 153)" class="key fr keypos-29">
+<rect rx="6" ry="6" x="-24" y="-24" width="48" height="48" class="key fr"/>
+<text x="0" y="0" class="key fr tap">/</text>
 </g>
-<g transform="translate(532, 153)" class="key keypos-30">
-<rect rx="6" ry="6" x="-24" y="-24" width="48" height="48" class="key"/>
-<text x="0" y="0" class="key tap">=</text>
+<g transform="translate(532, 153)" class="key fr keypos-30">
+<rect rx="6" ry="6" x="-24" y="-24" width="48" height="48" class="key fr"/>
+<text x="0" y="0" class="key fr tap">-</text>
 </g>
 <g transform="translate(588, 147)" class="key keypos-31">
 <rect rx="6" ry="6" x="-24" y="-24" width="48" height="48" class="key"/>
 <text x="0" y="0" class="key tap">)</text>
 </g>
-<g transform="translate(644, 140)" class="key keypos-32">
-<rect rx="6" ry="6" x="-24" y="-24" width="48" height="48" class="key"/>
-<text x="0" y="0" class="key tap">⌥)</text>
+<g transform="translate(644, 140)" class="key fr keypos-32">
+<rect rx="6" ry="6" x="-24" y="-24" width="48" height="48" class="key fr"/>
+<text x="0" y="0" class="key fr tap">}</text>
 </g>
-<g transform="translate(700, 147)" class="key keypos-33">
-<rect rx="6" ry="6" x="-24" y="-24" width="48" height="48" class="key"/>
-<text x="0" y="0" class="key tap">]</text>
+<g transform="translate(700, 147)" class="key fr keypos-33">
+<rect rx="6" ry="6" x="-24" y="-24" width="48" height="48" class="key fr"/>
+<text x="0" y="0" class="key fr tap">]</text>
 </g>
 <g transform="translate(756, 161)" class="key keypos-34">
 <rect rx="6" ry="6" x="-24" y="-24" width="48" height="48" class="key"/>
@@ -383,9 +389,9 @@ rect.key.noswitch {
 <g transform="translate(476, 181)" class="key noswitch keypos-43">
 <rect rx="6" ry="6" x="-24" y="-24" width="48" height="48" class="key noswitch"/>
 </g>
-<g transform="translate(532, 209)" class="key keypos-44">
-<rect rx="6" ry="6" x="-24" y="-24" width="48" height="48" class="key"/>
-<text x="0" y="0" class="key tap">⇧=</text>
+<g transform="translate(532, 209)" class="key fr keypos-44">
+<rect rx="6" ry="6" x="-24" y="-24" width="48" height="48" class="key fr"/>
+<text x="0" y="0" class="key fr tap">_</text>
 </g>
 <g transform="translate(588, 203)" class="key keypos-45">
 <rect rx="6" ry="6" x="-24" y="-24" width="48" height="48" class="key"/>
@@ -422,12 +428,10 @@ rect.key.noswitch {
 <g transform="translate(356, 267) rotate(24.0)" class="key ghost keypos-54">
 <rect rx="6" ry="6" x="-24" y="-38" width="48" height="76" class="key ghost"/>
 <use href="#mdi:numeric-3-box-multiple-outline" xlink:href="#mdi:numeric-3-box-multiple-outline" x="-7" y="-7" height="14" width="14.0" class="key ghost tap glyph mdi:numeric-3-box-multiple-outline"/>
-<text x="0" y="34" class="key ghost hold">3</text>
 </g>
 <g transform="translate(484, 267) rotate(-24.0)" class="key ghost keypos-55">
 <rect rx="6" ry="6" x="-24" y="-38" width="48" height="76" class="key ghost"/>
 <use href="#mdi:numeric-3-box-multiple-outline" xlink:href="#mdi:numeric-3-box-multiple-outline" x="-7" y="-7" height="14" width="14.0" class="key ghost tap glyph mdi:numeric-3-box-multiple-outline"/>
-<text x="0" y="34" class="key ghost hold">3</text>
 </g>
 <g transform="translate(544, 264) rotate(-12.0)" class="key trans keypos-56">
 <rect rx="6" ry="6" x="-24" y="-24" width="48" height="48" class="key trans"/>

@@ -47,9 +47,9 @@ ACTIVATION_GHOSTS_CORNE: List[Tuple[str, int, int]] = [
 # (lock-open-outline) — ne pas écraser ici.
 
 def layer_ref_legend(layer_num: int) -> Dict[str, Any]:
+    """Picto numéroté seul (le glyphe MDI contient déjà le numéro)."""
     return {
         "t": f"$$mdi:numeric-{layer_num}-box-multiple-outline$$",
-        "h": str(layer_num),
         "type": "ghost",
     }
 

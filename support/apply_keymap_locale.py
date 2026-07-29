@@ -32,10 +32,10 @@ def raw_binding_tap_uses_mdi(val: Any) -> bool:
 def row_to_map_value(tap: str, shift: str) -> Any:
     shift = shift.strip() if shift else ""
     if not shift:
-        return tap
+        return {"t": tap, "type": "fr"}
     if shift == tap:
-        return tap
-    return {"t": tap, "s": shift}
+        return {"t": tap, "type": "fr"}
+    return {"t": tap, "s": shift, "type": "fr"}
 
 
 def morph_num_reverse_legend(tap: str, shift: str) -> Any:
@@ -57,17 +57,18 @@ def use_shift_only_legend(tap: str, shift: str) -> bool:
 
 def zmk_entry_for_locale(tap: str, shift: str) -> Any:
     if use_shift_only_legend(tap, shift):
-        return shift
+        return {"t": shift, "type": "fr"}
     return row_to_map_value(tap, shift)
 
 
 def patch_raw_binding_value(val: Any, tap: str, shift: str) -> None:
-    """Met à jour t (et s) sans retirer h, type, etc."""
+    """Met à jour t (et s) sans retirer h ; marque type fr (légende ≠ HID US)."""
     if not isinstance(val, dict):
         return
     if use_shift_only_legend(tap, shift):
         val["t"] = shift
         val.pop("s", None)
+        val["type"] = "fr"
         return
     new_v = row_to_map_value(tap, shift)
     if isinstance(new_v, dict):
@@ -76,9 +77,11 @@ def patch_raw_binding_value(val: Any, tap: str, shift: str) -> None:
             val["s"] = new_v["s"]
         else:
             val.pop("s", None)
+        val["type"] = "fr"
     else:
         val["t"] = new_v
         val.pop("s", None)
+        val["type"] = "fr"
 
 
 # Ne pas recopier le CSV sur le dernier token : ces bindings ont une légende dédiée (RC 3,10 / 3,11).

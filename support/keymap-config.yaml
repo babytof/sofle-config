@@ -31,6 +31,12 @@ draw_config:
       stroke-dasharray: 4 3;
       opacity: 0.5;
     }
+    /* Légendes remappées affichage ≠ firmware (type fr), comme Corne keymap.html */
+    text.fr.tap,
+    text.fr.shifted,
+    text.fr.hold {
+      fill: #e8a030;
+    }
 
 # Configuration for the Keymap Drawer parser.
 # This is  where most of the magic will happen by replacing the standard
@@ -301,7 +307,7 @@ parse_config:
   # as a shortcut, I will add an entry for them here. I use this, also, to tweak
   # the default label for some keys that don't exactly match my layout style.
   raw_binding_map:
-    # Layer activation keys (couche AZERTY)
+    # Layer activation keys (couche AZERTY / Townk)
     #---------------------------------------------------------------------------
     # Navigation layer
     "&hll L_NAV ESC":
@@ -334,20 +340,33 @@ parse_config:
         h: "$$mdi:numeric-4-box-multiple-outline$$",
         type: "held",
       }
-    # Legacy (non utilisé sur MAIN)
-    "&bspcnav":
+    # Corne Vial (&clt / &mo) — picto numéroté (pas le nom de couche)
+    "&clt L_NAV SPACE":
       {
-        t: "$$mdi:backspace$$",
-        s: "$$mdi:backspace-reverse$$",
+        t: "$$mdi:keyboard-space$$",
         h: "$$mdi:numeric-1-box-multiple-outline$$",
-        type: "held",
       }
+    "&clt L_SYM RET":
+      {
+        t: "$$mdi:keyboard-return$$",
+        h: "$$mdi:numeric-2-box-multiple-outline$$",
+      }
+    "&mo L_FUN": { t: "$$mdi:numeric-3-box-multiple-outline$$" }
+    "&mo L_ADJ": { t: "$$mdi:numeric-5-box-multiple-outline$$" }
+    # Legacy (non utilisé sur MAIN)
     "&lt L_SYM ESC":
       { t: "⎋", h: "$$mdi:numeric-3-box-multiple-outline$$", type: "held" }
     "&lt L_MED RET":
       {
         t: "$$mdi:keyboard-return$$",
         h: "$$mdi:numeric-4-box-multiple-outline$$",
+        type: "held",
+      }
+    "&bspcnav":
+      {
+        t: "$$mdi:backspace$$",
+        s: "$$mdi:backspace-reverse$$",
+        h: "$$mdi:numeric-1-box-multiple-outline$$",
         type: "held",
       }
     # Mouse layer

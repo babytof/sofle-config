@@ -74,7 +74,7 @@
       display-name = "Base";
       bindings = <SOFLE60(
         &none, &none, &none, &none, &none, &none,                                    &none, &none, &none, &none, &none, &none,
-        &kp GRAVE, &kp Q, &kp W, &kp E, &kp R, &kp T,    &none, &none,  &kp Y, &kp U, &kp I, &kp O, &kp P, &kp DEL,
+        &kp NUBS, &kp Q, &kp W, &kp E, &kp R, &kp T,    &none, &none,  &kp Y, &kp U, &kp I, &kp O, &kp P, &kp DEL,
         &kp TAB, &cmt LCTRL A, &cmt LALT S, &cmt LGUI D, &kp F, &kp G, &none, &none,  &kp H, &kp J, &cmt RGUI K, &cmt RALT L, &cmt RCTRL SEMI, &kp SQT,
         &none, &kp Z, &kp X, &kp C, &kp V, &kp B,        &none, &none,  &kp N, &kp M, &kp COMMA, &kp DOT, &kp FSLH, &none,
                &none, &none, &none, &cmt LSHFT ESC, &clt L_SYM RET, &clt L_NAV SPACE, &none, &cmt RSHFT BSPC, &mo L_ADJ, &none, &none, &none

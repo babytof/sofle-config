@@ -26,10 +26,34 @@ NOSWITCH_KEYPOS: List[int] = [
 ]
 
 # Légendes d’affichage uniquement (firmware inchangé).
-# Nav K12 = NUBS en ZMK ; sur macOS FR la touche physique / usage attendu
-# est le même rendu que GRAVE en Base (@ / #), cf. Corne keymap.html L0.
+# Nav K12 = NUBS en ZMK ; rendu demandé aligné Base (@ / #).
+# Functions : sorties macOS FR des accords du Corne Vial (L3).
 DISPLAY_OVERRIDES: Dict[tuple[str, int], Dict[str, str]] = {
+    ("Base", 12): {"t": "@", "s": "#", "type": "fr"},  # K12 NUBS — même rendu que Nav
     ("Nav", 12): {"t": "@", "s": "#", "type": "fr"},
+    ("Functions", 30): {"t": "-", "type": "fr"},   # K34 EQUAL
+    ("Functions", 44): {"t": "_", "type": "fr"},   # K48 RS(EQUAL)
+    ("Functions", 32): {"t": "}", "type": "fr"},   # K36 RA(MINUS)
+    ("Functions", 33): {"t": "]", "type": "fr"},   # K37 LA(LS(MINUS))
+    ("Functions", 29): {"t": "/", "type": "fr"},   # K31 LS(DOT)
+    ("Symbols", 34): {"t": "`", "type": "fr"},     # K38 BSLH
+    ("Symbols", 48): {"t": "£", "type": "fr"},     # K52 LS(BSLH)
+    ("Symbols", 31): {"t": "-", "type": "fr"},     # K35 EQUAL
+    ("Symbols", 32): {"t": "^", "type": "fr"},     # K36 LBKT
+    ("Symbols", 44): {"t": "°", "type": "fr"},     # K48 LS(MINUS)
+    ("Symbols", 45): {"t": "_", "type": "fr"},     # K49 LS(EQUAL)
+    ("Symbols", 46): {"t": "¨", "type": "fr"},     # K50 LS(LBKT)
+    ("Symbols", 47): {"t": "*", "type": "fr"},     # K51 LS(RBKT)
+    ("Symbols", 13): {"t": "1", "type": "fr"},     # K13 LS(N1)
+    ("Symbols", 14): {"t": "2", "type": "fr"},     # K14 LS(N2)
+    ("Symbols", 15): {"t": "3", "type": "fr"},     # K15 LS(N3)
+    ("Symbols", 16): {"t": "4", "type": "fr"},     # K16 LS(N4)
+    ("Symbols", 17): {"t": "5", "type": "fr"},     # K17 LS(N5)
+    ("Symbols", 18): {"t": "6", "type": "fr"},     # K20 LS(N6)
+    ("Symbols", 19): {"t": "7", "type": "fr"},     # K21 LS(N7)
+    ("Symbols", 20): {"t": "8", "type": "fr"},     # K22 LS(N8)
+    ("Symbols", 21): {"t": "9", "type": "fr"},     # K23 LS(N9)
+    ("Symbols", 22): {"t": "0", "type": "fr"},     # K24 LS(N0)
 }
 
 
