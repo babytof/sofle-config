@@ -63,9 +63,6 @@
 <svg id="mdi:skip-backward">
 <svg xmlns="http://www.w3.org/2000/svg" id="mdi-skip-backward" viewBox="0 0 24 24"><path d="M20,5V19L13,12M6,5V19H4V5M13,5V19L6,12" /></svg>
 </svg>
-<svg id="mdi:skip-forward">
-<svg xmlns="http://www.w3.org/2000/svg" id="mdi-skip-forward" viewBox="0 0 24 24"><path d="M4,5V19L11,12M18,5V19H20V5M11,5V19L18,12" /></svg>
-</svg>
 <svg id="mdi:stop">
 <svg xmlns="http://www.w3.org/2000/svg" id="mdi-stop" viewBox="0 0 24 24"><path d="M18,18H6V6H18V18Z" /></svg>
 </svg>
@@ -372,9 +369,9 @@ text.fr.hold {
 <rect rx="6" ry="6" x="-24" y="-24" width="48" height="48" class="key"/>
 <use href="#mdi:skip-backward" xlink:href="#mdi:skip-backward" x="-7" y="-7" height="14" width="14.0" class="key tap glyph mdi:skip-backward"/>
 </g>
-<g transform="translate(812, 161)" class="key keypos-35">
-<rect rx="6" ry="6" x="-24" y="-24" width="48" height="48" class="key"/>
-<use href="#mdi:skip-forward" xlink:href="#mdi:skip-forward" x="-7" y="-7" height="14" width="14.0" class="key tap glyph mdi:skip-forward"/>
+<g transform="translate(812, 161)" class="key ghost keypos-35">
+<rect rx="6" ry="6" x="-24" y="-24" width="48" height="48" class="key ghost"/>
+<use href="#mdi:numeric-5-box-multiple-outline" xlink:href="#mdi:numeric-5-box-multiple-outline" x="-7" y="-7" height="14" width="14.0" class="key ghost tap glyph mdi:numeric-5-box-multiple-outline"/>
 </g>
 <g transform="translate(28, 217)" class="key keypos-36">
 <rect rx="6" ry="6" x="-24" y="-24" width="48" height="48" class="key"/>
@@ -462,16 +459,15 @@ text.fr.hold {
 <rect rx="6" ry="6" x="-24" y="-24" width="48" height="48" class="key trans"/>
 <text x="0" y="0" class="key trans tap">▽</text>
 </g>
-<g transform="translate(602, 259)" class="key ghost keypos-57">
-<rect rx="6" ry="6" x="-24" y="-24" width="48" height="48" class="key ghost"/>
-<use href="#mdi:numeric-5-box-multiple-outline" xlink:href="#mdi:numeric-5-box-multiple-outline" x="-7" y="-7" height="14" width="14.0" class="key ghost tap glyph mdi:numeric-5-box-multiple-outline"/>
+<g transform="translate(602, 259)" class="key trans keypos-57">
+<rect rx="6" ry="6" x="-24" y="-24" width="48" height="48" class="key trans"/>
+<text x="0" y="0" class="key trans tap">▽</text>
 </g>
 <g transform="translate(658, 259)" class="key noswitch keypos-58">
 <rect rx="6" ry="6" x="-24" y="-24" width="48" height="48" class="key noswitch"/>
 </g>
 <g transform="translate(714, 273)" class="key noswitch keypos-59">
 <rect rx="6" ry="6" x="-24" y="-24" width="48" height="48" class="key noswitch"/>
-<text x="0" y="0" class="key noswitch tap">▽</text>
 </g>
 </g>
 </g>

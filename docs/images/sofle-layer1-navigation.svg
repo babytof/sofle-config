@@ -63,9 +63,6 @@
 <svg id="mdi:skip-backward">
 <svg xmlns="http://www.w3.org/2000/svg" id="mdi-skip-backward" viewBox="0 0 24 24"><path d="M20,5V19L13,12M6,5V19H4V5M13,5V19L6,12" /></svg>
 </svg>
-<svg id="mdi:skip-forward">
-<svg xmlns="http://www.w3.org/2000/svg" id="mdi-skip-forward" viewBox="0 0 24 24"><path d="M4,5V19L11,12M18,5V19H20V5M11,5V19L18,12" /></svg>
-</svg>
 <svg id="mdi:stop">
 <svg xmlns="http://www.w3.org/2000/svg" id="mdi-stop" viewBox="0 0 24 24"><path d="M18,18H6V6H18V18Z" /></svg>
 </svg>
@@ -325,9 +322,9 @@ text.fr.hold {
 <text x="0" y="0" class="key fr tap">à</text>
 <text x="0" y="-20" class="key fr shifted">0</text>
 </g>
-<g transform="translate(812, 105)" class="key trans keypos-23">
-<rect rx="6" ry="6" x="-24" y="-24" width="48" height="48" class="key trans"/>
-<text x="0" y="0" class="key trans tap">▽</text>
+<g transform="translate(812, 105)" class="key keypos-23">
+<rect rx="6" ry="6" x="-24" y="-24" width="48" height="48" class="key"/>
+<use href="#mdi:backspace-reverse" xlink:href="#mdi:backspace-reverse" x="-7" y="-7" height="14" width="14.0" class="key tap glyph mdi:backspace-reverse"/>
 </g>
 <g transform="translate(28, 161)" class="key keypos-24">
 <rect rx="6" ry="6" x="-24" y="-24" width="48" height="48" class="key"/>
@@ -368,14 +365,19 @@ text.fr.hold {
 <rect rx="6" ry="6" x="-24" y="-24" width="48" height="48" class="key fr"/>
 <text x="0" y="0" class="key fr tap">→</text>
 </g>
-<g transform="translate(756, 161)" class="key keypos-34">
-<rect rx="6" ry="6" x="-24" y="-24" width="48" height="48" class="key"/>
+<g transform="translate(756, 161)" class="key fr keypos-34">
+<rect rx="6" ry="6" x="-24" y="-24" width="48" height="48" class="key fr"/>
+<text x="0" y="0" class="key fr tap">&lt;</text>
+<text x="0" y="-20" class="key fr shifted">&gt;</text>
 </g>
-<g transform="translate(812, 161)" class="key keypos-35">
-<rect rx="6" ry="6" x="-24" y="-24" width="48" height="48" class="key"/>
+<g transform="translate(812, 161)" class="key fr keypos-35">
+<rect rx="6" ry="6" x="-24" y="-24" width="48" height="48" class="key fr"/>
+<text x="0" y="0" class="key fr tap">ù</text>
+<text x="0" y="-20" class="key fr shifted">%</text>
 </g>
-<g transform="translate(28, 217)" class="key keypos-36">
-<rect rx="6" ry="6" x="-24" y="-24" width="48" height="48" class="key"/>
+<g transform="translate(28, 217)" class="key trans keypos-36">
+<rect rx="6" ry="6" x="-24" y="-24" width="48" height="48" class="key trans"/>
+<text x="0" y="0" class="key trans tap">▽</text>
 </g>
 <g transform="translate(84, 217)" class="key keypos-37">
 <rect rx="6" ry="6" x="-24" y="-24" width="48" height="48" class="key"/>
@@ -414,11 +416,13 @@ text.fr.hold {
 <rect rx="6" ry="6" x="-24" y="-24" width="48" height="48" class="key"/>
 <use href="#mdi:format-vertical-align-bottom" xlink:href="#mdi:format-vertical-align-bottom" x="-7" y="-7" height="14" width="14.0" class="key tap glyph mdi:format-vertical-align-bottom"/>
 </g>
-<g transform="translate(756, 217)" class="key keypos-48">
-<rect rx="6" ry="6" x="-24" y="-24" width="48" height="48" class="key"/>
+<g transform="translate(756, 217)" class="key fr keypos-48">
+<rect rx="6" ry="6" x="-24" y="-24" width="48" height="48" class="key fr"/>
+<text x="0" y="0" class="key fr tap">&gt;</text>
 </g>
-<g transform="translate(812, 217)" class="key keypos-49">
-<rect rx="6" ry="6" x="-24" y="-24" width="48" height="48" class="key"/>
+<g transform="translate(812, 217)" class="key trans keypos-49">
+<rect rx="6" ry="6" x="-24" y="-24" width="48" height="48" class="key trans"/>
+<text x="0" y="0" class="key trans tap">▽</text>
 </g>
 <g transform="translate(126, 273)" class="key noswitch keypos-50">
 <rect rx="6" ry="6" x="-24" y="-24" width="48" height="48" class="key noswitch"/>
@@ -455,7 +459,6 @@ text.fr.hold {
 </g>
 <g transform="translate(714, 273)" class="key noswitch keypos-59">
 <rect rx="6" ry="6" x="-24" y="-24" width="48" height="48" class="key noswitch"/>
-<text x="0" y="0" class="key noswitch tap">▽</text>
 </g>
 </g>
 </g>

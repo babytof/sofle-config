@@ -70,15 +70,15 @@ PLUS,+,+
 MINUS,),°
 UNDERSCORE,_,_
 UNDER,_,_
-FSLH,!,§
-SLASH,!,§
+FSLH,=,+
+SLASH,=,+
 QUESTION,?,?
 QMARK,?,?
 BSLH,*,µ
 BACKSLASH,*,µ
 PIPE,|,|
 NON_US_BSLH,*,µ
-NUBS,<,>
+NUBS,@,#
 SEMI,m,M
 SEMICOLON,m,M
 COLON,:,:
@@ -101,10 +101,10 @@ LBRC,{,{
 RBKT,$,*
 RIGHT_BRACKET,$,*
 RBRC,},}
-# macOS FR ISO (aligné Corne keymap_drawer_fr_mac_iso / QMK keymap_french_mac_iso.h)
-GRAVE,@,#
-GRV,@,#
-TILDE,#,#
+# macOS FR ISO — NUBS → @/# ; GRAVE → </>
+GRAVE,<,>
+GRV,<,>
+TILDE,>,>
 TILDE2,~,~
 NUHS,§,£
 NON_US_HASH,§,£

@@ -40,7 +40,7 @@ ACTIVATION_GHOSTS_CORNE: List[Tuple[str, int, int]] = [
     ("Symbols", 54, 2),      # K58  hold Ret → Sym
     ("Functions", 54, 3),    # K58  depuis Nav (pouce Enter)
     ("Functions", 55, 3),    # K59  depuis Sym (pouce Space)
-    ("Adjust", 57, 5),       # K62  hold → Adjust
+    ("Adjust", 35, 5),       # K39  hold home droite → Adjust
 ]
 
 # &studio_unlock (K54/K65) : légende via raw_binding_map dans keymap-config.yaml

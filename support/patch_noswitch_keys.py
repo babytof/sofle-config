@@ -26,11 +26,11 @@ NOSWITCH_KEYPOS: List[int] = [
 ]
 
 # Légendes d’affichage uniquement (firmware inchangé).
-# Nav K12 = NUBS en ZMK ; rendu demandé aligné Base (@ / #).
+# macOS FR ISO : NUBS → @/# ; GRAVE → </> ; LS(GRAVE) → >
 # Functions : sorties macOS FR des accords du Corne Vial (L3).
 DISPLAY_OVERRIDES: Dict[tuple[str, int], Dict[str, str]] = {
-    ("Base", 12): {"t": "@", "s": "#", "type": "fr"},  # K12 NUBS — même rendu que Nav
-    ("Nav", 12): {"t": "@", "s": "#", "type": "fr"},
+    ("Nav", 48): {"t": ">", "type": "fr"},                 # K52 LS(GRAVE) = K38+Shift
+    ("Symbols", 12): {"t": ">", "type": "fr"},             # K12 LS(GRAVE)
     ("Functions", 30): {"t": "-", "type": "fr"},   # K34 EQUAL
     ("Functions", 44): {"t": "_", "type": "fr"},   # K48 RS(EQUAL)
     ("Functions", 32): {"t": "}", "type": "fr"},   # K36 RA(MINUS)
