@@ -55,6 +55,14 @@ parse_config:
     #define ZMK_MOUSE_DEFAULT_SCRL_VAL 10
     #define MOVE_Y(vert) vert
     #define MOVE_X(hor) hor+10
+    #define STEP_LEFT 21
+    #define STEP_DOWN 22
+    #define STEP_UP 23
+    #define STEP_RIGHT 24
+    #define SCRL_LEFT 31
+    #define SCRL_DOWN 32
+    #define SCRL_UP 33
+    #define SCRL_RIGHT 34
 
   # In most cases I won't need these labels defined here, but I decided to keep
   # them so the default behavior of Keymap Drawer matches my configuration
@@ -307,6 +315,7 @@ parse_config:
   # as a shortcut, I will add an entry for them here. I use this, also, to tweak
   # the default label for some keys that don't exactly match my layout style.
   raw_binding_map:
+    "&none": { t: "" }
     # Layer activation keys (couche AZERTY / Townk)
     #---------------------------------------------------------------------------
     # Navigation layer
@@ -353,6 +362,16 @@ parse_config:
       }
     "&mo L_FUN": { t: "$$mdi:numeric-3-box-multiple-outline$$" }
     "&mo L_ADJ": { t: "$$mdi:numeric-5-box-multiple-outline$$" }
+    "&alt_mou LALT L_MOU":
+      {
+        t: "$$mdi:lock-outline$$",
+        h: "$$mdi:apple-keyboard-option$$",
+        type: "held",
+      }
+    "&mo L_SPD05": { t: "×½", type: "held" }
+    "&mo L_SPD2": { t: "×2", type: "held" }
+    "&mo L_SPD4": { t: "×4", type: "held" }
+    "&mo L_SPD6": { t: "×6", type: "held" }
     # Legacy (non utilisé sur MAIN)
     "&lt L_SYM ESC":
       { t: "⎋", h: "$$mdi:numeric-3-box-multiple-outline$$", type: "held" }
@@ -518,11 +537,19 @@ parse_config:
     "&mmv MOVE_DOWN": { t: "$$mdi:mouse$$", h: "↓" }
     "&mmv MOVE_UP": { t: "$$mdi:mouse$$", h: "↑" }
     "&mmv MOVE_RIGHT": { t: "$$mdi:mouse$$", h: "→" }
+    "&mmv_step STEP_LEFT": { t: "$$mdi:cursor-default$$", h: "1←" }
+    "&mmv_step STEP_DOWN": { t: "$$mdi:cursor-default$$", h: "1↓" }
+    "&mmv_step STEP_UP": { t: "$$mdi:cursor-default$$", h: "1↑" }
+    "&mmv_step STEP_RIGHT": { t: "$$mdi:cursor-default$$", h: "1→" }
     # Mouse scrollwheel
     "&msc MOVE_X(ZMK_MOUSE_DEFAULT_SCRL_VAL)": { t: "$$mdi:unfold-more-vertical$$", h: "left" }
     "&msc MOVE_Y(ZMK_MOUSE_DEFAULT_SCRL_VAL)": { t: "$$mdi:unfold-more-horizontal$$", h: "down" }
     "&msc MOVE_Y(-ZMK_MOUSE_DEFAULT_SCRL_VAL)": { t: "$$mdi:unfold-more-horizontal$$", h: "up" }
     "&msc MOVE_X(-ZMK_MOUSE_DEFAULT_SCRL_VAL)": { t: "$$mdi:unfold-more-vertical$$", h: "right" }
+    "&msc SCRL_LEFT": { t: "$$mdi:unfold-more-vertical$$", h: "left" }
+    "&msc SCRL_DOWN": { t: "$$mdi:unfold-more-horizontal$$", h: "down" }
+    "&msc SCRL_UP": { t: "$$mdi:unfold-more-horizontal$$", h: "up" }
+    "&msc SCRL_RIGHT": { t: "$$mdi:unfold-more-vertical$$", h: "right" }
     # Mouse buttons
     "&mkp LCLK": { t: "$$mdi:mouse-left-click-outline$$", h: "primary" }
     "&mkp MB1": { t: "$$mdi:mouse-left-click-outline$$", h: "primary" }
@@ -570,14 +597,19 @@ parse_config:
     "&kp MAC_APPWIN": "$$mdi:dock-window$$"
     # Undo: ⌘ Z
     "&kp MAC_UNDO": "$$mdi:undo$$"
+    "&kp LG(Z)": "$$mdi:undo$$"
     # Redo: ⇧ ⌘ Z
     "&kp MAC_REDO": "$$mdi:redo$$"
+    "&kp LG(LS(Z))": "$$mdi:redo$$"
     # Cut: ⌘ X
     "&kp MAC_CUT": "$$mdi:content-cut$$"
+    "&kp LG(X)": "$$mdi:content-cut$$"
     # Copy: ⌘ C
     "&kp MAC_COPY": "$$mdi:content-copy$$"
+    "&kp LG(C)": "$$mdi:content-copy$$"
     # Paste: ⌘ V
     "&kp MAC_PASTE": "$$mdi:content-paste$$"
+    "&kp LG(V)": "$$mdi:content-paste$$"
     "&navcmdz": "⌘Z"
     "&navcmdx": "⌘X"
     "&navcmdc": "⌘C"

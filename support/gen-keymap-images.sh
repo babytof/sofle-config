@@ -30,6 +30,7 @@ MERGE_PY="$SCRIPT_DIR/merge_yaml.py"
 APPLY_LOCALE_PY="$SCRIPT_DIR/apply_keymap_locale.py"
 APPEND_RC_PY="$SCRIPT_DIR/append_rc_reference_layer.py"
 PATCH_LAYER_GHOSTS_PY="$SCRIPT_DIR/patch_layer_activation_ghosts.py"
+PATCH_NUPHY_MOUSE_PY="$SCRIPT_DIR/patch_nuphy_mouse_layer.py"
 PATCH_NOSWITCH_PY="$SCRIPT_DIR/patch_noswitch_keys.py"
 ANNOTATE_SVG_PY="$SCRIPT_DIR/annotate_layer_numbers_in_svg.py"
 FLATTEN_SVG_PY="$SCRIPT_DIR/svg_flatten_mdi_uses.py"
@@ -119,10 +120,10 @@ if grep -q '^  Base:' "$KD_PROBE" || grep -q '^  Nav:' "$KD_PROBE"; then
   LAYOUT_KIND=corne
   # Symbols+ : no-shift ; Base+Nav gardent les légendes Shift (ex. GRAVE → @ / #)
   SPLIT_LAYER=Symbols
-  LAYOUT_LAYERS=(Base Nav Symbols Functions Spare Adjust)
+  LAYOUT_LAYERS=(Base Nav Symbols Functions Mouse Adjust)
   LAYOUT_MAP_NAMES=(
     layer0-main layer1-navigation layer2-symbols layer3-functions
-    layer4-spare layer5-adjust
+    layer4-mouse layer5-adjust
   )
   echo "- Layout détecté : Corne Vial 42"
 else
@@ -152,6 +153,9 @@ KD_PROBE=""
 
 # Couche purement graphique (absente du firmware) : RC(row,col) du transform Sofle
 "$PYTHON" "$APPEND_RC_PY" "$KD_PARSED" -o "$KD_KEYMAP"
+if [[ "$LAYOUT_KIND" == "corne" && -f "$PATCH_NUPHY_MOUSE_PY" ]]; then
+  "$PYTHON" "$PATCH_NUPHY_MOUSE_PY" "$KD_KEYMAP" -o "$KD_KEYMAP"
+fi
 "$PYTHON" "$PATCH_LAYER_GHOSTS_PY" "$KD_KEYMAP" -o "$KD_KEYMAP"
 if [[ "$LAYOUT_KIND" == "corne" && -f "$PATCH_NOSWITCH_PY" ]]; then
   "$PYTHON" "$PATCH_NOSWITCH_PY" "$KD_KEYMAP" -o "$KD_KEYMAP"

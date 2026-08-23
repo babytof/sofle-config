@@ -1,0 +1,11 @@
+/*
+ * Corne MX Bluetooth — SuperMini nRF52840 (nice_nano_v2) + shield corne_left / corne_right.
+ * Keymap 42 : layout/corne_42_layout.dtsi (port Vial, sans SOFLE60).
+ */
+
+#include "layout/corne_42_layout.dtsi"
+
+/* 21 per-key uniquement (underglow non soudé : data MCU → DIN LED27). Défaut shield = 10. */
+&led_strip {
+  chain-length = <21>;
+};

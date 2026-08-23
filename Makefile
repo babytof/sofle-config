@@ -1,7 +1,10 @@
-# ZMK — Sofle Choc Pro BT (board sofle_choc_pro_left / _right + shield nice_view_disp).
-# Matrice identique au shield Sofle classique (SOFLE60 / Townk) : même keymap que sofle.keymap.
+# ZMK — deux claviers dans ce dépôt :
+#   Sofle Choc Pro BT  — board sofle_choc_pro_left / _right + shield nice_view_disp
+#                        (make / make all / left / right). UF2 : firmware/zmk-*.uf2
+#   Corne MX BT        — board nice_nano_v2 + shield corne_left / corne_right
+#                        (make corne-left / corne-right). UF2 : firmware/zmk-corne-*.uf2
 #
-# Ancienne cible nice!nano + sofle_* : remplacée — les UF2 pour Choc Pro BT exigent ce board.
+# Les cibles Sofle et Corne sont isolées (dossiers build/, keymap, .conf, préfixe UF2).
 #
 # Prérequis : west dans le PATH (ex. source ~/.virtualenvs/zmk/bin/activate)
 #
@@ -42,6 +45,12 @@ CHOC_FLAGS_LEFT  = $(CHOC_FLAGS_KEYMAP) -DSHIELD="$(SHIELD_LEFT)"
 CHOC_FLAGS_RIGHT = $(CHOC_FLAGS_KEYMAP) -DSHIELD="$(SHIELD_VIEW)"
 WEST_SNIPPET_LEFT = -S studio-rpc-usb-uart
 
+# Corne MX BT — shield officiel ZMK (ne pas réutiliser KEYMAP_FILE / SHIELD_VIEW Sofle)
+BOARD_CORNE      ?= nice_nano_v2
+CORNE_KEYMAP     ?= $(CURDIR)/config/corne.keymap
+CORNE_FLAGS      = -DZMK_CONFIG="$(CURDIR)/config" -DKEYMAP_FILE="$(CORNE_KEYMAP)"
+SHIELD_CORNE_LEFT = corne_left raw_hid_adapter
+
 # Environnement Python / Keymap Drawer (même venv que west)
 ZMK_VENV         ?= $(HOME)/.virtualenvs/zmk
 PIP_ZMK          := $(ZMK_VENV)/bin/pip
@@ -53,7 +62,8 @@ KEYMAP_SVG       := $(CURDIR)/build/keymap.svg
 .DEFAULT_GOAL := all
 
 .PHONY: all left right reset-left reset-right reset clean firmware help \
-	install-keymap-drawer keymap-drawer keymap-images keymap-blank-sheet
+	install-keymap-drawer keymap-drawer keymap-images keymap-blank-sheet \
+	corne corne-left corne-right corne-reset-left corne-reset-right corne-reset
 
 all:
 	@echo "=== Build Sofle Choc Pro BT (left, right, reset-left, reset-right) ==="
@@ -103,6 +113,58 @@ firmware:
 	@test -f build/right/zephyr/zmk.uf2 && cp -f build/right/zephyr/zmk.uf2 firmware/zmk-right.uf2 || true
 	@test -f build/reset-left/zephyr/zmk.uf2 && cp -f build/reset-left/zephyr/zmk.uf2 firmware/zmk-reset-left.uf2 || true
 	@test -f build/reset-right/zephyr/zmk.uf2 && cp -f build/reset-right/zephyr/zmk.uf2 firmware/zmk-reset-right.uf2 || true
+	@test -f build/corne-left/zephyr/zmk.uf2 && cp -f build/corne-left/zephyr/zmk.uf2 firmware/zmk-corne-left.uf2 || true
+	@test -f build/corne-right/zephyr/zmk.uf2 && cp -f build/corne-right/zephyr/zmk.uf2 firmware/zmk-corne-right.uf2 || true
+	@test -f build/corne-reset-left/zephyr/zmk.uf2 && cp -f build/corne-reset-left/zephyr/zmk.uf2 firmware/zmk-corne-reset-left.uf2 || true
+	@test -f build/corne-reset-right/zephyr/zmk.uf2 && cp -f build/corne-reset-right/zephyr/zmk.uf2 firmware/zmk-corne-reset-right.uf2 || true
+
+corne:
+	@echo "=== Build Corne MX BT (left, right) ==="
+	$(WEST) $(WEST_SNIPPET_LEFT) -d build/corne-left -b $(BOARD_CORNE) -- \
+		$(CORNE_FLAGS) -DSHIELD="$(SHIELD_CORNE_LEFT)"
+	$(WEST) -d build/corne-right -b $(BOARD_CORNE) -- \
+		$(CORNE_FLAGS) -DSHIELD=corne_right
+	@$(MAKE) --no-print-directory firmware
+	@echo "UF2 : firmware/zmk-corne-left.uf2  firmware/zmk-corne-right.uf2"
+	@echo "=== Terminé ==="
+
+corne-left:
+	@echo "=== Build Corne LEFT ($(BOARD_CORNE) + corne_left) ==="
+	$(WEST) $(WEST_SNIPPET_LEFT) -d build/corne-left -b $(BOARD_CORNE) -- \
+		$(CORNE_FLAGS) -DSHIELD="$(SHIELD_CORNE_LEFT)"
+	@$(MAKE) --no-print-directory firmware
+	@echo "UF2 : $(CURDIR)/firmware/zmk-corne-left.uf2  (copie de build/corne-left/zephyr/zmk.uf2)"
+
+corne-right:
+	@echo "=== Build Corne RIGHT ($(BOARD_CORNE) + corne_right) ==="
+	$(WEST) -d build/corne-right -b $(BOARD_CORNE) -- \
+		$(CORNE_FLAGS) -DSHIELD=corne_right
+	@$(MAKE) --no-print-directory firmware
+	@echo "UF2 : $(CURDIR)/firmware/zmk-corne-right.uf2  (copie de build/corne-right/zephyr/zmk.uf2)"
+
+corne-reset-left:
+	@echo "=== Build Corne RESET GAUCHE ($(BOARD_CORNE) + settings_reset) ==="
+	$(WEST) -d build/corne-reset-left -b $(BOARD_CORNE) -- \
+		-DZMK_CONFIG="$(CURDIR)/config" -DSHIELD=settings_reset
+	@$(MAKE) --no-print-directory firmware
+	@echo "UF2 : $(CURDIR)/firmware/zmk-corne-reset-left.uf2"
+
+corne-reset-right:
+	@echo "=== Build Corne RESET DROITE ($(BOARD_CORNE) + settings_reset) ==="
+	$(WEST) -d build/corne-reset-right -b $(BOARD_CORNE) -- \
+		-DZMK_CONFIG="$(CURDIR)/config" -DSHIELD=settings_reset
+	@$(MAKE) --no-print-directory firmware
+	@echo "UF2 : $(CURDIR)/firmware/zmk-corne-reset-right.uf2"
+
+corne-reset:
+	@echo "=== Build Corne RESET (gauche + droite) ==="
+	$(WEST) -d build/corne-reset-left -b $(BOARD_CORNE) -- \
+		-DZMK_CONFIG="$(CURDIR)/config" -DSHIELD=settings_reset
+	$(WEST) -d build/corne-reset-right -b $(BOARD_CORNE) -- \
+		-DZMK_CONFIG="$(CURDIR)/config" -DSHIELD=settings_reset
+	@$(MAKE) --no-print-directory firmware
+	@echo "UF2 copiés : $(CURDIR)/firmware/"
+	@echo "=== Terminé ==="
 
 clean:
 	rm -rf build firmware
@@ -144,18 +206,25 @@ keymap-blank-sheet:
 
 help:
 	@echo "Bootstrap machine neuve : README.md + ./build-setup.sh (venv activé, Zephyr SDK à part)."
-	@echo "Cibles :"
-	@echo "  make / make all     — les 4 builds (Choc Pro BT) + firmware/*.uf2"
+	@echo "Cibles Sofle Choc Pro BT :"
+	@echo "  make / make all     — les 4 builds Sofle + firmware/zmk-*.uf2"
 	@echo "  make left | right | reset-left | reset-right"
-	@echo "  make reset          — les deux firmwares reset + firmware/"
-	@echo "  make firmware       — copie les .uf2 construits vers firmware/"
-	@echo "  make clean          — supprime build/ et firmware/"
+	@echo "  make reset          — les deux firmwares reset Sofle + firmware/"
+	@echo "Cibles Corne MX BT :"
+	@echo "  make corne          — corne-left + corne-right"
+	@echo "  make corne-left | corne-right | corne-reset-left | corne-reset-right"
+	@echo "  make corne-reset    — les deux firmwares reset Corne"
+	@echo "Commun :"
+	@echo "  make firmware       — copie les .uf2 construits (Sofle et/ou Corne) vers firmware/"
+	@echo "  make clean          — supprime build/ et firmware/ (Sofle et Corne)"
 	@echo "  make install-keymap-drawer — pip install keymap-drawer dans ZMK_VENV"
-	@echo "  make keymap-drawer  — build/keymap.svg"
+	@echo "  make keymap-drawer  — build/keymap.svg (Sofle)"
 	@echo "  make keymap-images  — docs/images/sofle-layer*.{svg,png} + build/out/zmk-sofle-layout-map.{svg,png}"
 	@echo "  make keymap-blank-sheet — gabarit imprimable (3 couches vierges/page, docs/images/blank-layer-sheet.html)"
 	@echo ""
-	@echo "Board : $(BOARD_LEFT) / $(BOARD_RIGHT)   Shield gauche : $(SHIELD_LEFT)   droite : $(SHIELD_VIEW)"
-	@echo "Kconfig utilisateur : config/sofle_choc_pro.conf"
+	@echo "Sofle : $(BOARD_LEFT) / $(BOARD_RIGHT)   Shield gauche : $(SHIELD_LEFT)   droite : $(SHIELD_VIEW)"
+	@echo "        Kconfig : config/sofle_choc_pro.conf   Keymap : $(KEYMAP_FILE)"
+	@echo "Corne : $(BOARD_CORNE) + corne_left / corne_right"
+	@echo "        Kconfig : config/corne.conf   Keymap : $(CORNE_KEYMAP)"
 	@echo "Changement de cible ou de KEYMAP_FILE : make clean ou PRISTINE=1"
 	@echo "Variables : ZMK_APP=$(ZMK_APP)  ZMK_VENV=$(ZMK_VENV)  KEYMAP_FILE=$(KEYMAP_FILE)"

@@ -41,6 +41,7 @@ LAYER_NUM_CORNE: dict[str, int] = {
     "Symbols": 2,
     "Functions": 3,
     "Spare": 4,
+    "Mouse": 4,
     "Adjust": 5,
     "RC_REFERENCE": 6,
 }

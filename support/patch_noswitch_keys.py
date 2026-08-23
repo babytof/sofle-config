@@ -74,16 +74,17 @@ def patch(data: Dict[str, Any]) -> None:
                     file=sys.stderr,
                 )
                 raise SystemExit(1)
-            cell = bindings[pos]
-            if cell is None or cell == "":
-                bindings[pos] = {"type": "noswitch"}
-            elif isinstance(cell, dict):
-                cell = dict(cell)
-                cell["type"] = "noswitch"
-                bindings[pos] = cell
+            # Réf. RC : garder les coordonnées. Ailleurs : case vide pointillée (pas de « &none »).
+            if layer_name == "RC_REFERENCE":
+                cell = bindings[pos]
+                if isinstance(cell, dict):
+                    cell = dict(cell)
+                    cell["type"] = "noswitch"
+                    bindings[pos] = cell
+                else:
+                    bindings[pos] = {"t": str(cell), "type": "noswitch"}
             else:
-                # Légende texte inattendue sur une case sans switch — forcer le type
-                bindings[pos] = {"t": str(cell), "type": "noswitch"}
+                bindings[pos] = {"type": "noswitch"}
 
     for (layer_name, pos), legend in DISPLAY_OVERRIDES.items():
         bindings = layers.get(layer_name)

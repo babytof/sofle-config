@@ -1,6 +1,6 @@
 # Configuration ZMK — Sofle Choc Pro BT
 
-> **À propos de ce dépôt** — Keymap et board pour un **Sofle Choc Pro Bluetooth**, en **AZERTY / ISO français** sous **macOS**. Firmware basé sur **[ZMK officiel](https://github.com/zmkfirmware/zmk)** (`v0.3` via `config/west.yml`), avec modules complémentaires et overlay **KeyPeek**.
+> **À propos de ce dépôt** — Keymap et board pour un **Sofle Choc Pro Bluetooth**, plus une cible **Corne MX Bluetooth** (SuperMini nRF52840), en **AZERTY / ISO français** sous **macOS**. Firmware basé sur **[ZMK officiel](https://github.com/zmkfirmware/zmk)** (`v0.3` via `config/west.yml`), avec modules complémentaires et overlay **KeyPeek**.
 
 Keymap, board et manifest **West** pour **ZMK officiel** + modules `zmk-tri-state`, `zmk-raw-hid`, `zmk-keypeek-layer-notifier` (KeyPeek). La moitié **gauche** active **ZMK Studio** (RPC USB + `raw_hid_adapter`) pour KeyPeek et l’édition keymap. Les arborescences **zephyr/**, **zmk/** et **modules/** sont ignorées par Git (`.gitignore`) : elles sont recréées par West et éventuellement modifiées par des **patches versionnés** dans `support/patches/`.
 
@@ -8,6 +8,8 @@ Chaque clavier a sa doc de layout ; ici :
 
 - [Sofle Choc Pro BT](docs/sofle.md) — couches, choix de mapping et liens vers les schémas
 - [Conventions (symboles, représentation des touches)](docs/README.md)
+
+`make` / `make all` / `make left` restent **Sofle**. Corne : `make corne-left` / `make corne-right` (UF2 préfixés `firmware/zmk-corne-*.uf2`). Détail matériel : [CORNE.md](CORNE.md).
 
 Si tu n’as pas encore ouvert ces liens : commence par **`docs/sofle.md`** pour le clavier cible, puis **`docs/README.md`** pour le glossaire et la lecture des schémas.
 
@@ -58,8 +60,9 @@ Fait notamment : `west init -l config` si besoin, **`west update`**, application
 ### 6. Build firmware / diagrammes
 
 ```bash
-make left          # ou make all, make right, …
-make keymap-images # SVG dans docs/images/
+make left          # Sofle (ou make all, make right, …)
+make corne-left    # Corne (ou make corne, make corne-right, …)
+make keymap-images # SVG Sofle dans docs/images/
 ```
 
 Variable utile du **Makefile** : **`ZMK_VENV`** (défaut `$(HOME)/.virtualenvs/zmk`) pour pointer vers ton venv si différent.
