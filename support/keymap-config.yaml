@@ -355,6 +355,11 @@ parse_config:
         t: "$$mdi:keyboard-space$$",
         h: "$$mdi:numeric-1-box-multiple-outline$$",
       }
+    "&clt_nav L_NAV SPACE":
+      {
+        t: "$$mdi:keyboard-space$$",
+        h: "$$mdi:numeric-1-box-multiple-outline$$",
+      }
     "&clt L_SYM RET":
       {
         t: "$$mdi:keyboard-return$$",

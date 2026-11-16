@@ -69,6 +69,17 @@
       bindings = <&mo>, <&kp>;
     };
 
+    /* K59 Nav : hold-preferred — balanced attendait 180 ms (ou le relâchement
+     * d’une autre touche) avant d’activer Nav. K58/Sym reste en balanced. */
+    clt_nav: corne_layer_tap_nav {
+      compatible = "zmk,behavior-hold-tap";
+      #binding-cells = <2>;
+      flavor = "hold-preferred";
+      tapping-term-ms = <180>;
+      quick-tap-ms = <180>;
+      bindings = <&mo>, <&kp>;
+    };
+
     /* K56 : hold LAlt, tap = toggle Mouse */
     alt_mou: alt_or_mouse_toggle {
       compatible = "zmk,behavior-hold-tap";
@@ -170,7 +181,7 @@
         &kp ESC        &kp Q        &kp W        &kp E        &kp R        &kp T              &kp Y        &kp U        &kp I         &kp O         &kp P            &kp BSPC
         &kp TAB        &cmt LCTRL A &cmt LALT S  &cmt LGUI D  &kp F        &kp G              &kp H        &kp J        &cmt RGUI K   &cmt RALT L   &cmt RCTRL SEMI  &mo L_ADJ
         &kp LSHFT      &kp Z        &kp X        &kp C        &kp V        &kp B              &kp N        &kp M        &kp COMMA     &kp DOT       &kp FSLH         &kp RSHFT
-                                    &alt_mou LALT L_MOU &kp LGUI &clt L_SYM RET                  &clt L_NAV SPACE &kp RGUI &kp RALT
+                                    &alt_mou LALT L_MOU &kp LGUI &clt L_SYM RET                  &clt_nav L_NAV SPACE &kp RGUI &kp RALT
       >;
     };
 
