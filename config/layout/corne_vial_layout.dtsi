@@ -29,12 +29,29 @@
 /* TAPPING_TERM Corne Vial = 180 ms */
 / {
   behaviors {
-    cmt: corne_mod_tap {
+    /* Homerow : modificateur seulement si l'autre main ou un pouce est pressé.
+     * require-prior-idle-ms : si une touche a été tapée dans les 200 ms précédentes,
+     * le homerow reste une lettre. Pour un modificateur, marquer une pause avant de le tenir.
+     * KEYS_L, KEYS_R et THUMBS viennent de sofle.keymap. */
+    cml: corne_mod_tap_left {
       compatible = "zmk,behavior-hold-tap";
       #binding-cells = <2>;
       flavor = "balanced";
       tapping-term-ms = <180>;
       quick-tap-ms = <180>;
+      require-prior-idle-ms = <200>;
+      hold-trigger-key-positions = <KEYS_R THUMBS>;
+      bindings = <&kp>, <&kp>;
+    };
+
+    cmr: corne_mod_tap_right {
+      compatible = "zmk,behavior-hold-tap";
+      #binding-cells = <2>;
+      flavor = "balanced";
+      tapping-term-ms = <180>;
+      quick-tap-ms = <180>;
+      require-prior-idle-ms = <200>;
+      hold-trigger-key-positions = <KEYS_L THUMBS>;
       bindings = <&kp>, <&kp>;
     };
 
@@ -76,7 +93,7 @@
       bindings = <SOFLE60(
         &none, &none, &none, &none, &none, &none,                                    &none, &none, &none, &none, &none, &none,
         &kp ESC, &kp Q, &kp W, &kp E, &kp R, &kp T,     &none, &none,  &kp Y, &kp U, &kp I, &kp O, &kp P, &kp BSPC,
-        &kp TAB, &cmt LCTRL A, &cmt LALT S, &cmt LGUI D, &kp F, &kp G, &none, &none,  &kp H, &kp J, &cmt RGUI K, &cmt RALT L, &cmt RCTRL SEMI, &mo L_ADJ,
+        &kp TAB, &cml LCTRL A, &cml LALT S, &cml LGUI D, &kp F, &kp G, &none, &none,  &kp H, &kp J, &cmr RGUI K, &cmr RALT L, &cmr RCTRL SEMI, &mo L_ADJ,
         &kp LSHFT, &kp Z, &kp X, &kp C, &kp V, &kp B,     &none, &none,  &kp N, &kp M, &kp COMMA, &kp DOT, &kp FSLH, &kp RSHFT,
                &none, &none, &kp LALT, &kp LGUI, &clt L_SYM RET, &clt L_NAV SPACE, &none, &kp RGUI, &kp RALT, &none, &none, &none
       )>;

@@ -60,6 +60,32 @@
       bindings = <&kp>, <&kp>;
     };
 
+    /* Homerow : modificateur seulement si l'autre main ou un pouce est pressé.
+     * require-prior-idle-ms : si une touche a été tapée dans les 200 ms précédentes,
+     * le homerow reste une lettre. Pour un modificateur, marquer une pause avant de le tenir.
+     * Positions Corne 42 : gauche 0–5, 12–17, 24–29, 36–38 ; droite 6–11, 18–23, 30–35, 39–41. */
+    cml: corne_mod_tap_left {
+      compatible = "zmk,behavior-hold-tap";
+      #binding-cells = <2>;
+      flavor = "balanced";
+      tapping-term-ms = <180>;
+      quick-tap-ms = <180>;
+      require-prior-idle-ms = <200>;
+      hold-trigger-key-positions = <6 7 8 9 10 11 18 19 20 21 22 23 30 31 32 33 34 35 39 40 41>;
+      bindings = <&kp>, <&kp>;
+    };
+
+    cmr: corne_mod_tap_right {
+      compatible = "zmk,behavior-hold-tap";
+      #binding-cells = <2>;
+      flavor = "balanced";
+      tapping-term-ms = <180>;
+      quick-tap-ms = <180>;
+      require-prior-idle-ms = <200>;
+      hold-trigger-key-positions = <0 1 2 3 4 5 12 13 14 15 16 17 24 25 26 27 28 29 36 37 38>;
+      bindings = <&kp>, <&kp>;
+    };
+
     clt: corne_layer_tap {
       compatible = "zmk,behavior-hold-tap";
       #binding-cells = <2>;
@@ -179,7 +205,7 @@
       display-name = "Base";
       bindings = <
         &kp ESC        &kp Q        &kp W        &kp E        &kp R        &kp T              &kp Y        &kp U        &kp I         &kp O         &kp P            &kp BSPC
-        &kp TAB        &cmt LCTRL A &cmt LALT S  &cmt LGUI D  &kp F        &kp G              &kp H        &kp J        &cmt RGUI K   &cmt RALT L   &cmt RCTRL SEMI  &mo L_ADJ
+        &kp TAB        &cml LCTRL A &cml LALT S  &cml LGUI D  &kp F        &kp G              &kp H        &kp J        &cmr RGUI K   &cmr RALT L   &cmr RCTRL SEMI  &mo L_ADJ
         &kp LSHFT      &kp Z        &kp X        &kp C        &kp V        &kp B              &kp N        &kp M        &kp COMMA     &kp DOT       &kp FSLH         &kp RSHFT
                                     &alt_mou LALT L_MOU &kp LGUI &clt L_SYM RET                  &clt_nav L_NAV SPACE &kp RGUI &kp RALT
       >;
